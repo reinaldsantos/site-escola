@@ -1,0 +1,40 @@
+========================================
+COMO INICIAR O PROJETO
+========================================
+
+OPÇÃO 1: Usar o arquivo .bat (MAIS FÁCIL)
+----------------------------------------
+1. Navegue até a pasta: C:\Users\Santos\Desktop\site-escola2
+2. Dê duplo clique no arquivo: INICIAR_PROJETO.bat
+
+
+OPÇÃO 2: Usar CMD (Prompt de Comando)
+----------------------------------------
+1. Pressione Win + R
+2. Digite: cmd
+3. Pressione Enter
+4. Execute estes comandos:
+
+   cd C:\Users\Santos\Desktop\site-escola2
+   npm run dev
+
+
+OPÇÃO 3: Usar PowerShell
+----------------------------------------
+1. Abra PowerShell
+2. Execute:
+
+   cd C:\Users\Santos\Desktop\site-escola2
+   npm run dev
+
+
+IMPORTANTE:
+- Você DEVE estar na pasta do projeto (site-escola2) antes de executar "npm run dev"
+- Aguarde alguns segundos para os servidores iniciarem
+- Acesse: http://localhost:3000 no navegador
+
+
+ÁREA ADMIN:
+- URL: http://localhost:3000/admin/login
+- Email: admin@epfundao.pt
+- Password: admin123

@@ -1,0 +1,51 @@
+.admin-courses {
+  padding: 2rem;
+}
+
+.courses-list-admin {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.course-item-admin {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.course-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.course-item-header h3 {
+  color: var(--primary-color);
+  flex: 1;
+}
+
+.course-item-type {
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.course-item-duration {
+  color: var(--text-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.course-item-description {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.course-item-actions {
+  display: flex;
+  gap: 1rem;
+}
