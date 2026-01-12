@@ -1,0 +1,366 @@
+﻿.eqavet-container {
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.eqavet-header {
+  background: linear-gradient(135deg, #18cc2a 0%, #1a2530 100%);
+  color: white;
+  padding: 6rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.eqavet-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.eqavet-header h1 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  opacity: 0.8;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.eqavet-content {
+  max-width: 1200px;
+  margin: -3rem auto 0;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-section {
+  background: white;
+  padding: 3rem;
+  margin-bottom: 3rem;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border-left: 4px solid #18cc2a;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #18cc2a;
+  margin: 0;
+  max-width: 800px;
+}
+
+.documents-section {
+  margin: 4rem 0;
+  padding: 3rem 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.documents-section h2 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #18cc2a;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section-desc {
+  text-align: center;
+  color: #78909c;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.documents-list {
+  max-width: 800px;
+  margin: 0 auto;
+  counter-reset: document-counter;
+}
+
+.document-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+.document-item:last-child {
+  border-bottom: none;
+}
+
+.document-item::before {
+  counter-increment: document-counter;
+  content: counter(document-counter);
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #18cc2a;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.document-item.highlight::before {
+  background: #18cc2a;
+  font-weight: bold;
+}
+
+.document-content {
+  flex: 1;
+}
+
+.document-content h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #18cc2a;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.document-badge {
+  display: inline-block;
+  background: #18cc2a;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.quality-cycle {
+  margin: 4rem 0;
+  padding: 3rem 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.quality-cycle h2 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #18cc2a;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.cycle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cycle-item {
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.cycle-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #18cc2a, #18cc2a);
+}
+
+.step-number {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #18cc2a;
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.cycle-item h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #18cc2a;
+  margin: 0 0 0.5rem 0;
+}
+
+.cycle-item p {
+  font-size: 0.95rem;
+  color: #78909c;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.strategic-plan {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 4rem 2rem;
+  margin: 4rem 0;
+  border-radius: 2px;
+}
+
+.plan-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.plan-header h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #18cc2a;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.plan-period {
+  display: inline-block;
+  font-size: 1rem;
+  color: #18cc2a;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+}
+
+.plan-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.plan-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #455a64;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.objectives {
+  margin-top: 2rem;
+}
+
+.objectives h3 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #18cc2a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.objectives-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.objectives-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  color: #455a64;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.objectives-list li:last-child {
+  border-bottom: none;
+}
+
+.objectives-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #18cc2a;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .eqavet-header {
+    padding: 4rem 0 3rem;
+  }
+  
+  .eqavet-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .eqavet-content {
+    margin-top: -2rem;
+    padding: 0 1rem;
+  }
+  
+  .intro-section {
+    padding: 2rem;
+  }
+  
+  .cycle-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .document-item {
+    padding-left: 2.5rem;
+  }
+  
+  .document-item::before {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+  
+  .strategic-plan {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .eqavet-header h1 {
+    font-size: 2rem;
+  }
+  
+  .document-content h3 {
+    font-size: 1rem;
+  }
+  
+  .plan-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+
+

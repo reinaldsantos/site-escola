@@ -1,0 +1,41 @@
+﻿# INSTRUÇÕES PARA USAR OS COMPONENTES EPF
+
+## Componentes criados:
+
+### 1. NewsSection (Notícias)
+- Arquivo: src/components/NewsSection.jsx
+- Uso: <NewsSection />
+- CSS: src/components/NewsSection.css
+
+### 2. ErasmusStats (Estatísticas)
+- Arquivo: src/components/ErasmusStats.jsx  
+- Uso: <ErasmusStats />
+- CSS: src/components/ErasmusStats.css
+
+### 3. ErasmusPage (Página Completa)
+- Arquivo: src/pages/ErasmusPage.jsx
+- CSS: src/pages/ErasmusPage.css
+- Acesse via: http://localhost:3000/erasmus
+
+## Como integrar:
+
+1. Adicione a rota no App.jsx:
+import ErasmusPage from './pages/ErasmusPage';
+<Route path='/erasmus' element={<ErasmusPage />} />
+
+2. Adicione links no menu:
+<li><a href='/erasmus'>Erasmus+</a></li>
+<li><a href='/noticias'>Notícias</a></li>
+
+3. Use os componentes:
+import NewsSection from './components/NewsSection';
+import ErasmusStats from './components/ErasmusStats';
+
+<NewsSection />
+<ErasmusStats />
+
+## Para testar:
+npm run dev
+Acesse: http://localhost:3000/erasmus
+
+Pronto!

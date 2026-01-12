@@ -1,0 +1,463 @@
+﻿/* FORMACAO PAGE - TEMA VERDE EPF COMPLETO */
+.formacao-profissional {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #F0FFF0; /* Fundo verde muito claro */
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* HERO SECTION - VERDE GRADIENTE */
+.formacao-hero {
+  background: linear-gradient(135deg, #18cc2a 0%, #18cc2a 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+  color: white;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* SECTION HEADER */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #18cc2a; /* Verde escuro EPF */
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* CURSOS GRID */
+.cursos-grid-section {
+  margin-bottom: 100px;
+}
+
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+/* CARD DO CURSO */
+.curso-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 100, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid #E8F5E9;
+}
+
+.curso-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(0, 100, 0, 0.15);
+  border-color: #18cc2a;
+}
+
+/* BADGE DA ÁREA - VERDE */
+.curso-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #18cc2a; /* Verde principal EPF */
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* IMAGEM DO CURSO */
+.curso-image {
+  height: 180px;
+  overflow: hidden;
+}
+
+.curso-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.curso-card:hover .curso-img {
+  transform: scale(1.05);
+}
+
+/* INFORMAÇÕES DO CURSO */
+.curso-info {
+  padding: 25px;
+}
+
+.curso-title {
+  color: #18cc2a; /* Verde escuro EPF */
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.curso-description {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  min-height: 75px;
+}
+
+/* META INFORMAÇÕES */
+.curso-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #F1F8E9;
+  border-radius: 12px;
+  border: 1px solid #E8F5E9;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.meta-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  color: #18cc2a;
+}
+
+.meta-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.meta-value {
+  color: #18cc2a;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* SAÍDAS PROFISSIONAIS */
+.saidas-section {
+  margin-bottom: 25px;
+}
+
+.saidas-label {
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.saidas-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.saida-item {
+  background: #E8F5E9;
+  color: #18cc2a;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid #C8E6C9;
+}
+
+/* BOTÃO DO CURSO - VERDE */
+.curso-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: #18cc2a;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid #18cc2a;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.curso-btn:hover {
+  background: #18cc2a;
+  border-color: #18cc2a;
+  transform: translateY(-2px);
+}
+
+/* BENEFÍCIOS */
+.beneficios-section {
+  margin-bottom: 100px;
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.beneficio-card {
+  background: white;
+  padding: 35px 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 100, 0, 0.06);
+  border: 2px solid #E8F5E9;
+  transition: all 0.3s ease;
+}
+
+.beneficio-card:hover {
+  border-color: #18cc2a;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 100, 0, 0.1);
+}
+
+.beneficio-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #18cc2a;
+}
+
+.beneficio-card h3 {
+  color: #18cc2a;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.beneficio-card p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* CTA SECTION - VERDE */
+.cta-section {
+  background: linear-gradient(135deg, #18cc2a 0%, #18cc2a 100%);
+  border-radius: 20px;
+  padding: 60px;
+  margin-bottom: 80px;
+  color: white;
+  text-align: center;
+  border: 2px solid white;
+  box-shadow: 0 20px 60px rgba(0, 100, 0, 0.2);
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 16px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cta-btn.primary {
+  background: white;
+  color: #18cc2a;
+  border-color: white;
+}
+
+.cta-btn.primary:hover {
+  background: transparent;
+  color: white;
+  transform: scale(1.05);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
+
+.cta-btn.secondary:hover {
+  background: white;
+  color: #18cc2a;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1200px) {
+  .cursos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .cursos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .formacao-hero {
+    padding: 60px 0;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section-header {
+    margin-bottom: 40px;
+  }
+  
+  .cursos-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .curso-meta {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .cta-section {
+    padding: 40px 25px;
+  }
+  
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .curso-image {
+    height: 180px;
+  }
+  
+  .curso-title {
+    font-size: 1.2rem;
+  }
+  
+  .saidas-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .saida-item {
+    width: 100%;
+    text-align: center;
+  }
+}
+

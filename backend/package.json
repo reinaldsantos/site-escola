@@ -1,19 +1,41 @@
 {
   "name": "backend",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "server.js",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
   "scripts": {
-    "dev": "node --watch server.js",
-    "start": "node server.js"
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-validator": "^7.0.1",
-    "jsonwebtoken": "^9.0.2",
-    "nodemailer": "^7.0.12"
+    "@strapi/plugin-cloud": "5.33.2",
+    "@strapi/plugin-users-permissions": "5.33.2",
+    "@strapi/strapi": "5.33.2",
+    "better-sqlite3": "12.4.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=24.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "ed75f1eb-9f7c-4cb2-8722-719003ad4efe",
+    "installId": "5cc66c46eab2afef0602ca49b48f4a33cd080df5800213085c212940e0941420"
   }
 }

@@ -1,9 +1,79 @@
-.App {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+﻿/* APP.CSS - TEMA VERDE EPF */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-main {
-  flex: 1;
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #F0FFF0;
+  color: #333;
+  line-height: 1.6;
 }
+
+a {
+  color: #18cc2a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #18cc2a;
+}
+
+button {
+  background: #18cc2a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #18cc2a;
+  transform: translateY(-2px);
+}
+
+/* CLASSES DE CORES VERDE EPF */
+.text-verde-escuro {
+  color: #18cc2a !important;
+}
+
+.text-verde-principal {
+  color: #18cc2a !important;
+}
+
+.text-verde-medio {
+  color: #18cc2a !important;
+}
+
+.bg-verde-escuro {
+  background-color: #18cc2a !important;
+}
+
+.bg-verde-principal {
+  background-color: #18cc2a !important;
+}
+
+.bg-verde-claro {
+  background-color: #F0FFF0 !important;
+}
+
+.bg-verde-muito-claro {
+  background-color: #F1F8E9 !important;
+}
+
+/* BORDAS VERDES */
+.border-verde {
+  border-color: #18cc2a !important;
+}
+
+.border-verde-claro {
+  border-color: #E8F5E9 !important;
+}
+
+

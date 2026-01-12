@@ -1,0 +1,174 @@
+﻿/* CURSO CARD - DESIGN MODERNO */
+.curso-card {
+  background: white;
+  border-radius: 12px;
+  border-top: 5px solid;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.curso-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.curso-card-header {
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.curso-icon {
+  font-size: 2.2rem;
+  opacity: 0.9;
+}
+
+.curso-category {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.curso-card-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.curso-title {
+  color: #18cc2a;
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.curso-description {
+  color: #5d6d7e;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.curso-details {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  color: #495057;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #18cc2a;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.saidas-profissionais {
+  margin-top: 1rem;
+}
+
+.saidas-profissionais strong {
+  color: #18cc2a;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.saidas-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.saida-tag {
+  background: #e3f2fd;
+  color: #1565c0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.curso-card-footer {
+  padding: 1.2rem 1.5rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-saiba-mais {
+  background: transparent;
+  color: #004a8f;
+  border: 2px solid #004a8f;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-saiba-mais:hover {
+  background: #004a8f;
+  color: white;
+}
+
+.btn-inscricao {
+  background: #18cc2a;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-inscricao:hover {
+  background: #18cc2a;
+  transform: scale(1.05);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .curso-card-footer {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .btn-saiba-mais, .btn-inscricao {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+

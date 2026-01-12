@@ -1,4 +1,4 @@
-.footer {
+﻿.footer {
   background-color: var(--primary-color);
   color: var(--white);
   padding: 3rem 0 1rem;
@@ -70,3 +70,5 @@
     flex-direction: column;
   }
 }
+
+

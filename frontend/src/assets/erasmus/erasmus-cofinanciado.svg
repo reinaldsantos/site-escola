@@ -1,0 +1,13 @@
+﻿<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#f8f9fa" rx="8" ry="8"/>
+  <rect x="10" y="10" width="380" height="180" fill="white" rx="6" ry="6" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="0" y="0" width="400" height="40" fill="#004a8f"/>
+  <text x="200" y="25" text-anchor="middle" font-family="Arial" font-size="16" fill="white" font-weight="bold">Erasmus+ Financiamento</text>
+  <text x="200" y="80" text-anchor="middle" font-family="Arial" font-size="20" fill="#004a8f" font-weight="bold">Cofinanciado pelo</text>
+  <text x="200" y="110" text-anchor="middle" font-family="Arial" font-size="24" fill="#004a8f" font-weight="bold">Erasmus+</text>
+  <text x="200" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#666">República Portuguesa</text>
+  <circle cx="50" cy="100" r="20" fill="#004a8f" opacity="0.1"/>
+  <text x="50" y="105" text-anchor="middle" font-family="Arial" font-size="16" fill="#004a8f" font-weight="bold">EU</text>
+  <circle cx="350" cy="100" r="20" fill="#006600" opacity="0.1"/>
+  <text x="350" y="105" text-anchor="middle" font-family="Arial" font-size="16" fill="#006600" font-weight="bold">PT</text>
+</svg>

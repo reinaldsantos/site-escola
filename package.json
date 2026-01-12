@@ -1,28 +1,30 @@
 {
-  "name": "site-escola-epf",
-  "version": "1.0.0",
-  "description": "Site institucional da escola com área administrativa",
-  "main": "index.js",
+  "name": "escola-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Strapi backend para Escola EP Fundão",
   "scripts": {
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && npm run dev",
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
-    "build": "cd frontend && npm run build"
-  },
-  "keywords": [
-    "escola",
-    "react",
-    "node",
-    "admin"
-  ],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/provider-email-nodemailer": "^5.33.1",
-    "axios": "^1.13.2"
-  }
+    "@strapi/strapi": "4.15.0",
+    "@strapi/plugin-users-permissions": "4.15.0",
+    "@strapi/plugin-i18n": "4.15.0",
+    "@strapi/provider-upload-local": "4.15.0",
+    "sqlite3": "5.1.6"
+  },
+  "author": "Escola EP Fundão",
+  "strapi": {
+    "uuid": "escola-ep-fundao"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "keywords": []
 }

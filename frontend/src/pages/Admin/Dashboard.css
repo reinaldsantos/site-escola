@@ -1,4 +1,4 @@
-.dashboard {
+﻿.dashboard {
   padding: 2rem;
 }
 
@@ -85,3 +85,5 @@
   color: var(--text-color);
   opacity: 0.8;
 }
+
+

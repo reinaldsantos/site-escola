@@ -1,4 +1,4 @@
-.admin-login {
+﻿.admin-login {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -55,3 +55,5 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+

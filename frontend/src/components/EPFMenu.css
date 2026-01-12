@@ -1,0 +1,25 @@
+﻿.epf-menu {
+  background: #004a8f;
+  color: white;
+  padding: 1rem;
+}
+
+.epf-menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.epf-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.epf-nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+
