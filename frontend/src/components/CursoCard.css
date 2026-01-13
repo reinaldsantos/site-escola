@@ -1,0 +1,269 @@
+﻿/* src/components/CursoCard.css - DESIGN PROFISSIONAL */
+.curso-card {
+    background: white;
+    border-radius: 10px;
+    border-top: 4px solid;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e6e6e6;
+}
+
+.curso-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    border-color: #003366;
+}
+
+/* Cabeçalho */
+.curso-card-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.area-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.area-icon {
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #003366;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.curso-category {
+    background: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #003366;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.curso-code {
+    background: #18cc2a;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Conteúdo */
+.curso-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.curso-title {
+    color: #003366;
+    margin: 0 0 1rem 0;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    font-weight: 700;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.curso-description {
+    color: #5d6d7e;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-family: "Segoe UI", Arial, sans-serif;
+    flex-grow: 1;
+}
+
+/* Detalhes */
+.curso-details {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e6e6e6;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: #495057;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: "Segoe UI", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    color: #18cc2a;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Saídas Profissionais */
+.saidas-profissionais {
+    margin-top: 1rem;
+}
+
+.saidas-title {
+    color: #003366;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.saidas-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.saida-tag {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 0.4rem 0.9rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: "Segoe UI", Arial, sans-serif;
+    border: 1px solid #bbdefb;
+}
+
+.saida-tag:last-child {
+    background: #f0f4f8;
+    color: #666;
+    font-style: italic;
+}
+
+/* Rodapé */
+.curso-card-footer {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-top: 1px solid #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-detalhes {
+    background: transparent;
+    color: #003366;
+    border: 2px solid #003366;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-family: "Segoe UI", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-detalhes:hover {
+    background: #003366;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+}
+
+.btn-inscricao {
+    background: #18cc2a;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Segoe UI", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex: 1;
+}
+
+.btn-inscricao:hover {
+    background: #16b826;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(24, 204, 42, 0.3);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .curso-card-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .area-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .curso-card-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-detalhes, .btn-inscricao {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .curso-card {
+        margin: 0 10px;
+    }
+    
+    .curso-card-content {
+        padding: 1.2rem;
+    }
+    
+    .curso-title {
+        font-size: 1.2rem;
+    }
+    
+    .saidas-tags {
+        justify-content: center;
+    }
+}

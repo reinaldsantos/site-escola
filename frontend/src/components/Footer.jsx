@@ -1,27 +1,16 @@
-﻿// src/components/Footer.jsx - VERDE SUAVE + BRANCO
+﻿// src/components/Footer.jsx - VERSÃO SIMPLIFICADA E ATUALIZADA
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // CORES - VERDE SUAVE + BRANCO
-  const cores = {
-    verdePrincipal: "#2E8B57",     // Sea Green - suave
-    verdeSecundario: "#3CB371",    // Medium Sea Green
-    verdeClaro: "#66CDAA",         // Medium Aquamarine
-    branco: "#FFFFFF",
-    brancoOff: "#F8F9FA",
-    cinzaClaro: "#E9ECEF"
-  };
-
   return (
     <footer style={{
-      background: `linear-gradient(135deg, ${cores.verdePrincipal} 0%, #2A7F52 100%)`,
-      color: cores.branco,
-      padding: "3rem 1rem 1.5rem",
+      background: "#003366",
+      color: "#FFFFFF",
+      padding: "40px 20px 20px",
       marginTop: "auto",
-      borderTop: `3px solid ${cores.branco}`,
       fontFamily: "'Segoe UI', system-ui, sans-serif"
     }}>
       <div style={{
@@ -29,412 +18,187 @@ const Footer = () => {
         margin: "0 auto"
       }}>
 
-        {/* CONTEÚDO PRINCIPAL - 4 COLUNAS */}
+        {/* CONTEÚDO PRINCIPAL - 2 COLUNAS APENAS */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "2.5rem",
-          marginBottom: "3rem"
+          gridTemplateColumns: "1fr 1fr",
+          gap: "40px",
+          marginBottom: "30px"
         }}>
 
-          {/* COLUNA 1: SOBRE A ESCOLA */}
+          {/* COLUNA ESQUERDA: SOBRE A ESCOLA */}
           <div>
             <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              marginBottom: "1.5rem"
+              marginBottom: "20px"
             }}>
-              <div style={{
-                fontSize: "2.5rem",
-                color: cores.branco
+              <h3 style={{
+                color: "#FFFFFF",
+                margin: "0 0 5px 0",
+                fontSize: "1.8rem",
+                fontWeight: "bold"
               }}>
-                🎓
-              </div>
-              <div>
-                <h3 style={{ 
-                  color: cores.branco,
-                  margin: "0",
-                  fontSize: "1.5rem",
-                  fontWeight: "bold"
-                }}>
-                  EPF
-                </h3>
-                <p style={{
-                  margin: "0",
-                  fontSize: "0.9rem",
-                  opacity: "0.9"
-                }}>
-                  Escola Profissional
-                </p>
-              </div>
+                EPF
+              </h3>
+              <p style={{
+                margin: "0",
+                fontSize: "1rem",
+                opacity: "0.9"
+              }}>
+                Escola Profissional do Fundão
+              </p>
             </div>
             <p style={{
               lineHeight: "1.6",
               opacity: "0.9",
-              marginBottom: "1.5rem"
+              marginBottom: "20px",
+              fontSize: "0.95rem"
             }}>
-              Formação profissional de excelência com certificação 
+              Formação profissional de excelência com certificação
               reconhecida nacionalmente. Educação que transforma vidas.
             </p>
             <div style={{
               display: "flex",
-              gap: "1rem",
-              marginTop: "1.5rem"
+              gap: "15px",
+              marginTop: "20px"
             }}>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{
-                background: cores.branco,
-                color: cores.verdePrincipal,
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none",
-                transition: "all 0.3s ease",
-                border: `1px solid ${cores.branco}`
-              }} onMouseOver={(e) => {
-                e.currentTarget.style.transform = "scale(1.1)";
-                e.currentTarget.style.background = cores.verdeClaro;
-                e.currentTarget.style.color = cores.branco;
-              }} onMouseOut={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.background = cores.branco;
-                e.currentTarget.style.color = cores.verdePrincipal;
-              }}>
-                <span style={{ fontSize: "1.1rem" }}>📘</span>
+              <a 
+                href="https://www.facebook.com/EscolaProfissionalFundao" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{
+                  color: "#FFFFFF",
+                  textDecoration: "none",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  padding: "8px 16px",
+                  borderRadius: "4px",
+                  fontSize: "0.9rem",
+                  transition: "all 0.3s ease",
+                  border: "1px solid rgba(255, 255, 255, 0.2)"
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.2)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                Facebook
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{
-                background: cores.branco,
-                color: cores.verdePrincipal,
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none",
-                transition: "all 0.3s ease",
-                border: `1px solid ${cores.branco}`
-              }} onMouseOver={(e) => {
-                e.currentTarget.style.transform = "scale(1.1)";
-                e.currentTarget.style.background = cores.verdeClaro;
-                e.currentTarget.style.color = cores.branco;
-              }} onMouseOut={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.background = cores.branco;
-                e.currentTarget.style.color = cores.verdePrincipal;
-              }}>
-                <span style={{ fontSize: "1.1rem" }}>📷</span>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{
-                background: cores.branco,
-                color: cores.verdePrincipal,
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none",
-                transition: "all 0.3s ease",
-                border: `1px solid ${cores.branco}`
-              }} onMouseOver={(e) => {
-                e.currentTarget.style.transform = "scale(1.1)";
-                e.currentTarget.style.background = cores.verdeClaro;
-                e.currentTarget.style.color = cores.branco;
-              }} onMouseOut={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.background = cores.branco;
-                e.currentTarget.style.color = cores.verdePrincipal;
-              }}>
-                <span style={{ fontSize: "1.1rem" }}>💼</span>
+              <a 
+                href="https://www.instagram.com/escolaprofissionalfundao/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{
+                  color: "#FFFFFF",
+                  textDecoration: "none",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  padding: "8px 16px",
+                  borderRadius: "4px",
+                  fontSize: "0.9rem",
+                  transition: "all 0.3s ease",
+                  border: "1px solid rgba(255, 255, 255, 0.2)"
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.2)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                Instagram
               </a>
             </div>
           </div>
 
-          {/* COLUNA 2: LINKS RÁPIDOS */}
+          {/* COLUNA DIREITA: CONTACTOS */}
           <div>
             <h4 style={{
-              color: cores.branco,
-              marginBottom: "1.5rem",
+              color: "#FFFFFF",
+              marginBottom: "20px",
               fontSize: "1.2rem",
-              fontWeight: "600",
-              borderBottom: `2px solid ${cores.branco}40`,
-              paddingBottom: "0.5rem"
+              fontWeight: "600"
             }}>
-              📋 Links Rápidos
+              CONTACTOS
             </h4>
-            <ul style={{
-              listStyle: "none",
-              padding: "0",
-              margin: "0"
+            
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "15px"
             }}>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <Link to="/" style={{
-                  color: cores.branco,
-                  textDecoration: "none",
+              {/* ENDEREÇO */}
+              <div style={{ display: "flex", gap: "12px" }}>
+                <div style={{
+                  background: "rgba(255, 255, 255, 0.1)",
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "6px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9",
-                  transition: "all 0.3s ease"
-                }} onMouseOver={(e) => { 
-                  e.currentTarget.style.opacity = "1";
-                  e.currentTarget.style.paddingLeft = "5px";
-                  e.currentTarget.style.color = cores.cinzaClaro;
-                }} onMouseOut={(e) => { 
-                  e.currentTarget.style.opacity = "0.9";
-                  e.currentTarget.style.paddingLeft = "0";
-                  e.currentTarget.style.color = cores.branco;
+                  justifyContent: "center",
+                  flexShrink: "0"
                 }}>
-                  <span>🏠</span> Início
-                </Link>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <Link to="/formacao" style={{
-                  color: cores.branco,
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9",
-                  transition: "all 0.3s ease"
-                }} onMouseOver={(e) => { 
-                  e.currentTarget.style.opacity = "1";
-                  e.currentTarget.style.paddingLeft = "5px";
-                  e.currentTarget.style.color = cores.cinzaClaro;
-                }} onMouseOut={(e) => { 
-                  e.currentTarget.style.opacity = "0.9";
-                  e.currentTarget.style.paddingLeft = "0";
-                  e.currentTarget.style.color = cores.branco;
-                }}>
-                  <span>🎓</span> Formação
-                </Link>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <Link to="/escola" style={{
-                  color: cores.branco,
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9",
-                  transition: "all 0.3s ease"
-                }} onMouseOver={(e) => { 
-                  e.currentTarget.style.opacity = "1";
-                  e.currentTarget.style.paddingLeft = "5px";
-                  e.currentTarget.style.color = cores.cinzaClaro;
-                }} onMouseOut={(e) => { 
-                  e.currentTarget.style.opacity = "0.9";
-                  e.currentTarget.style.paddingLeft = "0";
-                  e.currentTarget.style.color = cores.branco;
-                }}>
-                  <span>🏫</span> Escola
-                </Link>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <Link to="/erasmus" style={{
-                  color: cores.branco,
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9",
-                  transition: "all 0.3s ease"
-                }} onMouseOver={(e) => { 
-                  e.currentTarget.style.opacity = "1";
-                  e.currentTarget.style.paddingLeft = "5px";
-                  e.currentTarget.style.color = cores.cinzaClaro;
-                }} onMouseOut={(e) => { 
-                  e.currentTarget.style.opacity = "0.9";
-                  e.currentTarget.style.paddingLeft = "0";
-                  e.currentTarget.style.color = cores.branco;
-                }}>
-                  <span>🌍</span> Erasmus+
-                </Link>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <Link to="/contactos" style={{
-                  color: cores.branco,
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9",
-                  transition: "all 0.3s ease"
-                }} onMouseOver={(e) => { 
-                  e.currentTarget.style.opacity = "1";
-                  e.currentTarget.style.paddingLeft = "5px";
-                  e.currentTarget.style.color = cores.cinzaClaro;
-                }} onMouseOut={(e) => { 
-                  e.currentTarget.style.opacity = "0.9";
-                  e.currentTarget.style.paddingLeft = "0";
-                  e.currentTarget.style.color = cores.branco;
-                }}>
-                  <span>📞</span> Contactos
-                </Link>
-              </li>
-            </ul>
-          </div>
+                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>📍</span>
+                </div>
+                <div>
+                  <div style={{ fontWeight: "600", color: "#FFFFFF", fontSize: "0.9rem" }}>ENDEREÇO</div>
+                  <div style={{ opacity: "0.9", fontSize: "0.9rem" }}>R. Cidade de Salamanca 1</div>        
+                  <div style={{ opacity: "0.9", fontSize: "0.9rem" }}>6230-370 Fundão, Portugal</div>
+                </div>
+              </div>
 
-          {/* COLUNA 3: CURSOS */}
-          <div>
-            <h4 style={{
-              color: cores.branco,
-              marginBottom: "1.5rem",
-              fontSize: "1.2rem",
-              fontWeight: "600",
-              borderBottom: `2px solid ${cores.branco}40`,
-              paddingBottom: "0.5rem"
-            }}>
-              📚 Nossos Cursos
-            </h4>
-            <ul style={{
-              listStyle: "none",
-              padding: "0",
-              margin: "0"
-            }}>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <span style={{
-                  color: cores.branco,
+              {/* TELEFONE */}
+              <div style={{ display: "flex", gap: "12px" }}>
+                <div style={{
+                  background: "rgba(255, 255, 255, 0.1)",
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "6px",
                   display: "flex",
                   alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9"
+                  justifyContent: "center",
+                  flexShrink: "0"
                 }}>
-                  <span>⚙️</span> Manutenção Industrial
-                </span>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <span style={{
-                  color: cores.branco,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9"
-                }}>
-                  <span>🚗</span> Mecatrónica Automóvel
-                </span>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <span style={{
-                  color: cores.branco,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9"
-                }}>
-                  <span>🍳</span> Cozinha/Pastelaria
-                </span>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <span style={{
-                  color: cores.branco,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9"
-                }}>
-                  <span>🏗️</span> Construção Civil
-                </span>
-              </li>
-              <li style={{ marginBottom: "0.8rem" }}>
-                <span style={{
-                  color: cores.branco,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  opacity: "0.9"
-                }}>
-                  <span>💻</span> Informática
-                </span>
-              </li>
-            </ul>
-          </div>
+                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>📞</span>
+                </div>
+                <div>
+                  <div style={{ fontWeight: "600", color: "#FFFFFF", fontSize: "0.9rem" }}>TELEFONE</div>
+                  <div style={{ opacity: "0.9", fontSize: "0.9rem" }}>275 779 050</div>
+                </div>
+              </div>
 
-          {/* COLUNA 4: CONTACTOS */}
-          <div>
-            <h4 style={{
-              color: cores.branco,
-              marginBottom: "1.5rem",
-              fontSize: "1.2rem",
-              fontWeight: "600",
-              borderBottom: `2px solid ${cores.branco}40`,
-              paddingBottom: "0.5rem"
-            }}>
-              📞 Contactos
-            </h4>
-            <ul style={{
-              listStyle: "none",
-              padding: "0",
-              margin: "0"
-            }}>
-              <li style={{ marginBottom: "1.2rem", display: "flex", gap: "12px" }}>
+              {/* EMAIL */}
+              <div style={{ display: "flex", gap: "12px" }}>
                 <div style={{
-                  background: `${cores.branco}20`,
+                  background: "rgba(255, 255, 255, 0.1)",
                   width: "40px",
                   height: "40px",
-                  borderRadius: "8px",
+                  borderRadius: "6px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   flexShrink: "0"
                 }}>
-                  <span style={{ fontSize: "1.2rem", color: cores.branco }}>📍</span>
+                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>✉️</span>
                 </div>
                 <div>
-                  <div style={{ fontWeight: "600", color: cores.branco }}>Endereço</div>
-                  <div style={{ opacity: "0.9" }}>Rua da Escola, 123</div>
-                  <div style={{ opacity: "0.9" }}>Cidade, Portugal</div>
+                  <div style={{ fontWeight: "600", color: "#FFFFFF", fontSize: "0.9rem" }}>EMAIL</div>
+                  <div style={{ opacity: "0.9", fontSize: "0.9rem" }}>geral@epf.pt</div>
                 </div>
-              </li>
-              <li style={{ marginBottom: "1.2rem", display: "flex", gap: "12px" }}>
-                <div style={{
-                  background: `${cores.branco}20`,
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "8px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: "0"
-                }}>
-                  <span style={{ fontSize: "1.2rem", color: cores.branco }}>📞</span>
-                </div>
-                <div>
-                  <div style={{ fontWeight: "600", color: cores.branco }}>Telefone</div>
-                  <div style={{ opacity: "0.9" }}>+351 123 456 789</div>
-                </div>
-              </li>
-              <li style={{ marginBottom: "1.2rem", display: "flex", gap: "12px" }}>
-                <div style={{
-                  background: `${cores.branco}20`,
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "8px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: "0"
-                }}>
-                  <span style={{ fontSize: "1.2rem", color: cores.branco }}>✉️</span>
-                </div>
-                <div>
-                  <div style={{ fontWeight: "600", color: cores.branco }}>Email</div>
-                  <div style={{ opacity: "0.9" }}>geral@epf.pt</div>
-                </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* LINHA DIVISÓRIA */}
         <div style={{
           height: "1px",
-          background: `${cores.branco}30`,
-          margin: "2rem 0"
+          background: "rgba(255, 255, 255, 0.2)",
+          margin: "20px 0"
         }}></div>
 
         {/* RODAPÉ INFERIOR */}
@@ -443,62 +207,8 @@ const Footer = () => {
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          gap: "1rem"
+          gap: "10px"
         }}>
-          <div style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "1.5rem",
-            marginBottom: "1rem"
-          }}>
-            <Link to="/privacidade" style={{
-              color: cores.branco,
-              textDecoration: "none",
-              opacity: "0.9",
-              fontSize: "0.9rem",
-              transition: "all 0.3s ease"
-            }} onMouseOver={(e) => {
-              e.currentTarget.style.opacity = "1";
-              e.currentTarget.style.color = cores.cinzaClaro;
-            }} onMouseOut={(e) => {
-              e.currentTarget.style.opacity = "0.9";
-              e.currentTarget.style.color = cores.branco;
-            }}>
-              Política de Privacidade
-            </Link>
-            <Link to="/termos" style={{
-              color: cores.branco,
-              textDecoration: "none",
-              opacity: "0.9",
-              fontSize: "0.9rem",
-              transition: "all 0.3s ease"
-            }} onMouseOver={(e) => {
-              e.currentTarget.style.opacity = "1";
-              e.currentTarget.style.color = cores.cinzaClaro;
-            }} onMouseOut={(e) => {
-              e.currentTarget.style.opacity = "0.9";
-              e.currentTarget.style.color = cores.branco;
-            }}>
-              Termos de Utilização
-            </Link>
-            <a href="#top" style={{
-              color: cores.branco,
-              textDecoration: "none",
-              opacity: "0.9",
-              fontSize: "0.9rem",
-              transition: "all 0.3s ease"
-            }} onMouseOver={(e) => {
-              e.currentTarget.style.opacity = "1";
-              e.currentTarget.style.color = cores.cinzaClaro;
-            }} onMouseOut={(e) => {
-              e.currentTarget.style.opacity = "0.9";
-              e.currentTarget.style.color = cores.branco;
-            }}>
-              Voltar ao Topo ↑
-            </a>
-          </div>
-
           <div style={{
             opacity: "0.8",
             fontSize: "0.9rem",
@@ -508,9 +218,40 @@ const Footer = () => {
             flexWrap: "wrap",
             justifyContent: "center"
           }}>
-            <span>© {currentYear} Escola Profissional - EPF</span>
-            <span style={{ color: cores.branco, opacity: "0.7" }}>•</span>
+            <span>© {currentYear} Escola Profissional do Fundão</span>
+            <span style={{ color: "#FFFFFF", opacity: "0.7" }}>•</span>        
             <span>Todos os direitos reservados</span>
+          </div>
+          
+          <div style={{
+            display: "flex",
+            gap: "20px",
+            marginTop: "10px"
+          }}>
+            <Link to="/privacidade" style={{
+              color: "#FFFFFF",
+              textDecoration: "none",
+              opacity: "0.8",
+              fontSize: "0.85rem",
+              transition: "all 0.3s ease"
+            }}
+            onMouseOver={(e) => e.currentTarget.style.opacity = "1"}
+            onMouseOut={(e) => e.currentTarget.style.opacity = "0.8"}
+            >
+              Política de Privacidade
+            </Link>
+            <Link to="/termos" style={{
+              color: "#FFFFFF",
+              textDecoration: "none",
+              opacity: "0.8",
+              fontSize: "0.85rem",
+              transition: "all 0.3s ease"
+            }}
+            onMouseOver={(e) => e.currentTarget.style.opacity = "1"}
+            onMouseOut={(e) => e.currentTarget.style.opacity = "0.8"}
+            >
+              Termos de Utilização
+            </Link>
           </div>
         </div>
       </div>

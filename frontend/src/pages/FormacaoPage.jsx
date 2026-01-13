@@ -119,7 +119,7 @@ const FormacaoPage = () => {
 
           <div className="beneficios-grid">
             <div className="beneficio-card">
-              <div className="beneficio-icon">🎓</div>
+              <div className="beneficio-icon"></div>
               <h3>Certificação Oficial</h3>
               <p>Diploma reconhecido nacionalmente com equivalência ao 12º ano</p>
             </div>
@@ -150,7 +150,7 @@ const FormacaoPage = () => {
                 🎯 Inscreva-se Agora
               </Link>
               <Link to="/contactos" className="cta-btn secondary">
-                📞 Fale Conosco
+                 Fale Conosco
               </Link>
             </div>
           </div>
@@ -161,3 +161,4 @@ const FormacaoPage = () => {
 };
 
 export default FormacaoPage;
+

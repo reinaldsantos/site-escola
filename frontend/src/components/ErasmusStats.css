@@ -1,56 +1,91 @@
-﻿.erasmus-stats {
-  padding: 2rem 0;
-  margin: 2rem 0;
+﻿/* src/components/ErasmusStats.css - VERSÃO COM AZUL (#003366) */
+.erasmus-stats {
+    padding: 40px 0;
+    margin: 40px 0;
 }
 
 .erasmus-stats h2 {
-  text-align: center;
-  color: #004a8f;
-  margin-bottom: 2rem;
+    text-align: center;
+    color: #003366;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
 }
 
 .stat-box {
-  background: #004a8f;
-  color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  text-align: center;
-  transition: transform 0.3s ease;
+    background: #003366;
+    color: white;
+    padding: 25px 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #003366;
 }
 
 .stat-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,74,143,0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.3);
+    background: #002244;
+    border-color: #002244;
 }
 
 .stat-number {
-  font-size: 2.2rem;
-  font-weight: bold;
-  line-height: 1;
-  margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .stat-label {
-  font-size: 0.9rem;
-  opacity: 0.9;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* Responsivo */
 @media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .stat-box {
+        padding: 20px 15px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .erasmus-stats h2 {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
+    .stats-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .erasmus-stats h2 {
+        font-size: 1.3rem;
+    }
 }
-
-

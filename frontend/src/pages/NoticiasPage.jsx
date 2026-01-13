@@ -1,4 +1,4 @@
-﻿// src/pages/NoticiasPage.jsx - VERSÃO PROFISSIONAL
+﻿// src/pages/NoticiasPage.jsx - VERSÃO PROFISSIONAL SEM EMOJIS
 import React from "react";
 import { useState } from "react";
 import ContentUniversal from "../components/ContentUniversal";
@@ -8,16 +8,16 @@ const NoticiasPage = () => {
   const [abaAtiva, setAbaAtiva] = useState('noticias');
 
   const abas = [
-    { id: 'noticias', label: 'Notícias', icon: '📰' },
-    { id: 'eventos', label: 'Eventos', icon: '📅' },
-    { id: 'avisos', label: 'Avisos', icon: '📢' }
+    { id: 'noticias', label: 'NOTÍCIAS' },
+    { id: 'eventos', label: 'EVENTOS' },
+    { id: 'avisos', label: 'AVISOS' }
   ];
 
   return (
     <div className="noticias-page">
       {/* Cabeçalho */}
       <header className="noticias-header">
-        <h1>📰 Centro de Informações</h1>
+        <h1>CENTRO DE INFORMAÇÕES</h1>
         <p className="subtitulo">
           Mantenha-se atualizado com as últimas notícias, eventos e avisos da Escola Profissional do Fundão
         </p>
@@ -32,7 +32,6 @@ const NoticiasPage = () => {
               className={`aba-btn ${abaAtiva === aba.id ? 'ativa' : ''}`}
               onClick={() => setAbaAtiva(aba.id)}
             >
-              <span className="aba-icon">{aba.icon}</span>
               <span className="aba-label">{aba.label}</span>
               {abaAtiva === aba.id && <span className="aba-indicador"></span>}
             </button>
@@ -46,11 +45,11 @@ const NoticiasPage = () => {
           <div className="aba-conteudo">
             <ContentUniversal
               collectionName="noticias"
-              title="📰 ÚLTIMAS NOTÍCIAS"
+              title="ÚLTIMAS NOTÍCIAS"
               limit={12}
               showDate={true}
               showDescription={true}
-              showViewAll={false}  // Não mostrar "Ver todos" já que estamos na página de todos
+              showViewAll={false}
             />
           </div>
         )}
@@ -59,7 +58,7 @@ const NoticiasPage = () => {
           <div className="aba-conteudo">
             <ContentUniversal
               collectionName="eventos"
-              title="📅 PRÓXIMOS EVENTOS"
+              title="PRÓXIMOS EVENTOS"
               limit={12}
               showDate={true}
               showDescription={true}
@@ -72,7 +71,7 @@ const NoticiasPage = () => {
           <div className="aba-conteudo">
             <ContentUniversal
               collectionName="avisos"
-              title="📢 AVISOS IMPORTANTES"
+              title="AVISOS IMPORTANTES"
               limit={12}
               showDate={true}
               showDescription={true}
@@ -82,20 +81,17 @@ const NoticiasPage = () => {
         )}
       </div>
 
-      {/* Seção de destaque */}
-      <div className="destaque-section">
-        <div className="destaque-card">
-          <div className="destaque-icon">💡</div>
-          <div className="destaque-conteudo">
-            <h3>Mantenha-se Conectado</h3>
-            <p>
-              Todas as informações são atualizadas automaticamente através do nosso sistema Strapi.
-              Para mais informações, contacte a secretaria da escola.
-            </p>
-            <a href="/contactos" className="destaque-link">
-              📞 Contactar Secretaria →
-            </a>
-          </div>
+      {/* Seção informativa */}
+      <div className="info-section">
+        <div className="info-card">
+          <h3>INFORMAÇÕES IMPORTANTES</h3>
+          <p>
+            Todas as informações são atualizadas automaticamente através do nosso sistema.
+            Para mais informações, contacte a secretaria da escola.
+          </p>
+          <a href="/contactos" className="info-link">
+            CONTACTAR SECRETARIA
+          </a>
         </div>
       </div>
     </div>
@@ -103,4 +99,3 @@ const NoticiasPage = () => {
 };
 
 export default NoticiasPage;
-
