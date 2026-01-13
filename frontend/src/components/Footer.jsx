@@ -21,7 +21,7 @@ const Footer = () => {
         {/* CONTEÚDO PRINCIPAL - 2 COLUNAS APENAS */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "1fr 1fr", "@media (max-width: 768px)": { gridTemplateColumns: "1fr", gap: "30px" },
           gap: "40px",
           marginBottom: "30px"
         }}>
@@ -260,3 +260,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

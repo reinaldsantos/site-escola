@@ -99,3 +99,4 @@ const NoticiasPage = () => {
 };
 
 export default NoticiasPage;
+

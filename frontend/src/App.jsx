@@ -1,4 +1,4 @@
-﻿// src/App.jsx - VERSÃO FINAL (SEM PÁGINA /cursos)
+﻿// src/App.jsx - VERSÃO FINAL (SEM PÁGINA DE DETALHE DE NOTÍCIAS)
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -12,8 +12,9 @@ import ErasmusPage from "./pages/ErasmusPage";
 import NoticiasPage from "./pages/NoticiasPage";
 import ContactPage from "./pages/ContactPage";
 import AlumniPage from "./pages/AlumniPage";
+import CursosPage from "./pages/CursosPage";
 
-// Páginas de detalhes (APENAS para detalhe de curso, não listagem)
+// Páginas de detalhes (APENAS para cursos)
 import CursoDetalhe from "./pages/Cursos/CursoDetalhe";
 
 // Componentes
@@ -38,11 +39,12 @@ function App() {
             <Route path="/contactos" element={<ContactPage />} />
             <Route path="/alumni" element={<AlumniPage />} />
 
-            {/* NOTÍCIAS - SÓ LISTAGEM */}
+            {/* NOTÍCIAS - SÓ LISTAGEM (sem página de detalhes) */}
             <Route path="/noticias" element={<NoticiasPage />} />
 
-            {/* CURSOS - APENAS DETALHE (não temos mais listagem em /cursos) */}
-            <Route path="/cursos/:cursoId" element={<CursoDetalhe />} />
+            {/* CURSOS */}
+            <Route path="/cursos" element={<CursosPage />} /> {/* Listagem de cursos */}
+            <Route path="/cursos/:cursoId" element={<CursoDetalhe />} /> {/* Detalhe do curso */}
 
             {/* Fallback para página não encontrada */}
             <Route path="*" element={<div className="container"><h1>404 - Página não encontrada</h1></div>} />

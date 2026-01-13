@@ -1,31 +1,26 @@
-﻿/* src/components/ContentUniversal.css - DESIGN PROFISSIONAL PARA CARDS */
+﻿/* src/components/ContentUniversal.css - DESIGN PROFISSIONAL SEM CONTAINERS VISÍVEIS */
 .content-universal {
-    margin: 0 auto 60px;
-    padding: 0;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 1400px;
     width: 100%;
+    box-sizing: border-box;
 }
 
+/* Estado de loading e empty - mais limpos */
 .content-universal.loading,
 .content-universal.empty {
     text-align: center;
-    padding: 80px 30px;
-    background: #fafafa;
-    border-radius: 12px;
-    border: 1px dashed #e2e8f0;
-    margin-bottom: 60px;
+    padding: 60px 20px;
+    background: transparent;
 }
 
 .spinner {
     display: inline-block;
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(0, 51, 102, 0.1);
-    border-top: 3px solid #003366;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #2c5282;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     margin-bottom: 20px;
@@ -41,79 +36,61 @@
     font-size: 1rem;
     margin-top: 20px;
     line-height: 1.6;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
-.empty-message strong {
-    color: #003366;
-    font-weight: 600;
-}
-
-.empty-message a {
-    color: #003366;
-    text-decoration: none;
-    font-weight: 500;
-    border-bottom: 1px solid #003366;
-    transition: all 0.2s;
-}
-
-.empty-message a:hover {
-    color: #002244;
-    border-bottom-width: 2px;
-}
-
-/* TÍTULO DA SEÇÃO - PROFISSIONAL */
+/* Título da seção - mais limpo */
 .section-title {
-    color: #003366;
+    color: #1a365d;
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 35px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #e6e6e6;
+    margin-bottom: 30px;
+    padding-bottom: 12px;
+    position: relative;
+    font-family: "Segoe UI", system-ui, sans-serif;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    position: relative;
-    font-family: "Segoe UI", Arial, sans-serif;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     left: 0;
     width: 60px;
-    height: 2px;
-    background: #003366;
+    height: 3px;
+    background: #2c5282;
 }
 
 .badge-count {
     background: #f0f4f8;
-    color: #003366;
-    padding: 5px 15px;
-    border-radius: 15px;
+    color: #4a5568;
+    padding: 4px 12px;
+    border-radius: 16px;
     font-size: 0.85rem;
     font-weight: 600;
-    border: 1px solid #d1dce6;
-    font-family: "Segoe UI", Arial, sans-serif;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 5px;
 }
 
-/* GRID DE CARDS - ORGANIZADO */
+/* Grid de cards - design limpo */
 .content-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
-    margin: 30px 0;
+    margin: 0 0 40px 0;
 }
 
-/* CARD INDIVIDUAL - DESIGN PROFISSIONAL */
+/* Card individual - sem container visível, apenas bordas sutis */
 .content-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    border: 1px solid #e6e6e6;
+    transition: all 0.25s ease;
+    border: 1px solid #e2e8f0;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -121,39 +98,39 @@
 }
 
 .content-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    border-color: #003366;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e0;
 }
 
-/* CONTAINER DA IMAGEM */
+/* Container da imagem */
 .card-image-container {
     width: 100%;
-    height: 220px;
+    height: 200px;
     overflow: hidden;
     position: relative;
-    background: #f5f5f5;
+    background: #f8fafc;
 }
 
 .card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
 }
 
 .content-card:hover .card-image {
     transform: scale(1.05);
 }
 
-/* OVERLAY COM BOTÃO - PROFISSIONAL */
+/* Overlay para botão (apenas para cards com imagem) */
 .card-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 51, 102, 0.85);
+    background: rgba(26, 54, 93, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,25 +149,26 @@
     color: white;
     text-decoration: none;
     font-weight: 600;
-    padding: 12px 30px;
-    background: #003366;
+    padding: 12px 28px;
+    background: #2c5282;
     border-radius: 6px;
     transition: all 0.3s ease;
     font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    font-family: "Segoe UI", Arial, sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 .card-link-overlay:hover {
-    background: #002244;
+    background: #1a365d;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* CONTEÚDO DO CARD */
+/* Conteúdo do card */
 .card-content {
-    padding: 25px;
+    padding: 24px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -198,60 +176,61 @@
 
 .card-date {
     display: inline-block;
-    color: #666;
-    font-size: 0.8rem;
+    color: #718096;
+    font-size: 0.75rem;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 .card-title {
-    color: #003366;
+    color: #2d3748;
     font-size: 1.2rem;
     font-weight: 700;
     margin: 0 0 15px 0;
     line-height: 1.4;
     flex-grow: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 .card-description {
-    color: #555;
+    color: #4a5568;
     line-height: 1.6;
     margin-bottom: 20px;
     font-size: 0.95rem;
     flex-grow: 1;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
+/* Detalhes (local, etc) */
 .card-details {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 22px;
     flex-wrap: wrap;
 }
 
 .detail-item {
-    background: #f0f4f8;
+    background: #f7fafc;
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 0.8rem;
-    color: #003366;
+    color: #4a5568;
     display: inline-flex;
     align-items: center;
     gap: 5px;
     font-weight: 500;
-    border: 1px solid #d1dce6;
-    font-family: "Segoe UI", Arial, sans-serif;
+    border: 1px solid #e2e8f0;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
-/* FOOTER PARA CARDS SEM IMAGEM */
+/* Footer e botão para cards sem imagem */
 .card-footer {
     margin-top: auto;
     padding-top: 20px;
-    border-top: 1px solid #e6e6e6;
+    border-top: 1px solid #e2e8f0;
     display: flex;
     justify-content: center;
 }
@@ -260,33 +239,34 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #003366;
+    color: #2c5282;
     text-decoration: none;
     font-weight: 600;
-    padding: 10px 25px;
-    border: 1px solid #003366;
+    padding: 10px 24px;
+    border: 1px solid #2c5282;
     border-radius: 6px;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     width: 100%;
     text-align: center;
-    font-family: "Segoe UI", Arial, sans-serif;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 .card-link-inside:hover {
-    background: #003366;
+    background: #2c5282;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+    box-shadow: 0 4px 12px rgba(44, 82, 130, 0.15);
 }
 
-/* BOTÃO "VER TODOS" */
+/* Seção "Ver todos" */
 .view-all-section {
     text-align: center;
-    margin-top: 40px;
-    padding-top: 25px;
-    border-top: 1px solid #e6e6e6;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e2e8f0;
 }
 
 .btn-view-all {
@@ -294,27 +274,28 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: #003366;
+    background: #2d3748;
     color: white;
-    padding: 12px 35px;
+    padding: 12px 30px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    font-family: "Segoe UI", Arial, sans-serif;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 .btn-view-all:hover {
-    background: #002244;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.25);
+    background: #1a202c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* LINHA AZUL NO TOPO DO CARD AO PASSAR MOUSE */
+/* Linha sutil no topo do card para destaque */
 .content-card::before {
     content: '';
     position: absolute;
@@ -322,7 +303,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: #003366;
+    background: #2c5282;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -331,10 +312,21 @@
     opacity: 1;
 }
 
-/* RESPONSIVO */
-@media (max-width: 1200px) {
+/* RESPONSIVIDADE AVANÇADA */
+@media (max-width: 1400px) {
     .content-grid {
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .content-universal {
+        padding: 0 15px;
+    }
+    
+    .content-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 25px;
     }
 }
@@ -342,21 +334,35 @@
 @media (max-width: 992px) {
     .section-title {
         font-size: 1.6rem;
+        margin-bottom: 25px;
     }
     
     .content-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 20px;
+    }
+    
+    .card-image-container {
+        height: 180px;
+    }
+    
+    .card-content {
+        padding: 20px;
     }
 }
 
 @media (max-width: 768px) {
+    .content-universal {
+        padding: 0 10px;
+        margin: 30px auto;
+    }
+    
     .section-title {
         font-size: 1.4rem;
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
     
     .badge-count {
@@ -364,46 +370,12 @@
     }
     
     .content-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 20px;
     }
     
-    .card-content {
-        padding: 20px;
-    }
-    
     .card-image-container {
-        height: 200px;
-    }
-    
-    .card-details {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .btn-view-all {
-        padding: 12px 25px;
-        width: 100%;
-    }
-    
-    .card-link-overlay {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .section-title {
-        font-size: 1.3rem;
-    }
-    
-    .content-universal.loading,
-    .content-universal.empty {
-        padding: 50px 20px;
-    }
-    
-    .card-image-container {
-        height: 180px;
+        height: 160px;
     }
     
     .card-title {
@@ -413,4 +385,80 @@
     .card-description {
         font-size: 0.9rem;
     }
+    
+    .card-link-overlay {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-view-all {
+        padding: 12px 24px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .card-details {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .content-universal.loading,
+    .content-universal.empty {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-image-container {
+        height: 150px;
+    }
+    
+    .card-content {
+        padding: 18px;
+    }
+    
+    .card-title {
+        font-size: 1rem;
+    }
+    
+    .card-description {
+        font-size: 0.85rem;
+    }
+    
+    .card-link-overlay {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .btn-view-all {
+        padding: 10px 20px;
+    }
+}
+
+/* Efeitos de transição suave para todos os elementos */
+.content-universal * {
+    transition: all 0.2s ease;
+}
+
+/* Espaçamento entre seções na HomePage */
+.content-universal {
+    margin-bottom: 50px;
+}
+
+.content-universal:last-child {
+    margin-bottom: 0;
 }

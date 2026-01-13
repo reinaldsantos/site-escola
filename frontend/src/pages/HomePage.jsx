@@ -9,7 +9,11 @@ const HomePage = () => {
       <div className="hero-fundo">
         <div className="hero-conteudo">
           <h1>ESCOLA PROFISSIONAL DO FUNDÃO</h1>
-          <p className="slogan">#PROXIMIDADE  #QUALIDADE  #LomodEFF</p>
+          <p className="slogan">
+            <span>#PROXIMIDADE</span>
+            <span>QUALIDADE</span>
+            <span>#LomodEFF</span>
+          </p>
         </div>
       </div>
 
@@ -39,7 +43,7 @@ const HomePage = () => {
         />
 
         {/* CURSOS - Botão "VER CURSOS" dentro da imagem */}
-        <ContentUniversal 
+        <ContentUniversal
           collectionName="cursos"
           title="NOSSOS CURSOS"
           limit={3}
@@ -48,7 +52,7 @@ const HomePage = () => {
           customDetailPage="formacao"      // Botão vai para /formacao
           customViewAllPage="formacao"     // "Ver todos" vai para /formacao
         />
-
+        
         {/* AVISOS - SEM BOTÃO dentro do card */}
         <ContentUniversal
           collectionName="avisos"

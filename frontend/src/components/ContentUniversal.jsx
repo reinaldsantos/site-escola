@@ -292,3 +292,5 @@ const extractTextFromContent = (content, maxLength = 100) => {
 
 export default ContentUniversal;
 
+
+
