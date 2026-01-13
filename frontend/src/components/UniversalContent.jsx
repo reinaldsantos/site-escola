@@ -1,4 +1,4 @@
-﻿// src/components/UniversalContent.jsx
+﻿// src/components/UniversalContent.jsx - VERSÃO CORRIGIDA
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiData from '../hooks/useStrapiData';
@@ -16,7 +16,14 @@ const UniversalContent = ({
   }
   
   if (items.length === 0) {
-    return null;
+    return (
+      <div className="universal-content">
+        <h2 className="section-title">
+          {title || collectionName.charAt(0).toUpperCase() + collectionName.slice(1)}
+        </h2>
+        <p className="no-content">Nenhum conteúdo publicado ainda.</p>
+      </div>
+    );
   }
   
   const displayTitle = title || 
@@ -25,31 +32,78 @@ const UniversalContent = ({
   return (
     <div className="universal-content">
       <h2 className="section-title">
-        {displayTitle} <span className="badge">{items.length}</span>
+        {displayTitle} 
       </h2>
       
       <div className="content-grid">
-        {items.map(item => (
-          <div key={item.id} className="content-card">
-            <h3>{item.titulo || item.nome || item.title || 'Item'}</h3>
-            
-            {item.descricao && (
-              <p className="description">
-                {extractText(item.descricao, 100)}
-              </p>
-            )}
-            
-            {(item.data || item.createdAt) && (
-              <span className="date">
-                📅 {formatDate(item.data || item.createdAt)}
-              </span>
-            )}
-            
-            <Link to={`/${collectionName}/${item.id}`} className="view-link">
-              Ver detalhes →
-            </Link>
-          </div>
-        ))}
+        {items.map(item => {
+          console.log(`Item ${collectionName}:`, item); // Para debug
+          
+          // CORREÇÃO: Formato específico para suas coleções
+          let titulo = item.titulo || item.nome || item.title || 'Sem título';
+          let descricao = item.descricao || item.conteudo || null;
+          let data = item.data || item.createdAt || item.data_publicacao;
+          let imagem = item.imagem || item.foto || null;
+          
+          // Extrair imagem se existir (formato Strapi v5)
+          let imagemUrl = null;
+          if (imagem?.data?.attributes?.url) {
+            imagemUrl = `http://localhost:1337${imagem.data.attributes.url}`;
+          } else if (imagem?.url) {
+            imagemUrl = `http://localhost:1337${imagem.url}`;
+          }
+          
+          // Formatar data corretamente
+          let dataFormatada = 'Data não disponível';
+          if (data) {
+            try {
+              const dataObj = new Date(data);
+              if (!isNaN(dataObj.getTime())) {
+                dataFormatada = dataObj.toLocaleDateString('pt-PT', {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric'
+                });
+              }
+            } catch (e) {
+              console.error('Erro ao formatar data:', e);
+            }
+          }
+          
+          // Extrair texto da descrição
+          let textoDescricao = '';
+          if (descricao) {
+            if (typeof descricao === 'string') {
+              textoDescricao = descricao.length > 100 ? descricao.substring(0, 100) + '...' : descricao;
+            } else if (Array.isArray(descricao)) {
+              // Se for rich text do Strapi
+              textoDescricao = extrairTextoRichText(descricao, 100);
+            }
+          }
+          
+          return (
+            <div key={item.id} className="content-card">
+              {imagemUrl && (
+                <div className="card-image">
+                  <img src={imagemUrl} alt={titulo} />
+                </div>
+              )}
+              
+              <div className="card-body">
+                <span className="card-date">📅 {dataFormatada}</span>
+                <h3 className="card-title">{titulo}</h3>
+                
+                {textoDescricao && (
+                  <p className="card-description">{textoDescricao}</p>
+                )}
+                
+                <Link to={`/${collectionName}/${item.id}`} className="card-link">
+                  Ler mais →
+                </Link>
+              </div>
+            </div>
+          );
+        })}
       </div>
       
       {showViewAll && items.length > 0 && (
@@ -63,40 +117,27 @@ const UniversalContent = ({
   );
 };
 
-// Funções auxiliares
-const extractText = (content, maxLength) => {
-  if (typeof content === 'string') {
-    return content.length > maxLength 
-      ? content.substring(0, maxLength) + '...' 
-      : content;
-  }
+// Função para extrair texto de rich text do Strapi
+const extrairTextoRichText = (richText, maxLength = 100) => {
+  if (!Array.isArray(richText)) return '';
   
-  if (Array.isArray(content)) {
-    let text = '';
-    for (const block of content) {
-      if (block.type === 'paragraph' && block.children) {
-        for (const child of block.children) {
-          if (child.type === 'text' && child.text) {
-            text += child.text + ' ';
-          }
+  let texto = '';
+  for (const bloco of richText) {
+    if (bloco.type === 'paragraph' && bloco.children) {
+      for (const child of bloco.children) {
+        if (child.type === 'text' && child.text) {
+          texto += child.text + ' ';
         }
       }
     }
-    return text.length > maxLength 
-      ? text.substring(0, maxLength) + '...' 
-      : text;
   }
   
-  return 'Conteúdo disponível...';
-};
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('pt-PT', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric'
-  });
+  texto = texto.trim();
+  if (texto.length > maxLength) {
+    texto = texto.substring(0, maxLength) + '...';
+  }
+  
+  return texto;
 };
 
 export default UniversalContent;

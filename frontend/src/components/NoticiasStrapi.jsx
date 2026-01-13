@@ -1,87 +1,124 @@
-﻿// ================================================
-// COMPONENTE: NoticiasStrapi.jsx
-// Mostra notícias do Strapi - Pode colocar em QUALQUER página
-// NÃO altera seu layout original
-// ================================================
-
+﻿// src/components/NoticiasStrapi.jsx - VERSÃO UNIVERSAL
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiData from '../hooks/useStrapiData';
 import { strapiService } from '../services/strapiService';
 import './NoticiasStrapi.css';
 
-const NoticiasStrapi = ({ limite = 3, mostrarTitulo = true, estilo = 'padrao' }) => {
-    const { dados: noticias, carregando } = useStrapiData('noticias', limite);
-    
-    // Se não quiser mostrar quando não há dados
-    if (!carregando && (!noticias || noticias.length === 0)) {
-        return null; // Não mostra nada
-    }
-    
-    return (
-        <div className={`noticias-strapi noticias-${estilo}`}>
-            {mostrarTitulo && (
-                <h2 className="noticias-titulo">📰 ÚLTIMAS NOTÍCIAS</h2>
-            )}
-            
-            {carregando ? (
-                <div className="noticias-carregando">
-                    <p>Carregando notícias...</p>
-                </div>
-            ) : (
-                <div className="noticias-grid">
-                    {noticias.map(noticia => {
-                        const imagemUrl = strapiService.getImagemUrl(noticia.image);
-                        const resumo = strapiService.extrairTexto(noticia.conteudo, 120);
-                        
-                        return (
-                            <article key={noticia.id} className="noticia-card">
-                                {imagemUrl && (
-                                    <div className="noticia-imagem-container">
-                                        <img 
-                                            src={imagemUrl} 
-                                            alt={noticia.titulo}
-                                            className="noticia-imagem"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                )}
-                                <div className="noticia-conteudo">
-                                    <h3 className="noticia-titulo">{noticia.titulo}</h3>
-                                    <p className="noticia-resumo">{resumo}</p>
-                                    <div className="noticia-rodape">
-                                        <span className="noticia-data">
-                                            {new Date(noticia.createdAt).toLocaleDateString('pt-PT')}
-                                        </span>
-                                        <Link 
-                                            to={`/noticias/${noticia.id}`} 
-                                            className="noticia-link"
-                                        >
-                                            Ler mais
-                                        </Link>
-                                    </div>
-                                </div>
-                            </article>
-                        );
-                    })}
-                </div>
-            )}
-            
-            {!carregando && noticias.length > 0 && (
-                <div className="noticias-ver-todas">
-                    <Link to="/noticias" className="btn-ver-todas">
-                        📰 Ver todas as notícias
-                    </Link>
-                </div>
-            )}
+const NoticiasStrapi = ({ 
+  limite = 3, 
+  mostrarTitulo = true,
+  titulo = null,
+  colecao = 'noticias'  // NOVO: Pode ser 'eventos', 'noticias', etc
+}) => {
+  const { dados: itens, carregando } = useStrapiData(colecao, limite);
+  
+  // Título padrão baseado na coleção
+  const tituloExibicao = titulo || (
+    colecao === 'eventos' ? '📅 PRÓXIMOS EVENTOS' : '📰 ÚLTIMAS NOTÍCIAS'
+  );
+  
+  // Se não quiser mostrar quando não há dados
+  if (!carregando && itens.length === 0) {
+    return null;
+  }
+  
+  return (
+    <div className={`noticias-strapi ${colecao}-container`}>
+      {mostrarTitulo && (
+        <h2 className="noticias-titulo">{tituloExibicao}</h2>
+      )}
+      
+      {carregando ? (
+        <div className="noticias-carregando">
+          <p>Carregando {colecao}...</p>
         </div>
-    );
+      ) : (
+        <div className="noticias-grid">
+          {itens.map(item => {
+            // Imagem
+            const imagemUrl = strapiService.getImagemUrl(item.imagem);
+            
+            // Data formatada
+            let dataFormatada = 'Data não disponível';
+            if (item.data || item.createdAt) {
+              try {
+                const dataObj = new Date(item.data || item.createdAt);
+                if (!isNaN(dataObj.getTime())) {
+                  dataFormatada = dataObj.toLocaleDateString('pt-PT', {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'short'
+                  });
+                }
+              } catch (e) {
+                console.error('Erro ao formatar data:', e);
+              }
+            }
+            
+            // Título
+            const tituloItem = item.titulo || item.nome || 'Sem título';
+            
+            // Descrição
+            let descricaoTexto = '';
+            if (item.descricao) {
+              if (typeof item.descricao === 'string') {
+                descricaoTexto = item.descricao.substring(0, 80) + '...';
+              } else {
+                descricaoTexto = strapiService.extrairTexto(item.descricao, 80);
+              }
+            }
+            
+            return (
+              <div key={item.id} className="noticia-card">
+                {imagemUrl && (
+                  <div className="noticia-imagem">
+                    <img src={imagemUrl} alt={tituloItem} />
+                  </div>
+                )}
+                
+                <div className="noticia-conteudo">
+                  <span className="noticia-data">{dataFormatada}</span>
+                  <h3 className="noticia-titulo">{tituloItem}</h3>
+                  
+                  {descricaoTexto && (
+                    <p className="noticia-descricao">{descricaoTexto}</p>
+                  )}
+                  
+                  {/* Campos específicos para eventos */}
+                  {colecao === 'eventos' && (
+                    <div className="evento-detalhes">
+                      {item.local && (
+                        <span className="evento-local">📍 {item.local}</span>
+                      )}
+                      {item.horario && (
+                        <span className="evento-horario">⏰ {item.horario}</span>
+                      )}
+                    </div>
+                  )}
+                  
+                  <Link 
+                    to={`/${colecao}/${item.id}`} 
+                    className="noticia-link"
+                  >
+                    {colecao === 'eventos' ? 'Mais informações →' : 'Ler mais →'}
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      
+      {!carregando && itens.length > 0 && (
+        <div className="noticias-ver-todos">
+          <Link to={`/${colecao}`} className="btn-ver-noticias">
+            {colecao === 'eventos' ? '📅 Ver todos os eventos' : '📰 Ver todas as notícias'}
+          </Link>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default NoticiasStrapi;
-
-// COMO USAR:
-// 1. <NoticiasStrapi /> - Mostra 3 notícias com título
-// 2. <NoticiasStrapi limite={5} /> - Mostra 5 notícias
-// 3. <NoticiasStrapi mostrarTitulo={false} /> - Sem título
-// NÃO ALTERA SEU LAYOUT ORIGINAL!

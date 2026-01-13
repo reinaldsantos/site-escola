@@ -1,106 +1,105 @@
-﻿// ================================================
-// PÁGINA: NoticiasPage.jsx
-// Mostra TODAS as notícias do Strapi
-// ================================================
-
-import React from 'react';
-import { Link } from 'react-router-dom';
-import useStrapiData from '../hooks/useStrapiData';
-import { strapiService } from '../services/strapiService';
-import './NoticiasPage.css';
+﻿// src/pages/NoticiasPage.jsx - VERSÃO PROFISSIONAL
+import React from "react";
+import { useState } from "react";
+import ContentUniversal from "../components/ContentUniversal";
+import "./NoticiasPage.css";
 
 const NoticiasPage = () => {
-    const { dados: noticias, carregando } = useStrapiData('noticias', 50);
-    
-    return (
-        <div className="pagina-noticias">
-            <div className="container">
-                <header className="cabecalho-noticias">
-                    <h1>📰 Notícias da Escola</h1>
-                    <p className="subtitulo">
-                        Fique por dentro das últimas novidades e acontecimentos
-                    </p>
-                </header>
-                
-                {carregando ? (
-                    <div className="carregando-noticias">
-                        <div className="spinner"></div>
-                        <p>Carregando notícias...</p>
-                    </div>
-                ) : noticias.length === 0 ? (
-                    <div className="sem-noticias">
-                        <div className="icone-sem-noticias">📭</div>
-                        <h3>Nenhuma notícia publicada</h3>
-                        <p>
-                            As notícias aparecerão aqui automaticamente quando forem 
-                            publicadas no <a href="http://localhost:1337/admin">Strapi Admin</a>
-                        </p>
-                    </div>
-                ) : (
-                    <>
-                        <div className="total-noticias">
-                            <span className="badge-total">{noticias.length} notícias</span>
-                        </div>
-                        
-                        <div className="grid-noticias">
-                            {noticias.map(noticia => {
-                                const imagemUrl = strapiService.getImagemUrl(noticia.image);
-                                const resumo = strapiService.extrairTexto(noticia.conteudo, 200);
-                                
-                                return (
-                                    <article key={noticia.id} className="card-noticia">
-                                        <div className="card-noticia-cabecalho">
-                                            {imagemUrl && (
-                                                <img 
-                                                    src={imagemUrl} 
-                                                    alt={noticia.titulo}
-                                                    className="card-noticia-imagem"
-                                                />
-                                            )}
-                                            <div className="card-noticia-data">
-                                                {new Date(noticia.createdAt).toLocaleDateString('pt-PT', {
-                                                    day: 'numeric',
-                                                    month: 'short',
-                                                    year: 'numeric'
-                                                })}
-                                            </div>
-                                        </div>
-                                        <div className="card-noticia-corpo">
-                                            <h2 className="card-noticia-titulo">
-                                                {noticia.titulo}
-                                            </h2>
-                                            <p className="card-noticia-resumo">
-                                                {resumo}
-                                            </p>
-                                            <div className="card-noticia-rodape">
-                                                <Link 
-                                                    to={`/noticias/${noticia.id}`} 
-                                                    className="btn-ler-noticia"
-                                                >
-                                                    Ler notícia completa
-                                                </Link>
-                                                {noticia.publicado && (
-                                                    <span className="badge-publicado">
-                                                        ✅ Publicado
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </article>
-                                );
-                            })}
-                        </div>
-                    </>
-                )}
-                
-                <div className="voltar-home">
-                    <Link to="/" className="link-voltar">
-                        ← Voltar para a página inicial
-                    </Link>
-                </div>
-            </div>
+  const [abaAtiva, setAbaAtiva] = useState('noticias');
+
+  const abas = [
+    { id: 'noticias', label: '📰 Notícias', icon: '📰' },
+    { id: 'eventos', label: '📅 Eventos', icon: '📅' },
+    { id: 'avisos', label: '📢 Avisos', icon: '📢' }
+  ];
+
+  return (
+    <div className="noticias-page">
+      {/* Cabeçalho */}
+      <header className="noticias-header">
+        <h1>📰 Centro de Informações</h1>
+        <p className="subtitulo">
+          Mantenha-se atualizado com as últimas notícias, eventos e avisos da Escola Profissional do Fundão
+        </p>
+      </header>
+
+      {/* Abas de navegação */}
+      <div className="abas-container">
+        <div className="abas">
+          {abas.map(aba => (
+            <button
+              key={aba.id}
+              className={`aba-btn ${abaAtiva === aba.id ? 'ativa' : ''}`}
+              onClick={() => setAbaAtiva(aba.id)}
+            >
+              <span className="aba-icon">{aba.icon}</span>
+              <span className="aba-label">{aba.label}</span>
+              {abaAtiva === aba.id && <span className="aba-indicador"></span>}
+            </button>
+          ))}
         </div>
-    );
+      </div>
+
+      {/* Conteúdo das abas */}
+      <div className="conteudo-abas">
+        {abaAtiva === 'noticias' && (
+          <div className="aba-conteudo">
+            <ContentUniversal
+              collectionName="noticias"
+              title="📰 ÚLTIMAS NOTÍCIAS"
+              limit={12}
+              showDate={true}
+              showDescription={true}
+              showViewAll={false}  // Não mostrar "Ver todos" já que estamos na página de todos
+            />
+          </div>
+        )}
+
+        {abaAtiva === 'eventos' && (
+          <div className="aba-conteudo">
+            <ContentUniversal
+              collectionName="eventos"
+              title="📅 PRÓXIMOS EVENTOS"
+              limit={12}
+              showDate={true}
+              showDescription={true}
+              showViewAll={false}
+            />
+          </div>
+        )}
+
+        {abaAtiva === 'avisos' && (
+          <div className="aba-conteudo">
+            <ContentUniversal
+              collectionName="avisos"
+              title="📢 AVISOS IMPORTANTES"
+              limit={12}
+              showDate={true}
+              showDescription={true}
+              showViewAll={false}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Seção de destaque */}
+      <div className="destaque-section">
+        <div className="destaque-card">
+          <div className="destaque-icon">💡</div>
+          <div className="destaque-conteudo">
+            <h3>Mantenha-se Conectado</h3>
+            <p>
+              Todas as informações são atualizadas automaticamente através do nosso sistema Strapi.
+              Para mais informações, contacte a secretaria da escola.
+            </p>
+            <a href="/contactos" className="destaque-link">
+              📞 Contactar Secretaria →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default NoticiasPage;
