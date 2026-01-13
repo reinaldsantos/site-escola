@@ -1,0 +1,161 @@
+﻿import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { strapiService } from "../services/strapiService";
+import "./HomePage.css";
+
+const HomePage = () => {
+  const [noticias, setNoticias] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    carregarNoticias();
+  }, []);
+
+  const carregarNoticias = async () => {
+    try {
+      console.log("🚀 Buscando notícias do Strapi...");
+      
+      // Método DIRETO - SEM hook
+      const dados = await strapiService.getNoticias(3);
+      console.log("✅ Notícias recebidas:", dados);
+      
+      setNoticias(dados);
+    } catch (error) {
+      console.error("❌ Erro ao carregar notícias:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Função para extrair texto do Rich Text
+  const extrairTexto = (richText) => {
+    if (!richText || !Array.isArray(richText)) return "";
+    
+    let texto = "";
+    for (const bloco of richText) {
+      if (bloco.type === "paragraph" && bloco.children) {
+        for (const child of bloco.children) {
+          if (child.type === "text" && child.text) {
+            texto += child.text + " ";
+          }
+        }
+      }
+    }
+    
+    if (texto.length > 100) {
+      texto = texto.substring(0, 100) + "...";
+    }
+    
+    return texto.trim();
+  };
+
+  return (
+    <div className="home-funcional">
+      {/* Hero Section - SEU CÓDIGO ORIGINAL */}
+      <div className="hero-fundo">
+        <div className="hero-conteudo">
+          <h1>ESCOLA PROFISSIONAL DO FUNDÃO</h1>
+          <p className="slogan">#PROXIMIDADE • #QUALIDADE • #LomodEFF</p>
+
+          <div className="hero-botoes">
+            <Link to="/formacao" className="btn-cursos">
+              VER CURSOS
+            </Link>
+            <Link to="/inscricao" className="btn-inscricao">
+              INSCRIÇÕES 25/26
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Notícias do Strapi - VERSÃO SIMPLES QUE FUNCIONA */}
+      <div className="noticias-home-section">
+        <h2 className="section-title-home">ÚLTIMAS NOTÍCIAS</h2>
+        
+        {loading ? (
+          <div className="loading-home">Carregando notícias...</div>
+        ) : noticias.length === 0 ? (
+          <div className="sem-noticias">
+            <p>Nenhuma notícia disponível no momento.</p>
+            <p style={{ fontSize: "0.9rem", color: "#666", marginTop: "10px" }}>
+              Dica: Crie notícias no <a href="http://localhost:1337/admin" target="_blank" rel="noopener noreferrer">Strapi Admin</a>
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="noticias-home-grid">
+              {noticias.map(noticia => {
+                // Obter URL da imagem
+                let imagemUrl = null;
+                if (noticia.image) {
+                  if (noticia.image.formats?.medium?.url) {
+                    imagemUrl = `http://localhost:1337${noticia.image.formats.medium.url}`;
+                  } else if (noticia.image.url) {
+                    imagemUrl = `http://localhost:1337${noticia.image.url}`;
+                  }
+                }
+                
+                // Extrair resumo
+                const resumo = extrairTexto(noticia.conteudo);
+                
+                return (
+                  <div key={noticia.id} className="noticia-home-card">
+                    {imagemUrl && (
+                      <img 
+                        src={imagemUrl} 
+                        alt={noticia.titulo}
+                        className="noticia-home-imagem"
+                        onError={(e) => {
+                          console.log("Erro ao carregar imagem:", noticia.titulo);
+                          e.target.style.display = "none";
+                        }}
+                      />
+                    )}
+                    <div className="noticia-home-conteudo">
+                      <h3>{noticia.titulo}</h3>
+                      <p className="noticia-home-resumo">{resumo}</p>
+                      <div className="noticia-home-data">
+                        {new Date(noticia.createdAt).toLocaleDateString("pt-PT")}
+                      </div>
+                      <Link to={`/noticias/${noticia.id}`} className="noticia-home-link">
+                        Ler mais →
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            
+            <div className="ver-todas-home">
+              <Link to="/noticias" className="btn-ver-todas-home">
+                Ver todas as notícias
+              </Link>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Estatísticas - SEU CÓDIGO ORIGINAL */}
+      <div className="estatisticas">
+        <div className="estatistica">
+          <div className="numero">30+</div>
+          <div className="texto">ANOS</div>
+        </div>
+        <div className="estatistica">
+          <div className="numero">92%</div>
+          <div className="texto">EMPREGO</div>
+        </div>
+        <div className="estatistica">
+          <div className="numero">15</div>
+          <div className="texto">CURSOS</div>
+        </div>
+        <div className="estatistica">
+          <div className="numero">100%</div>
+          <div className="texto">ESTÁGIO</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;
