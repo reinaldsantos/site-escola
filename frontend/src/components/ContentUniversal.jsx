@@ -1,4 +1,4 @@
-﻿// src/components/ContentUniversal.jsx - VERSÃO COM BOTÃO DENTRO DO CARD
+﻿// src/components/ContentUniversal.jsx - VERSÃO COM LINKS PERSONALIZADOS
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiUniversal from '../hooks/useStrapiUniversal';
@@ -84,30 +84,23 @@ const ContentUniversal = ({
     return null;
   };
 
-  // Determinar para onde vai o link de detalhes
-  const getDetailPath = (itemId) => {
+  // Determinar para onde vai o link de detalhes (botão dentro do card)
+  const getDetailPath = () => {
     // Se tiver página customizada definida
     if (customDetailPage) {
-      return `/${customDetailPage}/${itemId}`;
+      return `/${customDetailPage}`;
     }
     
     // Mapeamento padrão baseado na coleção
     const mapeamento = {
-      'noticias': 'noticias',    // Notícias vão para página de notícias (listagem)
-      'eventos': 'noticias',     // Eventos também vão para notícias
-      'cursos': 'cursos',        // Cursos vão para página de detalhe do curso
-      'avisos': 'noticias'       // Avisos vão para notícias
+      'noticias': null,          // NOTÍCIAS: NÃO TEM BOTÃO
+      'eventos': 'noticias',     // EVENTOS: vai para /noticias (listagem)
+      'cursos': 'formacao',      // CURSOS: vai para /formacao (mesmo que "Ver todos")
+      'avisos': null             // AVISOS: NÃO TEM BOTÃO
     };
     
-    const destino = mapeamento[collectionName] || collectionName;
-    
-    // Para cursos, vai para detalhe do curso
-    if (destino === 'cursos') {
-      return `/${destino}/${itemId}`;
-    }
-    
-    // Para notícias/eventos/avisos, vai para listagem (sem ID)
-    return `/${destino}`;
+    const destino = mapeamento[collectionName];
+    return destino ? `/${destino}` : null;
   };
 
   // Determinar para onde vai o link "Ver todos"
@@ -128,13 +121,18 @@ const ContentUniversal = ({
     return `/${mapeamentoViewAll[collectionName] || collectionName}`;
   };
 
+  // Determinar se deve mostrar botão dentro do card
+  const shouldShowCardButton = () => {
+    // Só mostra botão para eventos e cursos
+    // Notícias e avisos NÃO têm botão
+    return collectionName === 'eventos' || collectionName === 'cursos';
+  };
+
   // Determinar o texto do botão
   const getButtonText = () => {
     const textos = {
-      'cursos': 'Ver detalhes →',
-      'noticias': 'Ver notícias →',
-      'eventos': 'Ver eventos →',
-      'avisos': 'Ver avisos →'
+      'cursos': 'Ver cursos →',
+      'eventos': 'Ver eventos →'
     };
     return textos[collectionName] || 'Ver mais →';
   };
@@ -187,14 +185,18 @@ const ContentUniversal = ({
               {imagemUrl && (
                 <div className="card-image-container">
                   <img src={imagemUrl} alt={titulo} className="card-image" />
-                  <div className="card-overlay">
-                    <Link
-                      to={getDetailPath(item.id)}
-                      className="card-link-overlay"
-                    >
-                      {getButtonText()}
-                    </Link>
-                  </div>
+                  
+                  {/* BOTÃO DENTRO DA IMAGEM - Só aparece para eventos e cursos */}
+                  {shouldShowCardButton() && getDetailPath() && (
+                    <div className="card-overlay">
+                      <Link
+                        to={getDetailPath()}
+                        className="card-link-overlay"
+                      >
+                        {getButtonText()}
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -215,11 +217,11 @@ const ContentUniversal = ({
                   {horario && <span className="detail-item">⏰ {horario}</span>}
                 </div>
 
-                {/* Link dentro do card (para quando não tem imagem) */}
-                {!imagemUrl && (
+                {/* BOTÃO PARA CARDS SEM IMAGEM - Só aparece para eventos e cursos */}
+                {!imagemUrl && shouldShowCardButton() && getDetailPath() && (
                   <div className="card-footer">
                     <Link
-                      to={getDetailPath(item.id)}
+                      to={getDetailPath()}
                       className="card-link-inside"
                     >
                       {getButtonText()}

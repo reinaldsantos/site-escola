@@ -16,47 +16,47 @@ const HomePage = () => {
       {/* Seções principais com SISTEMA UNIVERSAL */}
       <div className="secoes-container">
 
-        {/* NOTÍCIAS - Botão "Ver notícias" dentro da imagem */}
+        {/* NOTÍCIAS - SEM BOTÃO dentro do card */}
         <ContentUniversal
           collectionName="noticias"
           title="📰 ÚLTIMAS NOTÍCIAS"
           limit={3}
           showDate={true}
           showDescription={true}
-          customDetailPage="noticias"      // Vai para /noticias (listagem)
+          customDetailPage={null}          // SEM BOTÃO (null)
           customViewAllPage="noticias"     // "Ver todos" vai para /noticias
         />
 
-        {/* EVENTOS - Botão "Ver eventos" dentro da imagem */}
+        {/* EVENTOS - Botão "Ver eventos →" dentro da imagem */}
         <ContentUniversal
           collectionName="eventos"
           title="📅 PRÓXIMOS EVENTOS"
           limit={3}
           showDate={true}
           showDescription={true}
-          customDetailPage="noticias"      // Vai para /noticias (listagem)
+          customDetailPage="noticias"      // Botão vai para /noticias
           customViewAllPage="noticias"     // "Ver todos" vai para /noticias
         />
 
-        {/* CURSOS - Botão "Ver detalhes" dentro da imagem */}
+        {/* CURSOS - Botão "Ver cursos →" dentro da imagem */}
         <ContentUniversal 
           collectionName="cursos"
           title="🎓 NOSSOS CURSOS"
           limit={3}
           showDate={false}                 // Cursos normalmente não têm data
           showDescription={true}
-          customDetailPage="cursos"        // Vai para /cursos/[id] (detalhe)
+          customDetailPage="formacao"      // Botão vai para /formacao
           customViewAllPage="formacao"     // "Ver todos" vai para /formacao
         />
 
-        {/* AVISOS - Botão "Ver avisos" dentro da imagem */}
+        {/* AVISOS - SEM BOTÃO dentro do card */}
         <ContentUniversal
           collectionName="avisos"
           title="📢 AVISOS IMPORTANTES"
           limit={3}
           showDate={true}
           showDescription={true}
-          customDetailPage="noticias"      // Vai para /noticias (listagem)
+          customDetailPage={null}          // SEM BOTÃO (null)
           customViewAllPage="noticias"     // "Ver todos" vai para /noticias
         />
 
