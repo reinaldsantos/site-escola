@@ -131,10 +131,10 @@ const ContentUniversal = ({
   // Determinar o texto do botão
   const getButtonText = () => {
     const textos = {
-      'cursos': 'Ver cursos →',
-      'eventos': 'Ver eventos →'
+      'cursos': 'VER CURSOS',
+      'eventos': 'VER EVENTOS'
     };
-    return textos[collectionName] || 'Ver mais →';
+    return textos[collectionName] || 'VER MAIS';
   };
 
   return (
@@ -291,3 +291,4 @@ const extractTextFromContent = (content, maxLength = 100) => {
 };
 
 export default ContentUniversal;
+

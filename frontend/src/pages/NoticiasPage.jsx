@@ -8,9 +8,9 @@ const NoticiasPage = () => {
   const [abaAtiva, setAbaAtiva] = useState('noticias');
 
   const abas = [
-    { id: 'noticias', label: '📰 Notícias', icon: '📰' },
-    { id: 'eventos', label: '📅 Eventos', icon: '📅' },
-    { id: 'avisos', label: '📢 Avisos', icon: '📢' }
+    { id: 'noticias', label: 'Notícias', icon: '📰' },
+    { id: 'eventos', label: 'Eventos', icon: '📅' },
+    { id: 'avisos', label: 'Avisos', icon: '📢' }
   ];
 
   return (
@@ -103,3 +103,4 @@ const NoticiasPage = () => {
 };
 
 export default NoticiasPage;
+

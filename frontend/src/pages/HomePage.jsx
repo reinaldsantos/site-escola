@@ -19,7 +19,7 @@ const HomePage = () => {
         {/* NOTÍCIAS - SEM BOTÃO dentro do card */}
         <ContentUniversal
           collectionName="noticias"
-          title="📰 ÚLTIMAS NOTÍCIAS"
+          title="ÚLTIMAS NOTÍCIAS"
           limit={3}
           showDate={true}
           showDescription={true}
@@ -27,10 +27,10 @@ const HomePage = () => {
           customViewAllPage="noticias"     // "Ver todos" vai para /noticias
         />
 
-        {/* EVENTOS - Botão "Ver eventos →" dentro da imagem */}
+        {/* EVENTOS - Botão "VER EVENTOS" dentro da imagem */}
         <ContentUniversal
           collectionName="eventos"
-          title="📅 PRÓXIMOS EVENTOS"
+          title="PRÓXIMOS EVENTOS"
           limit={3}
           showDate={true}
           showDescription={true}
@@ -38,10 +38,10 @@ const HomePage = () => {
           customViewAllPage="noticias"     // "Ver todos" vai para /noticias
         />
 
-        {/* CURSOS - Botão "Ver cursos →" dentro da imagem */}
+        {/* CURSOS - Botão "VER CURSOS" dentro da imagem */}
         <ContentUniversal 
           collectionName="cursos"
-          title="🎓 NOSSOS CURSOS"
+          title="NOSSOS CURSOS"
           limit={3}
           showDate={false}                 // Cursos normalmente não têm data
           showDescription={true}
@@ -52,7 +52,7 @@ const HomePage = () => {
         {/* AVISOS - SEM BOTÃO dentro do card */}
         <ContentUniversal
           collectionName="avisos"
-          title="📢 AVISOS IMPORTANTES"
+          title="AVISOS IMPORTANTES"
           limit={3}
           showDate={true}
           showDescription={true}
