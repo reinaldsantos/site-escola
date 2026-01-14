@@ -2,7 +2,7 @@
 const debugStrapi = async (collectionName) => {
   console.log(`🔍 DEBUG: Verificando coleção ${collectionName}`);
   
-  const apiUrl = `http://localhost:1337/api/${collectionName}?populate=*`;
+  const apiUrl = `http://localhost:1338/api/${collectionName}?populate=*`;
   
   try {
     const response = await fetch(apiUrl);
@@ -31,3 +31,4 @@ const debugStrapi = async (collectionName) => {
 debugStrapi('noticias');
 debugStrapi('eventos');
 debugStrapi('cursos');
+

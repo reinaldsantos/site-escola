@@ -14,7 +14,7 @@ const NoticiaDetailPage = () => {
       try {
         setCarregando(true);
         // URL para buscar uma notícia específica
-        const response = await fetch(`http://localhost:1337/api/noticias/${id}?populate=*`);
+        const response = await fetch(`http://localhost:1338/api/noticias/${id}?populate=*`);
         
         if (!response.ok) {
           throw new Error("Notícia não encontrada");
@@ -75,7 +75,7 @@ const NoticiaDetailPage = () => {
   // Extrair URL da imagem
   let imagemUrl = null;
   if (imagem?.data?.attributes?.url) {
-    imagemUrl = `http://localhost:1337${imagem.data.attributes.url}`;
+    imagemUrl = `http://localhost:1338${imagem.data.attributes.url}`;
   }
 
   // Formatar data
@@ -188,4 +188,5 @@ const renderConteudo = (conteudo) => {
 };
 
 export default NoticiaDetailPage;
+
 

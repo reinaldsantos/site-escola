@@ -54,7 +54,7 @@ const useStrapiUniversal = (collectionName, limit = 10) => {
       setCarregando(true);
       
       // URL correta para Strapi v4
-      const apiUrl = `http://localhost:1337/api/${collectionName}?populate=*&sort=createdAt:desc&pagination[pageSize]=${limit}`;
+      const apiUrl = `http://localhost:1338/api/${collectionName}?populate=*&sort=createdAt:desc&pagination[pageSize]=${limit}`;
       
       console.log(`🔍 Buscando: ${apiUrl}`); // Debug
       
@@ -114,3 +114,4 @@ const useStrapiUniversal = (collectionName, limit = 10) => {
 };
 
 export default useStrapiUniversal;
+

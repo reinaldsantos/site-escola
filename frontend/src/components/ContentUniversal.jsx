@@ -35,7 +35,7 @@ const ContentUniversal = ({
           Nenhum conteúdo publicado ainda na coleção <strong>{collectionName}</strong>.
           <br />
           <small>
-            Publique no <a href="http://localhost:1337/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
+            Publique no <a href="http://localhost:1338/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
           </small>
         </p>
       </div>
@@ -66,19 +66,19 @@ const ContentUniversal = ({
     
     // Formato Strapi v4
     if (imagem.data?.attributes?.url) {
-      return `http://localhost:1337${imagem.data.attributes.url}`;
+      return `http://localhost:1338${imagem.data.attributes.url}`;
     }
     // Formato direto com atributos
     else if (imagem.attributes?.url) {
-      return `http://localhost:1337${imagem.attributes.url}`;
+      return `http://localhost:1338${imagem.attributes.url}`;
     }
     // Formato antigo
     else if (imagem.url) {
-      return `http://localhost:1337${imagem.url}`;
+      return `http://localhost:1338${imagem.url}`;
     }
     // Formato thumbnail
     else if (imagem.formats?.thumbnail?.url) {
-      return `http://localhost:1337${imagem.formats.thumbnail.url}`;
+      return `http://localhost:1338${imagem.formats.thumbnail.url}`;
     }
     
     return null;
@@ -291,6 +291,7 @@ const extractTextFromContent = (content, maxLength = 100) => {
 };
 
 export default ContentUniversal;
+
 
 
 

@@ -48,9 +48,9 @@ const UniversalContent = ({
           // Extrair imagem se existir (formato Strapi v5)
           let imagemUrl = null;
           if (imagem?.data?.attributes?.url) {
-            imagemUrl = `http://localhost:1337${imagem.data.attributes.url}`;
+            imagemUrl = `http://localhost:1338${imagem.data.attributes.url}`;
           } else if (imagem?.url) {
-            imagemUrl = `http://localhost:1337${imagem.url}`;
+            imagemUrl = `http://localhost:1338${imagem.url}`;
           }
           
           // Formatar data corretamente

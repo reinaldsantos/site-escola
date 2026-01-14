@@ -2,7 +2,7 @@
 async function testStrapiImages() {
   try {
     // Testar endpoint de notícias
-    const response = await fetch('http://localhost:1337/api/noticias?populate=*');
+    const response = await fetch('http://localhost:1338/api/noticias?populate=*');
     const data = await response.json();
     
     console.log('📊 ESTRUTURA DA API:');
@@ -33,3 +33,4 @@ async function testStrapiImages() {
 if (typeof window !== 'undefined') {
   testStrapiImages();
 }
+

@@ -12,7 +12,7 @@ const useStrapiData = (collectionName, limit = 10) => {
         setCarregando(true);
         setErro(null);
         
-        const url = `http://localhost:1337/api/${collectionName}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
+        const url = `http://localhost:1338/api/${collectionName}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
         const response = await fetch(url);
         
         if (!response.ok) {
@@ -48,3 +48,4 @@ const useStrapiData = (collectionName, limit = 10) => {
 };
 
 export default useStrapiData;
+

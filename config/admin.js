@@ -1,13 +1,14 @@
 ﻿module.exports = ({ env }) => ({
   auth: {
-    secret: env('ADMIN_JWT_SECRET', 'defaultAdminSecret123'),
+    secret: env("ADMIN_JWT_SECRET"),
   },
   apiToken: {
-    salt: env('API_TOKEN_SALT', 'defaultApiTokenSalt123'),
+    salt: env("API_TOKEN_SALT"),
   },
   transfer: {
     token: {
-      salt: env('TRANSFER_TOKEN_SALT', 'defaultTransferTokenSalt123'),
+      salt: env("TRANSFER_TOKEN_SALT"),
     },
   },
+  url: env("STRAPI_ADMIN_BACKEND_URL", "http://localhost:1338"),
 });
