@@ -10,10 +10,11 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/strapi": "4.15.0",
-    "@strapi/plugin-users-permissions": "4.15.0",
     "@strapi/plugin-i18n": "4.15.0",
+    "@strapi/plugin-users-permissions": "4.15.0",
     "@strapi/provider-upload-local": "4.15.0",
+    "@strapi/strapi": "4.15.0",
+    "pg": "^8.17.1",
     "sqlite3": "5.1.6"
   },
   "author": "Escola EP Fundão",
