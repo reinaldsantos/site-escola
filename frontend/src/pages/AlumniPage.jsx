@@ -57,10 +57,10 @@ const AlumniPage = () => {
                   <div style={{ fontWeight: '600', color: 'var(--primary-color)', marginBottom: '0.3rem' }}>
                     {test.nome}
                   </div>
-                  <div style={{ fontSize: '0.95rem', color: '#78909c', marginBottom: '0.2rem' }}>
+                  <div style={{ fontSize: '0.95rem', color: '#37474f', marginBottom: '0.2rem' }}>
                     {test.curso}
                   </div>
-                  <div style={{ fontSize: '0.9rem', color: '#90a4ae', fontWeight: '500' }}>
+                  <div style={{ fontSize: '0.9rem', color: '#546e7a', fontWeight: '500' }}>
                     {test.empresa}
                   </div>
                 </div>
@@ -102,7 +102,7 @@ const AlumniPage = () => {
                 <div style={{
                   fontSize: '0.9rem',
                   fontWeight: '500',
-                  color: '#37474f'
+                  color: '#37474f' /* Preto */
                 }}>
                   {parceiro}
                 </div>

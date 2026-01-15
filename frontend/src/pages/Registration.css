@@ -4,7 +4,7 @@
 }
 
 .registration-hero {
-  background: linear-gradient(135deg, #18cc2a3, #003319);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   color: white;
   padding: 4rem 0;
   text-align: center;
@@ -21,7 +21,7 @@
 }
 
 .registration-steps {
-  background: #f8f9fa;
+  background: #ffffff;
   padding: 2rem 0;
   border-bottom: 1px solid #e9ecef;
 }
@@ -60,7 +60,7 @@
 }
 
 .step.active .step-number {
-  background: #18cc2a3;
+  background: #ffffff;
   color: white;
   box-shadow: 0 5px 15px rgba(0, 102, 51, 0.3);
 }
@@ -86,7 +86,7 @@
 }
 
 .form-section {
-  background: #f8f9fa;
+  background: #ffffff;
   padding: 2.5rem;
   border-radius: 15px;
   margin-bottom: 2rem;
@@ -188,7 +188,7 @@
 }
 
 .registration-help {
-  background: #f0f7ff;
+  background: #ffffff;
   padding: 4rem 0;
   text-align: center;
 }
@@ -252,6 +252,8 @@
     font-size: 2.2rem;
   }
 }
+
+
 
 
 

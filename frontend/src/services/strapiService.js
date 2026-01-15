@@ -28,3 +28,4 @@ export const strapiService = {
 // 2. Galeria: await strapiService.buscar('galeria')
 // 3. Projetos: await strapiService.buscar('projetos')
 // NUNCA PRECISA ALTERAR ESTE ARQUIVO!
+

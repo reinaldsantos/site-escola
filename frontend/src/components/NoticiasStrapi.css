@@ -5,7 +5,7 @@
 .noticias-strapi {
     margin: 50px 0;
     padding: 40px 20px;
-    background: #f8f9fa;
+    background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -186,7 +186,7 @@
 
 /* Estilos específicos para eventos */
 .eventos-container .noticias-strapi {
-    background: #f0f7ff;
+    background: #ffffff;
     border-left: 5px solid #3498db;
 }
 
@@ -198,7 +198,7 @@
 }
 
 .evento-local, .evento-horario {
-    background: #e3f2fd;
+    background: #ffffff;
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 0.85rem;
@@ -215,3 +215,4 @@
 .evento-horario::before {
     content: "⏰";
 }
+

@@ -1,17 +1,9 @@
-﻿// CONFIG.JS INTELIGENTE - USA NGROK QUANDO ESTÁ REMOTO
+﻿// CONFIG.JS SIMPLIFICADO - USA SEMPRE PROXY LOCAL
 const getConfig = () => {
-  // Detecta se está acessando via ngrok
-  const isNgrok = window.location.hostname.includes('ngrok-free.dev');
-  
   return {
-    // 🔥 MUDA AUTOMATICAMENTE
-    API_URL: isNgrok 
-      ? 'https://unifoliolate-vigorless-tamekia.ngrok-free.dev/api'
-      : 'http://localhost:1338/api',
-    
-    BASE_URL: isNgrok 
-      ? 'https://unifoliolate-vigorless-tamekia.ngrok-free.dev'
-      : 'http://localhost:1338',
+    // 🔥 SEMPRE usa proxy do React (localhost:3000/api → localhost:1338/api)
+    API_URL: '/api',
+    BASE_URL: '',
 
     // ========== MÉTODO PRINCIPAL ==========
     buscar: async (colecao, limite = 10) => {
@@ -49,12 +41,10 @@ const getConfig = () => {
       const config = getConfig();
       if (!imagem) return '';
       
-      // Se for formato Strapi v5
       if (imagem.data && imagem.data.attributes) {
         return `${config.BASE_URL}${imagem.data.attributes.url}`;
       }
       
-      // Se for formato antigo
       if (imagem.formats && imagem.formats.medium) {
         return `${config.BASE_URL}${imagem.formats.medium.url}`;
       }
@@ -66,11 +56,10 @@ const getConfig = () => {
       return '';
     },
 
-    // ========== EXTRAIR TEXTO DE RICH TEXT ==========
+    // ========== EXTRAIR TEXTO ==========
     extrairTexto: (conteudo, maxCaracteres = 100) => {
       if (!conteudo) return '';
       
-      // Se for array (rich text do Strapi)
       if (Array.isArray(conteudo)) {
         const textoPlano = conteudo
           .filter(bloco => bloco.type === 'paragraph')
@@ -82,7 +71,6 @@ const getConfig = () => {
           : textoPlano;
       }
       
-      // Se for string normal
       if (typeof conteudo === 'string') {
         return conteudo.length > maxCaracteres 
           ? conteudo.substring(0, maxCaracteres) + '...' 
@@ -94,5 +82,5 @@ const getConfig = () => {
   };
 };
 
-// Exporta função para sempre ter configuração atualizada
 export default getConfig;
+

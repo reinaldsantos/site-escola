@@ -11,6 +11,7 @@
           'style-src': ["'self'", "'unsafe-inline'", "https:"],
           'img-src': ["'self'", "data:", "blob:", "https://market-assets.strapi.io", "*"],
           'connect-src': ["'self'", "https:", "http:", "ws:"],
+          'font-src': ["'self'", "https:", "data:"],
           upgradeInsecureRequests: null,
         },
       },

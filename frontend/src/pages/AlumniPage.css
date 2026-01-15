@@ -1,8 +1,10 @@
-﻿.simple-container {
+﻿/* AlumniPage.css - VERSÃO COMPLETA CORRIGIDA */
+.simple-container {
   min-height: 100vh;
-  background: #fafafa;
+  background: #ffffff;
 }
 
+/* HEADER AZUL COM TEXTO BRANCO */
 .simple-header {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
@@ -10,13 +12,16 @@
   text-align: center;
 }
 
+/* TÍTULO PRINCIPAL - BRANCO */
 .simple-header h1 {
   font-size: 2.8rem;
   font-weight: 300;
   margin-bottom: 1rem;
   letter-spacing: -0.5px;
+  color: white;
 }
 
+/* SUBTÍTULO - BRANCO */
 .header-subtitle {
   font-size: 1.2rem;
   font-weight: 400;
@@ -24,22 +29,26 @@
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.5;
+  color: white;
 }
 
 .simple-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 2rem;
+  background: #ffffff;
 }
 
 .content-section {
   margin-bottom: 4rem;
+  background: #ffffff;
 }
 
 .content-section:last-child {
   margin-bottom: 0;
 }
 
+/* TÍTULO DA SEÇÃO - AZUL */
 .section-title {
   font-size: 1.8rem;
   font-weight: 400;
@@ -139,20 +148,18 @@
   }
 }
 
+/* CORES ESPECÍFICAS PARA CADA PÁGINA - TODAS AZUL */
 .escola-page {
-  --primary-color: #18cc2a3;
-  --primary-dark: #004422;
+  --primary-color: #004a8f;
+  --primary-dark: #00264d;
 }
 
 .formacao-page {
-  --primary-color: #18cc2a;
-  --primary-dark: #18cc2a;
+  --primary-color: #004a8f;
+  --primary-dark: #00264d;
 }
 
 .alumni-page {
-  --primary-color: #9b59b6;
-  --primary-dark: #8e44ad;
+  --primary-color: #004a8f;
+  --primary-dark: #00264d;
 }
-
-
-

@@ -37,7 +37,7 @@
 /* BOTÃO INSCREVE-TE - VERDE #18cc2a */
 .btn-inscricao {
   background: #18cc2a; /* VERDE VIBRANTE */
-  color: white !important;
+  
   border: none;
   padding: 0.8rem 1.8rem;
   border-radius: 30px;
@@ -154,7 +154,7 @@
 
 .dropdown-menu a:hover {
   color: #18cc2a !important; /* VERDE NO HOVER - NÃO BRANCO */
-  background: #f1f8e9;
+  background: #ffffff;
 }
 
 /* SETAS DOS DROPDOWNS */
@@ -225,3 +225,6 @@ a, button, span {
 a:hover, button:hover {
   color: #18cc2a !important; /* VERDE NO HOVER */
 }
+
+
+

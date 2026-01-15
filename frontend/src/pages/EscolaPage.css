@@ -1,158 +1,145 @@
-﻿.simple-container {
-  min-height: 100vh;
-  background: #fafafa;
-}
-
-.simple-header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  color: white;
-  padding: 5rem 0 3rem;
-  text-align: center;
-}
-
-.simple-header h1 {
-  font-size: 2.8rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  letter-spacing: -0.5px;
-}
-
-.header-subtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
-  opacity: 0.9;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.5;
-}
-
-.simple-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-}
-
-.content-section {
-  margin-bottom: 4rem;
-}
-
-.content-section:last-child {
-  margin-bottom: 0;
-}
-
-.section-title {
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--primary-color);
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.minimal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.minimal-item {
-  padding: 2rem;
-  background: white;
-  border: 1px solid #f0f0f0;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.minimal-item:hover {
-  border-color: var(--primary-color);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.minimal-item h3 {
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--primary-color);
-  margin: 0 0 1rem 0;
-}
-
-.minimal-item p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #546e7a;
-  margin: 0;
-}
-
-.minimal-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.minimal-list li {
-  padding: 1rem 0;
-  border-bottom: 1px solid #f0f0f0;
-  color: #455a64;
-  font-size: 1.1rem;
-}
-
-.minimal-list li:last-child {
-  border-bottom: none;
-}
-
-.minimal-list li:hover {
-  color: var(--primary-color);
-}
-
-.minimal-badge {
-  display: inline-block;
-  padding: 0.3rem 1rem;
-  background: var(--primary-color);
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 12px;
-  margin-top: 0.5rem;
-}
-
-@media (max-width: 768px) {
+﻿﻿.simple-container {
+    min-height: 100vh;
+    background: #ffffff;
+  }
+  
   .simple-header {
-    padding: 3rem 0 2rem;
+    background: #f8f9fa; /* Fundo cinza muito claro */
   }
   
   .simple-header h1 {
-    font-size: 2.2rem;
+    color: #2c3e50; /* Azul escuro */
+  }
+  
+  .header-subtitle {
+    color: #495057; /* Cinza azulado escuro */
+    opacity: 0.9;
   }
   
   .simple-content {
-    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  
+  .content-section {
+    margin-bottom: 4rem;
+  }
+  
+  .content-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
   }
   
   .minimal-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
   }
   
   .minimal-item {
-    padding: 1.5rem;
+    padding: 2rem;
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
-}
-
-.escola-page {
-  --primary-color: #18cc2a3;
-  --primary-dark: #004422;
-}
-
-.formacao-page {
-  --primary-color: #18cc2a;
-  --primary-dark: #18cc2a;
-}
-
-.alumni-page {
-  --primary-color: #9b59b6;
-  --primary-dark: #8e44ad;
-}
-
-
-
+  
+  .minimal-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  
+  .minimal-item h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
+  }
+  
+  .minimal-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #546e7a;
+    margin: 0;
+  }
+  
+  .minimal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .minimal-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #455a64;
+    font-size: 1.1rem;
+  }
+  
+  .minimal-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .minimal-list li:hover {
+    color: var(--primary-color);
+  }
+  
+  .minimal-badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .simple-header {
+      padding: 3rem 0 2rem;
+    }
+    
+    .simple-header h1 {
+      font-size: 2.2rem;
+    }
+    
+    .simple-content {
+      padding: 2rem 1rem;
+    }
+    
+    .minimal-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .minimal-item {
+      padding: 1.5rem;
+    }
+  }
+  
+  .escola-page {
+    --primary-color: #18cc2a3;
+    --primary-dark: #004422;
+  }
+  
+  .formacao-page {
+    --primary-color: #18cc2a;
+    --primary-dark: #18cc2a;
+  }
+  
+  .alumni-page {
+    --primary-color: #9b59b6;
+    --primary-dark: #8e44ad;
+  }

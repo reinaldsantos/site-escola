@@ -73,77 +73,41 @@ const NoticiasPage = () => {
           return block.children.map(child => child.text).join(' ');
         }
         return '';
-      }).join(' ').substring(0, 120) + '...';
+      }).join(' ').substring(0, 150) + '...';
     }
     
-    return conteudo.substring(0, 120) + '...';
+    return conteudo.substring(0, 150) + '...';
   };
 
   // FUNÇÃO PARA OBTER URL DA IMAGEM
   const getImagemUrl = (item) => {
-    if (!item) return null;
+    if (!item.attributes?.image) return null;
     
-    const image = item.attributes?.image || item.image;
+    const image = item.attributes.image;
     
-    if (!image) {
-      const possibleImageFields = ['imagem', 'capa', 'foto', 'thumbnail', 'banner'];
-      for (const field of possibleImageFields) {
-        const fieldData = item.attributes?.[field] || item[field];
-        if (fieldData) {
-          const img = fieldData;
-          if (img.data?.attributes?.url) return `http://localhost:1338${img.data.attributes.url}`;
-          if (img.url) return `http://localhost:1338${img.url}`;
-        }
-      }
-      return null;
+    // Diferentes estruturas do Strapi v4
+    if (image?.data?.attributes?.url) {
+      return http://localhost:1338 + image.data.attributes.url;
     }
     
-    if (image.data?.attributes?.url) {
-      return `http://localhost:1338${image.data.attributes.url}`;
+    if (image?.url) {
+      return http://localhost:1338 + image.url;
     }
     
-    if (image.url) {
-      return `http://localhost:1338${image.url}`;
+    if (image?.data?.url) {
+      return http://localhost:1338 + image.data.url;
     }
     
-    if (image.data?.url) {
-      return `http://localhost:1338${image.data.url}`;
+    // Outras chaves possíveis
+    if (item.attributes?.imagem?.data?.attributes?.url) {
+      return http://localhost:1338 + item.attributes.imagem.data.attributes.url;
+    }
+    
+    if (item.attributes?.capa?.data?.attributes?.url) {
+      return http://localhost:1338 + item.attributes.capa.data.attributes.url;
     }
     
     return null;
-  };
-
-  // FUNÇÃO PARA FORMATAR DATA
-  const formatarData = (dataString) => {
-    if (!dataString) return "Data não disponível";
-    
-    try {
-      const data = new Date(dataString);
-      return data.toLocaleDateString("pt-PT", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      });
-    } catch (error) {
-      return "Data inválida";
-    }
-  };
-
-  // FUNÇÃO PARA OBTER TÍTULO
-  const getTitulo = (item) => {
-    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem título";
-  };
-
-  // FUNÇÃO PARA OBTER CONTEÚDO
-  const getConteudo = (item) => {
-    return item.attributes?.conteudo || item.conteudo || item.attributes?.content || item.content || "";
-  };
-
-  // FUNÇÃO PARA OBTER DATA
-  const getData = (item) => {
-    return item.attributes?.data_publicacao || item.data_publicacao || 
-           item.attributes?.data_evento || item.data_evento || 
-           item.attributes?.createdAt || item.createdAt;
   };
 
   return (
@@ -153,14 +117,10 @@ const NoticiasPage = () => {
         <p className="subtitulo">Fique por dentro das últimas novidades da nossa escola</p>
         <div className="cabecalho-info">
           <div className="contador-noticias">
-            <span className="numero">{dados.noticias.length + dados.eventos.length}</span>
-            <span className="label">publicações</span>
+            <span className="numero">{dados.noticias.length}</span>
+            <span className="label">notícias</span>
           </div>
-          <button className="btn-atualizar" onClick={() => {
-            buscarNoticias();
-            buscarEventos();
-            buscarAvisos();
-          }}>Atualizar</button>
+          <button className="btn-atualizar" onClick={buscarNoticias}>Atualizar</button>
         </div>
       </header>
 
@@ -171,15 +131,9 @@ const NoticiasPage = () => {
 
       <nav className="noticias-navegacao">
         <div className="abas-container">
-          <button className={`aba ${abaAtiva === "noticias" ? "ativa" : ""}`} onClick={() => setAbaAtiva("noticias")}>
-            Notícias ({dados.noticias.length})
-          </button>
-          <button className={`aba ${abaAtiva === "eventos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("eventos")}>
-            Eventos ({dados.eventos.length})
-          </button>
-          <button className={`aba ${abaAtiva === "avisos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("avisos")}>
-            Avisos ({dados.avisos.length})
-          </button>
+          <button className={\ba \\} onClick={() => setAbaAtiva("noticias")}>Notícias</button>
+          <button className={\ba \\} onClick={() => setAbaAtiva("eventos")}>Eventos</button>
+          <button className={\ba \\} onClick={() => setAbaAtiva("avisos")}>Avisos</button>
         </div>
       </nav>
 
@@ -195,53 +149,54 @@ const NoticiasPage = () => {
             <p>Publique no <strong>Strapi Admin</strong></p>
           </div>
         ) : (
-          <div className="noticias-grid">
+          <div className="noticias-lista">
             {dados[abaAtiva].map((item) => {
               const imagemUrl = getImagemUrl(item);
-              const titulo = getTitulo(item);
-              const conteudo = getConteudo(item);
-              const data = getData(item);
               
               return (
-                <div key={item.id} className="noticia-card">
+                <div key={item.id} className="noticia-item">
                   {imagemUrl && (
                     <div className="noticia-imagem-container">
                       <img 
                         src={imagemUrl} 
-                        alt={titulo} 
+                        alt={item.attributes?.titulo || "Notícia"} 
                         className="noticia-imagem"
                         loading="lazy"
                         onError={(e) => {
                           e.target.style.display = 'none';
-                          e.target.parentElement.classList.add('sem-imagem');
+                          console.log('Erro ao carregar imagem:', imagemUrl);
                         }}
                       />
                     </div>
                   )}
                   
-                  <div className="noticia-info">
+                  <div className="noticia-conteudo">
                     <div className="noticia-meta">
                       <span className="noticia-data">
-                        {formatarData(data)}
+                        {item.attributes?.data_publicacao
+                          ? new Date(item.attributes.data_publicacao).toLocaleDateString("pt-PT", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })
+                          : new Date(item.attributes?.createdAt).toLocaleDateString("pt-PT", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })}
                       </span>
                       <span className="noticia-tipo">{abaAtiva.toUpperCase()}</span>
                     </div>
-                    
-                    <h3 className="noticia-titulo">
-                      {titulo}
-                    </h3>
-                    
+                    <h3 className="noticia-titulo">{item.attributes?.titulo || "Sem título"}</h3>
                     <p className="noticia-descricao">
-                      {extrairTextoConteudo(conteudo)}
+                      {extrairTextoConteudo(item.attributes?.conteudo)}
                     </p>
-                    
                     <div className="noticia-rodape">
                       <span className="noticia-status">
-                        <span className="status-badge">{abaAtiva === 'eventos' ? 'Agendado' : 'Publicado'}</span>
+                        <span className="status-badge">Publicada</span>
+                        <span className="noticia-autor">EPF Escola</span>
                       </span>
-                      <Link to={`/${abaAtiva}/${item.id}`} className="noticia-link">
-                        Ver {abaAtiva === 'eventos' ? 'detalhes' : 'completo'} →
-                      </Link>
+                      <Link to={\/\/\\} className="noticia-link">Ver completo →</Link>
                     </div>
                   </div>
                 </div>
@@ -258,7 +213,7 @@ const NoticiasPage = () => {
           <Link to="/contactos" className="btn-contactar">CONTACTAR SECRETARIA</Link>
         </div>
         <div className="copyright">
-          <p>© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
+          <p>© 2026 EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
         </div>
       </footer>
     </div>

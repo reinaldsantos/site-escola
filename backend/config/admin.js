@@ -5,12 +5,13 @@
   apiToken: {
     salt: env('API_TOKEN_SALT'),
   },
-  // 🔥 PERMITE ADMIN REMOTO
-  url: '/admin',
+  transfer: {
+    token: {
+      salt: env('TRANSFER_TOKEN_SALT', 'sua-chave-segura-aqui'),
+    },
+  },
+  // 🔥 CONFIGURAÇÃO DEFINITIVA
+  url: 'https://unifoliolate-vigorless-tamekia.ngrok-free.dev',
   serveAdminPanel: true,
   autoOpen: false,
-  // Configurações extras para funcionar via proxy
-  forgotPassword: {
-    enabled: true,
-  },
 });

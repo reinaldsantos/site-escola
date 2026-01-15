@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Segoe UI', system-ui, sans-serif;
-  background: #F0FFF0;
+  background: #ffffff;
   color: #333;
   line-height: 1.6;
 }
@@ -70,13 +70,9 @@ button:hover {
   background-color: #18cc2a !important;
 }
 
-.bg-verde-claro {
-  background-color: #F0FFF0 !important;
-}
 
-.bg-verde-muito-claro {
-  background-color: #F1F8E9 !important;
-}
+
+
 
 /* BORDAS VERDES */
 .border-verde {
@@ -119,3 +115,4 @@ button:hover {
     padding: 0 15px;
   }
 }
+
