@@ -140,16 +140,32 @@
   }
 }
 
+/* FORMATO VERTICAL DAS IMAGENS */
 .curso-imagem {
-  flex: 0 0 300px;
-  height: 200px;
+  flex: 0 0 280px; /* Largura fixa */
+  height: 400px;   /* Altura maior para formato vertical */
   overflow: hidden;
+  position: relative;
 }
 
 .curso-imagem img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Para mostrar a imagem completa */
+  object-position: center;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+/* Efeito hover na imagem */
+.curso-item:hover .curso-imagem img {
+  transform: scale(1.05);
+}
+
+/* Classe específica para formato vertical */
+.curso-imagem.formato-vertical {
+  flex: 0 0 300px;
+  height: 450px;
 }
 
 .curso-info {
@@ -386,7 +402,12 @@
   
   .curso-imagem {
     flex: none;
-    height: 180px;
+    height: 250px; /* Altura reduzida no mobile */
+    width: 100%;
+  }
+  
+  .curso-imagem img {
+    object-fit: cover; /* Melhor para mobile */
   }
   
   .curso-acoes {

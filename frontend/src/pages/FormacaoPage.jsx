@@ -1,32 +1,37 @@
-﻿import React from "react";
+﻿// src/pages/FormacaoPage.jsx - VERSÃO ATUALIZADA COM SUAS IMAGENS
+import React from "react";
 import { Link } from "react-router-dom";
 import "./FormacaoPage.css";
 import cursosConfig from "../config/cursosConfig";
 
 const FormacaoPage = () => {
-  // IMAGENS - USA AS SUAS 6 IMAGENS + 1 ONLINE
+  // IMAGENS - USA AS SUAS 6 IMAGENS REAIS + 1 ONLINE
   const getImagemCurso = (cursoId) => {
     const imagensLocais = {
-      1: "/images/cursos/manutencao.jpg",
-      2: "/images/cursos/automovel.jpg", 
-      3: "/images/cursos/alimentacao.jpg",
-      5: "/images/cursos/construcao.jpg",
-      6: "/images/cursos/informatica.jpg",
-      7: "/images/cursos/comercio.jpg"
+      1: "/images/cursos/industrial2.png",        // Manutenção Industrial
+      2: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400&h=200&fit=crop&q=80", // Mecatrónica Automóvel
+      3: "/images/cursos/cozinhaAI2.png",         // Padeiro/Pasteleiro
+      4: "/images/cursos/trbAI2.png",             // Empregado Restaurante/Bar
+      5: "/images/cursos/construcaoAI.png",       // Construção Civil
+      6: "/images/cursos/informaticaAI.png",      // Programação Informática
+      7: "/images/cursos/comercioAI.png",         // Comércio
+      8: "/images/cursos/cozinhaAI2.png"          // Cozinha/Pastelaria (usa mesma)
     };
 
-    // Curso 4 não tem imagem local, usa online
-    if (cursoId === 4) {
-      return "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&h=600&fit=crop&q=80";
-    }
+    // Retorna imagem local ou fallback online
+    return imagensLocais[cursoId] || "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=400&h=200&fit=crop&q=80";
+  };
 
-    // Retorna imagem local ou fallback
-    return imagensLocais[cursoId] || "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&h=600&fit=crop&q=80";
+  // Função para fallback de imagem
+  const handleImageError = (e, cursoNome) => {
+    console.log(`Imagem falhou: ${cursoNome}`);
+    e.target.onerror = null;
+    e.target.src = `https://placehold.co/400x200/1a237e/ffffff?text=${encodeURIComponent(cursoNome)}`;
   };
 
   return (
     <div className="formacao-profissional">
-      {/* HERO SECTION - Limpo e profissional */}
+      {/* HERO SECTION */}
       <section className="formacao-hero">
         <div className="container">
           <div className="hero-content">
@@ -38,7 +43,7 @@ const FormacaoPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO DE CURSOS - Layout limpo */}
+      {/* SEÇÃO DE CURSOS */}
       <section className="cursos-section">
         <div className="container">
           <div className="section-header">
@@ -48,7 +53,7 @@ const FormacaoPage = () => {
             </p>
           </div>
 
-          {/* LISTA DE CURSOS - Design limpo */}
+          {/* LISTA DE CURSOS */}
           <div className="cursos-lista">
             {cursosConfig.areas.map((area) => (
               <React.Fragment key={area.id}>
@@ -67,6 +72,7 @@ const FormacaoPage = () => {
                           src={getImagemCurso(curso.id)} 
                           alt={curso.nome}
                           loading="lazy"
+                          onError={(e) => handleImageError(e, curso.nome)}
                         />
                       </div>
                       
@@ -118,7 +124,7 @@ const FormacaoPage = () => {
         </div>
       </section>
 
-      {/* SEÇÃO DE VANTAGENS - Layout simples */}
+      {/* SEÇÃO DE VANTAGENS */}
       <section className="vantagens-section">
         <div className="container">
           <div className="section-header">
@@ -164,7 +170,7 @@ const FormacaoPage = () => {
         </div>
       </section>
 
-      {/* CTA SECTION - Simples */}
+      {/* CTA SECTION */}
       <section className="cta-section">
         <div className="container">
           <div className="cta-conteudo">
