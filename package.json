@@ -1,31 +1,33 @@
-{
+﻿{
   "name": "escola-backend",
   "private": true,
   "version": "0.1.0",
-  "description": "Strapi backend para Escola EP Fundão",
+  "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
-    "start": "strapi start",
+    "start": "bash render-start.sh",
     "build": "strapi build",
     "strapi": "strapi"
   },
+  "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-i18n": "4.15.0",
-    "@strapi/plugin-users-permissions": "4.15.0",
-    "@strapi/provider-upload-local": "4.15.0",
-    "@strapi/strapi": "4.15.0",
-    "pg": "^8.17.1",
-    "sqlite3": "5.1.6"
-  },
-  "author": "Escola EP Fundão",
-  "strapi": {
-    "uuid": "escola-ep-fundao"
+    "@strapi/plugin-i18n": "4.21.1",
+    "@strapi/plugin-users-permissions": "4.21.1",
+    "@strapi/provider-email-nodemailer": "^4.21.1",
+    "@strapi/provider-upload-cloudinary": "^4.21.1",
+    "@strapi/strapi": "4.21.1",
+    "better-sqlite3": "11.3.0",
+    "pg": "^8.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
+    "styled-components": "^5.3.11"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT",
-  "main": "index.js",
-  "keywords": []
+  "strapi": {
+    "uuid": "729e3b422c7292a19821ebf4200982a4"
+  }
 }
