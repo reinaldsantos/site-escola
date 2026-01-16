@@ -1,14 +1,14 @@
-﻿// CONFIG.JS SIMPLIFICADO - USA SEMPRE PROXY LOCAL
+// CONFIG.JS SIMPLIFICADO - USA SEMPRE PROXY LOCAL
 const getConfig = () => {
   return {
-    // 🔥 SEMPRE usa proxy do React (localhost:3000/api → localhost:1338/api)
+    // ?? SEMPRE usa proxy do React (localhost:3000/api ? site-escola-65zi.onrender.com/api)
     API_URL: '/api',
     BASE_URL: '',
 
-    // ========== MÉTODO PRINCIPAL ==========
+    // ========== M�TODO PRINCIPAL ==========
     buscar: async (colecao, limite = 10) => {
       const config = getConfig();
-      console.log(`📦 Buscando "${colecao}" de ${config.API_URL}`);
+      console.log(`?? Buscando "${colecao}" de ${config.API_URL}`);
 
       try {
         const resposta = await fetch(
@@ -31,7 +31,7 @@ const getConfig = () => {
         
         return dados;
       } catch (erro) {
-        console.error(`❌ Erro ao buscar ${colecao}:`, erro);
+        console.error(`? Erro ao buscar ${colecao}:`, erro);
         return [];
       }
     },

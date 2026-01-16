@@ -1,4 +1,4 @@
-ï»¿// src/pages/NoticiaDetailPage.jsx
+// src/pages/NoticiaDetailPage.jsx
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./NoticiaDetailPage.css";
@@ -13,18 +13,18 @@ const NoticiaDetailPage = () => {
     const buscarNoticia = async () => {
       try {
         setCarregando(true);
-        // URL para buscar uma notÃ­cia especÃ­fica
-        const response = await fetch(`http://localhost:1338/api/noticias/${id}?populate=*`);
+        // URL para buscar uma notícia específica
+        const response = await fetch(`http://site-escola-65zi.onrender.com/api/noticias/${id}?populate=*`);
         
         if (!response.ok) {
-          throw new Error("NotÃ­cia nÃ£o encontrada");
+          throw new Error("Notícia não encontrada");
         }
         
         const data = await response.json();
         setNoticia(data.data);
       } catch (error) {
         setErro(error.message);
-        console.error("Erro ao buscar notÃ­cia:", error);
+        console.error("Erro ao buscar notícia:", error);
       } finally {
         setCarregando(false);
       }
@@ -37,7 +37,7 @@ const NoticiaDetailPage = () => {
     return (
       <div className="noticia-detail-container loading">
         <div className="spinner"></div>
-        <p>Carregando notÃ­cia...</p>
+        <p>Carregando notícia...</p>
       </div>
     );
   }
@@ -48,7 +48,7 @@ const NoticiaDetailPage = () => {
         <h1>Erro</h1>
         <p>{erro}</p>
         <Link to="/noticias" className="btn-voltar">
-          â† Voltar para NotÃ­cias
+          ? Voltar para Notícias
         </Link>
       </div>
     );
@@ -57,17 +57,17 @@ const NoticiaDetailPage = () => {
   if (!noticia) {
     return (
       <div className="noticia-detail-container not-found">
-        <h1>NotÃ­cia nÃ£o encontrada</h1>
-        <p>A notÃ­cia que vocÃª estÃ¡ procurando nÃ£o existe ou foi removida.</p>
+        <h1>Notícia não encontrada</h1>
+        <p>A notícia que você está procurando não existe ou foi removida.</p>
         <Link to="/noticias" className="btn-voltar">
-          â† Voltar para NotÃ­cias
+          ? Voltar para Notícias
         </Link>
       </div>
     );
   }
 
   const { attributes } = noticia;
-  const titulo = attributes?.titulo || "Sem tÃ­tulo";
+  const titulo = attributes?.titulo || "Sem título";
   const conteudo = attributes?.conteudo || "";
   const data = attributes?.data_publicacao || attributes?.createdAt;
   const imagem = attributes?.imagem;
@@ -75,7 +75,7 @@ const NoticiaDetailPage = () => {
   // Extrair URL da imagem
   let imagemUrl = null;
   if (imagem?.data?.attributes?.url) {
-    imagemUrl = `http://localhost:1338${imagem.data.attributes.url}`;
+    imagemUrl = `http://site-escola-65zi.onrender.com${imagem.data.attributes.url}`;
   }
 
   // Formatar data
@@ -102,7 +102,7 @@ const NoticiaDetailPage = () => {
     <div className="noticia-detail-container">
       <article className="noticia-detail">
         <Link to="/noticias" className="btn-voltar">
-          â† Voltar para NotÃ­cias
+          ? Voltar para Notícias
         </Link>
         
         {imagemUrl && (
@@ -114,16 +114,16 @@ const NoticiaDetailPage = () => {
         <header className="noticia-header">
           {dataFormatada && (
             <time className="noticia-data" dateTime={data}>
-              ğŸ“… Publicado em {dataFormatada}
+              ?? Publicado em {dataFormatada}
             </time>
           )}
           
           <h1 className="noticia-titulo">{titulo}</h1>
           
           <div className="noticia-meta">
-            <span className="badge-tipo">ğŸ“° NotÃ­cia</span>
+            <span className="badge-tipo">?? Notícia</span>
             {attributes?.autor && (
-              <span className="noticia-autor">âœï¸ Por {attributes.autor}</span>
+              <span className="noticia-autor">?? Por {attributes.autor}</span>
             )}
           </div>
         </header>
@@ -135,10 +135,10 @@ const NoticiaDetailPage = () => {
         <footer className="noticia-footer">
           <div className="acoes">
             <Link to="/noticias" className="btn-acao">
-              â† Ver todas as notÃ­cias
+              ? Ver todas as notícias
             </Link>
             <button className="btn-acao compartilhar">
-              ğŸ”— Compartilhar
+              ?? Compartilhar
             </button>
           </div>
         </footer>
@@ -147,9 +147,9 @@ const NoticiaDetailPage = () => {
   );
 };
 
-// FunÃ§Ã£o para renderizar conteÃºdo (suporta rich text do Strapi)
+// Função para renderizar conteúdo (suporta rich text do Strapi)
 const renderConteudo = (conteudo) => {
-  if (!conteudo) return <p>Sem conteÃºdo disponÃ­vel.</p>;
+  if (!conteudo) return <p>Sem conteúdo disponível.</p>;
 
   // Se for string simples
   if (typeof conteudo === 'string') {
@@ -184,9 +184,10 @@ const renderConteudo = (conteudo) => {
     );
   }
 
-  return <p>ConteÃºdo em formato nÃ£o suportado.</p>;
+  return <p>Conteúdo em formato não suportado.</p>;
 };
 
 export default NoticiaDetailPage;
+
 
 

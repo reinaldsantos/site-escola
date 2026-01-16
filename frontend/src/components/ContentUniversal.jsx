@@ -1,4 +1,4 @@
-Ôªø// src/components/ContentUniversal.jsx - VERS√ÉO COM LINKS PERSONALIZADOS
+// src/components/ContentUniversal.jsx - VERS√O COM LINKS PERSONALIZADOS
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiUniversal from '../hooks/useStrapiUniversal';
@@ -32,10 +32,10 @@ const ContentUniversal = ({
           {title || collectionName.charAt(0).toUpperCase() + collectionName.slice(1)}
         </h2>
         <p className="empty-message">
-          Nenhum conte√∫do publicado ainda na cole√ß√£o <strong>{collectionName}</strong>.
+          Nenhum conte˙do publicado ainda na coleÁ„o <strong>{collectionName}</strong>.
           <br />
           <small>
-            Publique no <a href="http://localhost:1338/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
+            Publique no <a href="http://site-escola-65zi.onrender.com/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
           </small>
         </p>
       </div>
@@ -45,14 +45,14 @@ const ContentUniversal = ({
   const displayTitle = title ||
     collectionName.charAt(0).toUpperCase() + collectionName.slice(1);
 
-  // Fun√ß√£o para extrair valor CORRETA
+  // FunÁ„o para extrair valor CORRETA
   const extrairValor = (item, campo) => {
     if (!campo) return null;
     
     // Acessar campo direto ou aninhado
     let valor = item[campo];
     
-    // Se n√£o encontrar, tentar em attributes (Strapi v4)
+    // Se n„o encontrar, tentar em attributes (Strapi v4)
     if (valor === undefined && item.attributes) {
       valor = item.attributes[campo];
     }
@@ -60,43 +60,43 @@ const ContentUniversal = ({
     return valor;
   };
 
-  // Fun√ß√£o para extrair URL da imagem CORRETA
+  // FunÁ„o para extrair URL da imagem CORRETA
   const extrairImagemUrl = (imagem) => {
     if (!imagem) return null;
     
     // Formato Strapi v4
     if (imagem.data?.attributes?.url) {
-      return `http://localhost:1338${imagem.data.attributes.url}`;
+      return `http://site-escola-65zi.onrender.com${imagem.data.attributes.url}`;
     }
     // Formato direto com atributos
     else if (imagem.attributes?.url) {
-      return `http://localhost:1338${imagem.attributes.url}`;
+      return `http://site-escola-65zi.onrender.com${imagem.attributes.url}`;
     }
     // Formato antigo
     else if (imagem.url) {
-      return `http://localhost:1338${imagem.url}`;
+      return `http://site-escola-65zi.onrender.com${imagem.url}`;
     }
     // Formato thumbnail
     else if (imagem.formats?.thumbnail?.url) {
-      return `http://localhost:1338${imagem.formats.thumbnail.url}`;
+      return `http://site-escola-65zi.onrender.com${imagem.formats.thumbnail.url}`;
     }
     
     return null;
   };
 
-  // Determinar para onde vai o link de detalhes (bot√£o dentro do card)
+  // Determinar para onde vai o link de detalhes (bot„o dentro do card)
   const getDetailPath = () => {
-    // Se tiver p√°gina customizada definida
+    // Se tiver p·gina customizada definida
     if (customDetailPage) {
       return `/${customDetailPage}`;
     }
     
-    // Mapeamento padr√£o baseado na cole√ß√£o
+    // Mapeamento padr„o baseado na coleÁ„o
     const mapeamento = {
-      'noticias': null,          // NOT√çCIAS: N√ÉO TEM BOT√ÉO
+      'noticias': null,          // NOTÕCIAS: N√O TEM BOT√O
       'eventos': 'noticias',     // EVENTOS: vai para /noticias (listagem)
       'cursos': 'formacao',      // CURSOS: vai para /formacao (mesmo que "Ver todos")
-      'avisos': null             // AVISOS: N√ÉO TEM BOT√ÉO
+      'avisos': null             // AVISOS: N√O TEM BOT√O
     };
     
     const destino = mapeamento[collectionName];
@@ -105,30 +105,30 @@ const ContentUniversal = ({
 
   // Determinar para onde vai o link "Ver todos"
   const getViewAllPath = () => {
-    // Se tiver p√°gina customizada para "Ver todos"
+    // Se tiver p·gina customizada para "Ver todos"
     if (customViewAllPage) {
       return `/${customViewAllPage}`;
     }
     
-    // Mapeamento padr√£o para "Ver todos"
+    // Mapeamento padr„o para "Ver todos"
     const mapeamentoViewAll = {
-      'noticias': 'noticias',    // Ver todas not√≠cias ‚Üí p√°gina de not√≠cias
-      'eventos': 'noticias',     // Ver todos eventos ‚Üí p√°gina de not√≠cias
-      'cursos': 'formacao',      // Ver todos cursos ‚Üí p√°gina de forma√ß√£o
-      'avisos': 'noticias'       // Ver todos avisos ‚Üí p√°gina de not√≠cias
+      'noticias': 'noticias',    // Ver todas notÌcias ? p·gina de notÌcias
+      'eventos': 'noticias',     // Ver todos eventos ? p·gina de notÌcias
+      'cursos': 'formacao',      // Ver todos cursos ? p·gina de formaÁ„o
+      'avisos': 'noticias'       // Ver todos avisos ? p·gina de notÌcias
     };
     
     return `/${mapeamentoViewAll[collectionName] || collectionName}`;
   };
 
-  // Determinar se deve mostrar bot√£o dentro do card
+  // Determinar se deve mostrar bot„o dentro do card
   const shouldShowCardButton = () => {
-    // S√≥ mostra bot√£o para eventos e cursos
-    // Not√≠cias e avisos N√ÉO t√™m bot√£o
+    // SÛ mostra bot„o para eventos e cursos
+    // NotÌcias e avisos N√O tÍm bot„o
     return collectionName === 'eventos' || collectionName === 'cursos';
   };
 
-  // Determinar o texto do bot√£o
+  // Determinar o texto do bot„o
   const getButtonText = () => {
     const textos = {
       'cursos': 'VER CURSOS',
@@ -147,7 +147,7 @@ const ContentUniversal = ({
       <div className="content-grid">
         {items.map(item => {
           // Usar campos detectados CORRETAMENTE
-          const titulo = extrairValor(item, campos.titulo) || 'Sem t√≠tulo';
+          const titulo = extrairValor(item, campos.titulo) || 'Sem tÌtulo';
           const conteudo = extrairValor(item, campos.conteudo);
           const data = extrairValor(item, campos.data) || item.createdAt;
           const imagem = extrairValor(item, campos.imagem);
@@ -174,7 +174,7 @@ const ContentUniversal = ({
             }
           }
 
-          // Extrair texto do conte√∫do
+          // Extrair texto do conte˙do
           let textoDescricao = '';
           if (conteudo && showDescription) {
             textoDescricao = extractTextFromContent(conteudo, 100);
@@ -186,7 +186,7 @@ const ContentUniversal = ({
                 <div className="card-image-container">
                   <img src={imagemUrl} alt={titulo} className="card-image" />
                   
-                  {/* BOT√ÉO DENTRO DA IMAGEM - S√≥ aparece para eventos e cursos */}
+                  {/* BOT√O DENTRO DA IMAGEM - SÛ aparece para eventos e cursos */}
                   {shouldShowCardButton() && getDetailPath() && (
                     <div className="card-overlay">
                       <Link
@@ -202,7 +202,7 @@ const ContentUniversal = ({
 
               <div className="card-content">
                 {dataFormatada && (
-                  <span className="card-date">üìÖ {dataFormatada}</span>
+                  <span className="card-date">?? {dataFormatada}</span>
                 )}
 
                 <h3 className="card-title">{titulo}</h3>
@@ -211,13 +211,13 @@ const ContentUniversal = ({
                   <p className="card-description">{textoDescricao}</p>
                 )}
 
-                {/* Campos espec√≠ficos */}
+                {/* Campos especÌficos */}
                 <div className="card-details">
-                  {local && <span className="detail-item">üìç {local}</span>}
-                  {horario && <span className="detail-item">‚è∞ {horario}</span>}
+                  {local && <span className="detail-item">?? {local}</span>}
+                  {horario && <span className="detail-item">? {horario}</span>}
                 </div>
 
-                {/* BOT√ÉO PARA CARDS SEM IMAGEM - S√≥ aparece para eventos e cursos */}
+                {/* BOT√O PARA CARDS SEM IMAGEM - SÛ aparece para eventos e cursos */}
                 {!imagemUrl && shouldShowCardButton() && getDetailPath() && (
                   <div className="card-footer">
                     <Link
@@ -238,7 +238,7 @@ const ContentUniversal = ({
         <div className="view-all-section">
           {/* LINK "VER TODOS" - Usa getViewAllPath() */}
           <Link to={getViewAllPath()} className="btn-view-all">
-            üìÑ Ver todos os {collectionName}
+            ?? Ver todos os {collectionName}
           </Link>
         </div>
       )}
@@ -246,7 +246,7 @@ const ContentUniversal = ({
   );
 };
 
-// Fun√ß√£o para extrair texto de qualquer tipo de conte√∫do
+// FunÁ„o para extrair texto de qualquer tipo de conte˙do
 const extractTextFromContent = (content, maxLength = 100) => {
   if (!content) return '';
 
@@ -283,14 +283,15 @@ const extractTextFromContent = (content, maxLength = 100) => {
         ? text.substring(0, maxLength) + '...'
         : text;
     } catch (e) {
-      return 'Conte√∫do dispon√≠vel...';
+      return 'Conte˙do disponÌvel...';
     }
   }
 
-  return 'Conte√∫do dispon√≠vel...';
+  return 'Conte˙do disponÌvel...';
 };
 
 export default ContentUniversal;
+
 
 
 

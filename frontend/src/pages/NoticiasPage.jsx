@@ -1,4 +1,4 @@
-ï»¿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NoticiasPage.css";
 
@@ -17,11 +17,11 @@ const NoticiasPage = () => {
 
   const buscarNoticias = async () => {
     try {
-      const response = await fetch("http://localhost:1338/api/noticias?populate=*&sort=data_publicacao:desc");
+      const response = await fetch("http://site-escola-65zi.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc");
       const data = await response.json();
       setDados(prev => ({ ...prev, noticias: data.data || [] }));
     } catch (error) {
-      console.error("Erro ao buscar notÃ­cias:", error);
+      console.error("Erro ao buscar notícias:", error);
     } finally {
       setCarregando(prev => ({ ...prev, noticias: false }));
     }
@@ -29,7 +29,7 @@ const NoticiasPage = () => {
 
   const buscarEventos = async () => {
     try {
-      const response = await fetch("http://localhost:1338/api/eventos?populate=*");
+      const response = await fetch("http://site-escola-65zi.onrender.com/api/eventos?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, eventos: data.data || [] }));
@@ -43,7 +43,7 @@ const NoticiasPage = () => {
 
   const buscarAvisos = async () => {
     try {
-      const response = await fetch("http://localhost:1338/api/avisos?populate=*");
+      const response = await fetch("http://site-escola-65zi.onrender.com/api/avisos?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, avisos: data.data || [] }));
@@ -63,9 +63,9 @@ const NoticiasPage = () => {
     buscarAvisos();
   }, []);
 
-  // FUNÃ‡ÃƒO PARA EXTRAIR TEXTO DO CONTEÃšDO
+  // FUNÇÃO PARA EXTRAIR TEXTO DO CONTEÚDO
   const extrairTextoConteudo = (conteudo) => {
-    if (!conteudo) return "Sem conteÃºdo";
+    if (!conteudo) return "Sem conteúdo";
     
     if (Array.isArray(conteudo)) {
       return conteudo.map(block => {
@@ -79,7 +79,7 @@ const NoticiasPage = () => {
     return conteudo.substring(0, 120) + '...';
   };
 
-  // FUNÃ‡ÃƒO PARA OBTER URL DA IMAGEM
+  // FUNÇÃO PARA OBTER URL DA IMAGEM
   const getImagemUrl = (item) => {
     if (!item) return null;
     
@@ -91,31 +91,31 @@ const NoticiasPage = () => {
         const fieldData = item.attributes?.[field] || item[field];
         if (fieldData) {
           const img = fieldData;
-          if (img.data?.attributes?.url) return `http://localhost:1338${img.data.attributes.url}`;
-          if (img.url) return `http://localhost:1338${img.url}`;
+          if (img.data?.attributes?.url) return `http://site-escola-65zi.onrender.com${img.data.attributes.url}`;
+          if (img.url) return `http://site-escola-65zi.onrender.com${img.url}`;
         }
       }
       return null;
     }
     
     if (image.data?.attributes?.url) {
-      return `http://localhost:1338${image.data.attributes.url}`;
+      return `http://site-escola-65zi.onrender.com${image.data.attributes.url}`;
     }
     
     if (image.url) {
-      return `http://localhost:1338${image.url}`;
+      return `http://site-escola-65zi.onrender.com${image.url}`;
     }
     
     if (image.data?.url) {
-      return `http://localhost:1338${image.data.url}`;
+      return `http://site-escola-65zi.onrender.com${image.data.url}`;
     }
     
     return null;
   };
 
-  // FUNÃ‡ÃƒO PARA FORMATAR DATA
+  // FUNÇÃO PARA FORMATAR DATA
   const formatarData = (dataString) => {
-    if (!dataString) return "Data nÃ£o disponÃ­vel";
+    if (!dataString) return "Data não disponível";
     
     try {
       const data = new Date(dataString);
@@ -125,21 +125,21 @@ const NoticiasPage = () => {
         year: "numeric",
       });
     } catch (error) {
-      return "Data invÃ¡lida";
+      return "Data inválida";
     }
   };
 
-  // FUNÃ‡ÃƒO PARA OBTER TÃTULO
+  // FUNÇÃO PARA OBTER TÍTULO
   const getTitulo = (item) => {
-    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem tÃ­tulo";
+    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem título";
   };
 
-  // FUNÃ‡ÃƒO PARA OBTER CONTEÃšDO
+  // FUNÇÃO PARA OBTER CONTEÚDO
   const getConteudo = (item) => {
     return item.attributes?.conteudo || item.conteudo || item.attributes?.content || item.content || "";
   };
 
-  // FUNÃ‡ÃƒO PARA OBTER DATA
+  // FUNÇÃO PARA OBTER DATA
   const getData = (item) => {
     return item.attributes?.data_publicacao || item.data_publicacao || 
            item.attributes?.data_evento || item.data_evento || 
@@ -149,12 +149,12 @@ const NoticiasPage = () => {
   return (
     <div className="noticias-page">
       <header className="noticias-cabecalho">
-        <h1>NotÃ­cias EPF</h1>
-        <p className="subtitulo">Fique por dentro das Ãºltimas novidades da nossa escola</p>
+        <h1>Notícias EPF</h1>
+        <p className="subtitulo">Fique por dentro das últimas novidades da nossa escola</p>
         <div className="cabecalho-info">
           <div className="contador-noticias">
             <span className="numero">{dados.noticias.length + dados.eventos.length}</span>
-            <span className="label">publicaÃ§Ãµes</span>
+            <span className="label">publicações</span>
           </div>
           <button className="btn-atualizar" onClick={() => {
             buscarNoticias();
@@ -165,14 +165,14 @@ const NoticiasPage = () => {
       </header>
 
       <div className="mensagem-boas-vindas">
-        <p className="mensagem-destaque">EvoluÃ­mos juntos.</p>
-        <p className="mensagem-sub">EvoluÃ­mos juntos.</p>
+        <p className="mensagem-destaque">Evoluímos juntos.</p>
+        <p className="mensagem-sub">Evoluímos juntos.</p>
       </div>
 
       <nav className="noticias-navegacao">
         <div className="abas-container">
           <button className={`aba ${abaAtiva === "noticias" ? "ativa" : ""}`} onClick={() => setAbaAtiva("noticias")}>
-            NotÃ­cias ({dados.noticias.length})
+            Notícias ({dados.noticias.length})
           </button>
           <button className={`aba ${abaAtiva === "eventos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("eventos")}>
             Eventos ({dados.eventos.length})
@@ -191,7 +191,7 @@ const NoticiasPage = () => {
           </div>
         ) : dados[abaAtiva].length === 0 ? (
           <div className="sem-conteudo">
-            <p>Nenhum conteÃºdo publicado ainda na coleÃ§Ã£o <strong>{abaAtiva}</strong>.</p>
+            <p>Nenhum conteúdo publicado ainda na coleção <strong>{abaAtiva}</strong>.</p>
             <p>Publique no <strong>Strapi Admin</strong></p>
           </div>
         ) : (
@@ -240,7 +240,7 @@ const NoticiasPage = () => {
                         <span className="status-badge">{abaAtiva === 'eventos' ? 'Agendado' : 'Publicado'}</span>
                       </span>
                       <Link to={`/${abaAtiva}/${item.id}`} className="noticia-link">
-                        Ver {abaAtiva === 'eventos' ? 'detalhes' : 'completo'} â†’
+                        Ver {abaAtiva === 'eventos' ? 'detalhes' : 'completo'} ?
                       </Link>
                     </div>
                   </div>
@@ -253,12 +253,12 @@ const NoticiasPage = () => {
 
       <footer className="noticias-rodape">
         <div className="informacoes-importantes">
-          <h3>INFORMAÃ‡Ã•ES IMPORTANTES</h3>
-          <p>Todas as informaÃ§Ãµes sÃ£o atualizadas automaticamente atravÃ©s do nosso sistema. Para mais informaÃ§Ãµes, contacte a secretaria da escola.</p>
+          <h3>INFORMAÇÕES IMPORTANTES</h3>
+          <p>Todas as informações são atualizadas automaticamente através do nosso sistema. Para mais informações, contacte a secretaria da escola.</p>
           <Link to="/contactos" className="btn-contactar">CONTACTAR SECRETARIA</Link>
         </div>
         <div className="copyright">
-          <p>Â© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notÃ­cias sÃ£o atualizadas regularmente.</p>
+          <p>© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
         </div>
       </footer>
     </div>

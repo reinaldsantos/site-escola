@@ -1,4 +1,4 @@
-ï»¿// src/components/UniversalContent.jsx - VERSÃƒO CORRIGIDA
+// src/components/UniversalContent.jsx - VERSÃO CORRIGIDA
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiData from '../hooks/useStrapiData';
@@ -21,7 +21,7 @@ const UniversalContent = ({
         <h2 className="section-title">
           {title || collectionName.charAt(0).toUpperCase() + collectionName.slice(1)}
         </h2>
-        <p className="no-content">Nenhum conteÃºdo publicado ainda.</p>
+        <p className="no-content">Nenhum conteúdo publicado ainda.</p>
       </div>
     );
   }
@@ -39,8 +39,8 @@ const UniversalContent = ({
         {items.map(item => {
           console.log(`Item ${collectionName}:`, item); // Para debug
           
-          // CORREÃ‡ÃƒO: Formato especÃ­fico para suas coleÃ§Ãµes
-          let titulo = item.titulo || item.nome || item.title || 'Sem tÃ­tulo';
+          // CORREÇÃO: Formato específico para suas coleções
+          let titulo = item.titulo || item.nome || item.title || 'Sem título';
           let descricao = item.descricao || item.conteudo || null;
           let data = item.data || item.createdAt || item.data_publicacao;
           let imagem = item.imagem || item.foto || null;
@@ -48,13 +48,13 @@ const UniversalContent = ({
           // Extrair imagem se existir (formato Strapi v5)
           let imagemUrl = null;
           if (imagem?.data?.attributes?.url) {
-            imagemUrl = `http://localhost:1338${imagem.data.attributes.url}`;
+            imagemUrl = `http://site-escola-65zi.onrender.com${imagem.data.attributes.url}`;
           } else if (imagem?.url) {
-            imagemUrl = `http://localhost:1338${imagem.url}`;
+            imagemUrl = `http://site-escola-65zi.onrender.com${imagem.url}`;
           }
           
           // Formatar data corretamente
-          let dataFormatada = 'Data nÃ£o disponÃ­vel';
+          let dataFormatada = 'Data não disponível';
           if (data) {
             try {
               const dataObj = new Date(data);
@@ -70,7 +70,7 @@ const UniversalContent = ({
             }
           }
           
-          // Extrair texto da descriÃ§Ã£o
+          // Extrair texto da descrição
           let textoDescricao = '';
           if (descricao) {
             if (typeof descricao === 'string') {
@@ -90,7 +90,7 @@ const UniversalContent = ({
               )}
               
               <div className="card-body">
-                <span className="card-date">ðŸ“… {dataFormatada}</span>
+                <span className="card-date">?? {dataFormatada}</span>
                 <h3 className="card-title">{titulo}</h3>
                 
                 {textoDescricao && (
@@ -98,7 +98,7 @@ const UniversalContent = ({
                 )}
                 
                 <Link to={`/${collectionName}/${item.id}`} className="card-link">
-                  Ler mais â†’
+                  Ler mais ?
                 </Link>
               </div>
             </div>
@@ -109,7 +109,7 @@ const UniversalContent = ({
       {showViewAll && items.length > 0 && (
         <div className="view-all">
           <Link to={`/${collectionName}`} className="btn-view-all">
-            ðŸ“„ Ver todos os {collectionName}
+            ?? Ver todos os {collectionName}
           </Link>
         </div>
       )}
@@ -117,7 +117,7 @@ const UniversalContent = ({
   );
 };
 
-// FunÃ§Ã£o para extrair texto de rich text do Strapi
+// Função para extrair texto de rich text do Strapi
 const extrairTextoRichText = (richText, maxLength = 100) => {
   if (!Array.isArray(richText)) return '';
   
@@ -141,3 +141,4 @@ const extrairTextoRichText = (richText, maxLength = 100) => {
 };
 
 export default UniversalContent;
+

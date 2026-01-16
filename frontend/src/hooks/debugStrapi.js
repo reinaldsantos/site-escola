@@ -1,34 +1,35 @@
-﻿// src/hooks/debugStrapi.js
+// src/hooks/debugStrapi.js
 const debugStrapi = async (collectionName) => {
-  console.log(`🔍 DEBUG: Verificando coleção ${collectionName}`);
+  console.log(`?? DEBUG: Verificando cole��o ${collectionName}`);
   
-  const apiUrl = `http://localhost:1338/api/${collectionName}?populate=*`;
+  const apiUrl = `http://site-escola-65zi.onrender.com/api/${collectionName}?populate=*`;
   
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
     
-    console.log(`📦 Estrutura completa:`, data);
+    console.log(`?? Estrutura completa:`, data);
     
     if (data.data && data.data.length > 0) {
       const primeiroItem = data.data[0];
-      console.log(`📋 Primeiro item completo:`, primeiroItem);
-      console.log(`🏷️ Atributos disponíveis:`, Object.keys(primeiroItem.attributes || primeiroItem));
+      console.log(`?? Primeiro item completo:`, primeiroItem);
+      console.log(`??? Atributos dispon�veis:`, Object.keys(primeiroItem.attributes || primeiroItem));
       
-      // Verificar campos específicos
+      // Verificar campos espec�ficos
       const attrs = primeiroItem.attributes || primeiroItem;
-      console.log(`🔤 Título:`, attrs.titulo || attrs.title || attrs.nome);
-      console.log(`📝 Conteúdo:`, attrs.conteudo || attrs.content || attrs.descricao);
-      console.log(`🖼️ Imagem:`, attrs.imagem || attrs.image);
-      console.log(`📅 Data:`, attrs.createdAt || attrs.data);
+      console.log(`?? T�tulo:`, attrs.titulo || attrs.title || attrs.nome);
+      console.log(`?? Conte�do:`, attrs.conteudo || attrs.content || attrs.descricao);
+      console.log(`??? Imagem:`, attrs.imagem || attrs.image);
+      console.log(`?? Data:`, attrs.createdAt || attrs.data);
     }
   } catch (error) {
-    console.error(`❌ Erro no debug:`, error);
+    console.error(`? Erro no debug:`, error);
   }
 };
 
-// Testar todas as coleções
+// Testar todas as cole��es
 debugStrapi('noticias');
 debugStrapi('eventos');
 debugStrapi('cursos');
+
 

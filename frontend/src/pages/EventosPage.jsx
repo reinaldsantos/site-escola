@@ -1,5 +1,5 @@
-﻿// ================================================
-// PÁGINA: EventosPage.jsx
+// ================================================
+// P�GINA: EventosPage.jsx
 // Mostra TODOS os eventos do Strapi
 // ================================================
 
@@ -28,9 +28,9 @@ const EventosPage = () => {
         <div className="pagina-eventos">
             <div className="container">
                 <header className="cabecalho-eventos">
-                    <h1>📅 Eventos da Escola</h1>
+                    <h1>?? Eventos da Escola</h1>
                     <p className="subtitulo">
-                        Calendário de atividades, workshops e encontros
+                        Calend�rio de atividades, workshops e encontros
                     </p>
                 </header>
                 
@@ -41,11 +41,11 @@ const EventosPage = () => {
                     </div>
                 ) : eventos.length === 0 ? (
                     <div className="sem-eventos">
-                        <div className="icone-sem-eventos">📅</div>
+                        <div className="icone-sem-eventos">??</div>
                         <h3>Nenhum evento agendado</h3>
                         <p>
-                            Os eventos aparecerão aqui automaticamente quando forem 
-                            publicados no <a href="http://localhost:1338/admin">Strapi Admin</a>
+                            Os eventos aparecer�o aqui automaticamente quando forem 
+                            publicados no <a href="http://site-escola-65zi.onrender.com/admin">Strapi Admin</a>
                         </p>
                     </div>
                 ) : (
@@ -53,7 +53,7 @@ const EventosPage = () => {
                         {eventosFuturos.length > 0 && (
                             <section className="secao-eventos">
                                 <h2 className="secao-titulo">
-                                    🚀 Próximos Eventos
+                                    ?? Pr�ximos Eventos
                                     <span className="badge-secao">{eventosFuturos.length}</span>
                                 </h2>
                                 <div className="grid-eventos">
@@ -67,7 +67,7 @@ const EventosPage = () => {
                         {eventosPassados.length > 0 && (
                             <section className="secao-eventos">
                                 <h2 className="secao-titulo">
-                                    📜 Eventos Anteriores
+                                    ?? Eventos Anteriores
                                     <span className="badge-secao">{eventosPassados.length}</span>
                                 </h2>
                                 <div className="grid-eventos">
@@ -82,7 +82,7 @@ const EventosPage = () => {
                 
                 <div className="voltar-home">
                     <Link to="/" className="link-voltar">
-                        ← Voltar para a página inicial
+                        ? Voltar para a p�gina inicial
                     </Link>
                 </div>
             </div>
@@ -127,12 +127,12 @@ const EventoCard = ({ evento, tipo }) => {
                 <div className="evento-detalhes">
                     {evento.local && (
                         <span className="evento-local">
-                            📍 {evento.local}
+                            ?? {evento.local}
                         </span>
                     )}
                     {evento.horario && (
                         <span className="evento-horario">
-                            ⏰ {evento.horario}
+                            ? {evento.horario}
                         </span>
                     )}
                 </div>
@@ -142,4 +142,5 @@ const EventoCard = ({ evento, tipo }) => {
 };
 
 export default EventosPage;
+
 
