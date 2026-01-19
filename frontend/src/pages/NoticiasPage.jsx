@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+ï»¿import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NoticiasPage.css";
 
@@ -21,7 +21,7 @@ const NoticiasPage = () => {
       const data = await response.json();
       setDados(prev => ({ ...prev, noticias: data.data || [] }));
     } catch (error) {
-      console.error("Erro ao buscar notícias:", error);
+      console.error("Erro ao buscar notï¿½cias:", error);
     } finally {
       setCarregando(prev => ({ ...prev, noticias: false }));
     }
@@ -63,9 +63,9 @@ const NoticiasPage = () => {
     buscarAvisos();
   }, []);
 
-  // FUNÇÃO PARA EXTRAIR TEXTO DO CONTEÚDO
+  // FUNï¿½ï¿½O PARA EXTRAIR TEXTO DO CONTEï¿½DO
   const extrairTextoConteudo = (conteudo) => {
-    if (!conteudo) return "Sem conteúdo";
+    if (!conteudo) return "Sem conteï¿½do";
     
     if (Array.isArray(conteudo)) {
       return conteudo.map(block => {
@@ -79,7 +79,7 @@ const NoticiasPage = () => {
     return conteudo.substring(0, 120) + '...';
   };
 
-  // FUNÇÃO PARA OBTER URL DA IMAGEM
+  // FUNï¿½ï¿½O PARA OBTER URL DA IMAGEM
   const getImagemUrl = (item) => {
     if (!item) return null;
     
@@ -113,9 +113,9 @@ const NoticiasPage = () => {
     return null;
   };
 
-  // FUNÇÃO PARA FORMATAR DATA
+  // FUNï¿½ï¿½O PARA FORMATAR DATA
   const formatarData = (dataString) => {
-    if (!dataString) return "Data não disponível";
+    if (!dataString) return "Data nï¿½o disponï¿½vel";
     
     try {
       const data = new Date(dataString);
@@ -125,21 +125,21 @@ const NoticiasPage = () => {
         year: "numeric",
       });
     } catch (error) {
-      return "Data inválida";
+      return "Data invï¿½lida";
     }
   };
 
-  // FUNÇÃO PARA OBTER TÍTULO
+  // FUNï¿½ï¿½O PARA OBTER Tï¿½TULO
   const getTitulo = (item) => {
-    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem título";
+    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem tï¿½tulo";
   };
 
-  // FUNÇÃO PARA OBTER CONTEÚDO
+  // FUNï¿½ï¿½O PARA OBTER CONTEï¿½DO
   const getConteudo = (item) => {
     return item.attributes?.conteudo || item.conteudo || item.attributes?.content || item.content || "";
   };
 
-  // FUNÇÃO PARA OBTER DATA
+  // FUNï¿½ï¿½O PARA OBTER DATA
   const getData = (item) => {
     return item.attributes?.data_publicacao || item.data_publicacao || 
            item.attributes?.data_evento || item.data_evento || 
@@ -149,12 +149,12 @@ const NoticiasPage = () => {
   return (
     <div className="noticias-page">
       <header className="noticias-cabecalho">
-        <h1>Notícias EPF</h1>
-        <p className="subtitulo">Fique por dentro das últimas novidades da nossa escola</p>
+        <h1>Notï¿½cias EPF</h1>
+        <p className="subtitulo">Fique por dentro das ultimas novidades da nossa escola</p>
         <div className="cabecalho-info">
           <div className="contador-noticias">
             <span className="numero">{dados.noticias.length + dados.eventos.length}</span>
-            <span className="label">publicações</span>
+            <span className="label">publicaÃ§Ãµes</span>
           </div>
           <button className="btn-atualizar" onClick={() => {
             buscarNoticias();
@@ -165,14 +165,14 @@ const NoticiasPage = () => {
       </header>
 
       <div className="mensagem-boas-vindas">
-        <p className="mensagem-destaque">Evoluímos juntos.</p>
-        <p className="mensagem-sub">Evoluímos juntos.</p>
+        <p className="mensagem-destaque">Evoluimos juntos.</p>
+        <p className="mensagem-sub">Evoluimos juntos.</p>
       </div>
 
       <nav className="noticias-navegacao">
         <div className="abas-container">
           <button className={`aba ${abaAtiva === "noticias" ? "ativa" : ""}`} onClick={() => setAbaAtiva("noticias")}>
-            Notícias ({dados.noticias.length})
+            Notï¿½cias ({dados.noticias.length})
           </button>
           <button className={`aba ${abaAtiva === "eventos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("eventos")}>
             Eventos ({dados.eventos.length})
@@ -191,7 +191,7 @@ const NoticiasPage = () => {
           </div>
         ) : dados[abaAtiva].length === 0 ? (
           <div className="sem-conteudo">
-            <p>Nenhum conteúdo publicado ainda na coleção <strong>{abaAtiva}</strong>.</p>
+            <p>Nenhum conteÃºdo publicado ainda na coleÃ§Ãµes <strong>{abaAtiva}</strong>.</p>
             <p>Publique no <strong>Strapi Admin</strong></p>
           </div>
         ) : (
@@ -253,12 +253,12 @@ const NoticiasPage = () => {
 
       <footer className="noticias-rodape">
         <div className="informacoes-importantes">
-          <h3>INFORMAÇÕES IMPORTANTES</h3>
-          <p>Todas as informações são atualizadas automaticamente através do nosso sistema. Para mais informações, contacte a secretaria da escola.</p>
+          <h3>INFORMAÃ‡Ã•ES IMPORTANTES</h3>
+          <p>Todas as informaÃ§Ãµes sÃ£o atualizadas automaticamente atravÃ©s do nosso sistema. Para mais informaÃ§Ãµes, contacte a secretaria da escola.</p>
           <Link to="/contactos" className="btn-contactar">CONTACTAR SECRETARIA</Link>
         </div>
         <div className="copyright">
-          <p>© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
+          <p>ï¿½ {new Date().getFullYear()} EPF - Escola Profissional. Todas as noticias sÃ£o atualizadas regularmente.</p>
         </div>
       </footer>
     </div>
