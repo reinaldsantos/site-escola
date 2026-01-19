@@ -1,26 +1,31 @@
 services:
   - type: web
-    name: escola-strapi-novo
+    name: escola-strapi
     env: node
     plan: free
     region: ohio
     rootDir: backend
-    buildCommand: npm install && npm run build
+    # COMANDO QUE LIMPA TUDO ANTES DE INSTALAR
+    buildCommand: |
+      rm -rf node_modules package-lock.json
+      npm cache clean --force
+      npm install --legacy-peer-deps --no-audit --no-fund
+      npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: postgresql://meu_admin:QUm94o4oPL9x6bhGCX4B4zIGxwZeRRIF@dpg-d5kgas94tr6s73au58pg-a.ohio-postgres.render.com/strapi_5cj5
+        sync: false
       - key: JWT_SECRET
-        value: escola_jwt_secreto_20260119
+        generateValue: true
       - key: ADMIN_JWT_SECRET
-        value: escola_admin_secreto_20260119
+        generateValue: true
       - key: APP_KEYS
-        value: escola_key1_1829,escola_key2_5463,escola_key3_6755
+        generateValue: true
       - key: HOST
         value: 0.0.0.0
       - key: PORT
-        value: 10000
+        value: 3000
     healthCheckPath: /_health
     autoDeploy: true
