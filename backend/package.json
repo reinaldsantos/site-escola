@@ -2,6 +2,10 @@
   "name": "backend",
   "private": true,
   "version": "0.1.0",
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
