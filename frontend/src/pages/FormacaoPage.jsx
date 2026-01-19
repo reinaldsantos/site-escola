@@ -10,7 +10,7 @@ const FormacaoPage = () => {
     const imagensLocais = {
       1: "/images/cursos/industrial2.png",        // Manutenção Industrial
       2: "/images/cursos/AutoAI2.png",
-      3: "/images/cursos/cozinhaAI2.png",         // Padeiro/Pasteleiro
+      3: "/images/cursos/cefAI2.png",         // Padeiro/Pasteleiro
       4: "/images/cursos/trbAI2.png",             // Empregado Restaurante/Bar
       5: "/images/cursos/construcaoAI.png",       // Construção Civil
       6: "/images/cursos/informaticaAI.png",      // Programação Informática
