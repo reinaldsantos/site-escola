@@ -9,13 +9,8 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/strapi": "4.20.5",
-    "@strapi/plugin-users-permissions": "4.20.5",
-    "@strapi/plugin-i18n": "4.20.5",
-    "better-sqlite3": "^11.3.0"
-  },
-  "engines": {
-    "node": ">=18.0.0 <=20.x.x",
-    "npm": ">=6.0.0"
+    "@strapi/strapi": "4.18.0",
+    "@strapi/plugin-users-permissions": "4.18.0",
+    "better-sqlite3": "8.5.0"
   }
 }
