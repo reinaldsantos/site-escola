@@ -1,15 +1,20 @@
-﻿'use strict';
+﻿const { parse } = require('pg-connection-string');
 
-module.exports = () => ({
-  connection: {
-    client: 'postgres',
+module.exports = ({ env }) => {
+  const config = parse(env('DATABASE_URL'));
+  
+  return {
     connection: {
-      host: 'dpg-d5kgas94tr6s73au58pg-a.ohio-postgres.render.com',
-      port: 5432,
-      database: 'strapi_5cj5',
-      user: 'meu_admin',
-      password: 'QUm94o4oPL9x6bhGCX4B4zIGxwZeRRIF',
-      ssl: { rejectUnauthorized: false }
+      client: 'postgres',
+      connection: {
+        host: config.host,
+        port: config.port,
+        database: config.database,
+        user: config.user,
+        password: config.password,
+        ssl: { rejectUnauthorized: false },
+      },
+      debug: false,
     },
-  },
-});
+  };
+};
