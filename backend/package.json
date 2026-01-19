@@ -1,7 +1,7 @@
 ﻿{
   "name": "backend",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.1.0",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -9,11 +9,10 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/strapi": "4.21.1",
-    "@strapi/plugin-users-permissions": "4.21.1",
-    "@strapi/plugin-i18n": "4.21.1",
-    "pg": "^8.11.3",
-    "pg-connection-string": "^2.6.2"
+    "@strapi/strapi": "4.20.5",
+    "@strapi/plugin-users-permissions": "4.20.5",
+    "@strapi/plugin-i18n": "4.20.5",
+    "better-sqlite3": "^11.3.0"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
