@@ -4,54 +4,42 @@
   "info": {
     "singularName": "evento",
     "pluralName": "eventos",
-    "displayName": "evento"
+    "displayName": "Evento",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {
-  "content-manager": {
-    "visible": true
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
   },
-  "content-type-builder": {
-    "visible": true
-  }
-},
   "attributes": {
     "titulo": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "descricao": {
-      "type": "blocks"
+      "type": "richtext",
+      "required": true
     },
-    "data_hora": {
-      "type": "datetime"
+    "data": {
+      "type": "date",
+      "required": true
     },
     "local": {
-      "type": "string"
-    },
-    "tipo": {
-      "type": "enumeration",
-      "enum": [
-        "Palestra",
-        "Workshop",
-        "Festa",
-        "Competição"
-      ]
+      "type": "string",
+      "required": true
     },
     "imagem": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "inscricao_aberta": {
-      "type": "boolean"
+      "allowedTypes": ["images"]
     }
   }
 }
-

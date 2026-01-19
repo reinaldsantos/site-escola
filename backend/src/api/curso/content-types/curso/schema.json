@@ -4,48 +4,50 @@
   "info": {
     "singularName": "curso",
     "pluralName": "cursos",
-    "displayName": "curso"
+    "displayName": "Curso",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {
-  "content-manager": {
-    "visible": true
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
   },
-  "content-type-builder": {
-    "visible": true
-  }
-},
   "attributes": {
     "nome": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "descricao": {
-      "type": "blocks"
+      "type": "richtext",
+      "required": true
     },
     "duracao": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "area": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "vagas": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "imagem": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "allowedTypes": ["images"]
     },
     "ativo": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     }
   }
 }
-

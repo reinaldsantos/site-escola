@@ -9,13 +9,13 @@ const FormacaoPage = () => {
   const getImagemCurso = (cursoId) => {
     const imagensLocais = {
       1: "/images/cursos/industrial2.png",        // Manutenção Industrial
-      2: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400&h=200&fit=crop&q=80", // Mecatrónica Automóvel
+      2: "/images/cursos/AutoAI2.png",
       3: "/images/cursos/cozinhaAI2.png",         // Padeiro/Pasteleiro
       4: "/images/cursos/trbAI2.png",             // Empregado Restaurante/Bar
       5: "/images/cursos/construcaoAI.png",       // Construção Civil
       6: "/images/cursos/informaticaAI.png",      // Programação Informática
       7: "/images/cursos/comercioAI.png",         // Comércio
-      8: "/images/cursos/cozinhaAI2.png"          // Cozinha/Pastelaria (usa mesma)
+      8: "/images/cursos/cefAI2.png",         // Cozinha/Pastelaria (usa mesma)
     };
 
     // Retorna imagem local ou fallback online
