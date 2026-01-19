@@ -1,7 +1,10 @@
-﻿// MINIMAL DATABASE CONFIG
+﻿// SQLite configuration - SIMPLE & WORKS
 module.exports = ({ env }) => ({
   connection: {
-    client: 'postgres',
-    connection: env('DATABASE_URL'),
+    client: 'sqlite',
+    connection: {
+      filename: env('DATABASE_FILENAME', '.tmp/data.db'),
+    },
+    useNullAsDefault: true,
   },
 });
