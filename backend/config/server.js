@@ -1,10 +1,8 @@
 ﻿module.exports = ({ env }) => ({
-  host: '0.0.0.0',
-  port: 1338,
+  host: env('HOST', '0.0.0.0'),
+  port: env.int('PORT', 3000),
   app: {
     keys: env.array('APP_KEYS'),
   },
-  // 🔥 CONFIGURAÇÃO DEFINITIVA
-  url: 'https://unifoliolate-vigorless-tamekia.ngrok-free.dev',
-  proxy: true,
+  url: env('PUBLIC_URL', 'https://strapi-escola-final.onrender.com'),
 });
