@@ -1,5 +1,4 @@
-﻿// SQLite configuration - SIMPLE & WORKS
-module.exports = ({ env }) => ({
+﻿module.exports = ({ env }) => ({
   connection: {
     client: 'sqlite',
     connection: {
