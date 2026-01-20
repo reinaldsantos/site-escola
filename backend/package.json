@@ -6,14 +6,21 @@
     "node": ">=18.0.0 <=20.x.x"
   },
   "dependencies": {
-    "@strapi/strapi": "4.17.0",
     "@strapi/plugin-users-permissions": "4.17.0",
+    "@strapi/strapi": "4.17.0",
     "ajv": "8.12.0",
-    "sqlite3": "^5.1.6"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^5.2.0",
+    "sqlite3": "^5.1.6",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build"
+  },
+  "devDependencies": {
+    "@types/minimatch": "^5.1.2"
   }
 }
