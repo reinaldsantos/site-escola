@@ -1,34 +1,29 @@
-{
-  "name": "escola-backend",
+﻿{
+  "name": "backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.17.0",
+    "@strapi/plugin-users-permissions": "4.17.0",
+    "@strapi/plugin-i18n": "4.17.0",
+    "pg": "8.11.0",
+    "pg-connection-string": "^2.10.0",
+    "sqlite3": "^5.1.6",
+    "ajv": "8.12.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/minimatch": "^5.1.2"
+  },
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi"
-  },
-  "dependencies": {
-    "@strapi/plugin-i18n": "4.21.1",
-    "@strapi/plugin-users-permissions": "4.21.1",
-    "@strapi/provider-email-nodemailer": "^4.21.1",
-    "@strapi/provider-upload-cloudinary": "^4.21.1",
-    "@strapi/strapi": "4.21.1",
-    "ajv": "8.12.0",
-    "ajv-draft-04": "^1.0.0",
-    "better-sqlite3": "11.3.0",
-    "pg": "8.11.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "5.3.4",
-    "styled-components": "5.3.11"
-  },
-  "engines": {
-    "node": ">=18.0.0 <=20.x.x",
-    "npm": ">=8.0.0"
-  },
-  "strapi": {
-    "uuid": "729e3b422c7292a19821ebf4200982a4"
+    "build": "strapi build"
   }
 }
