@@ -1,0 +1,8 @@
+﻿{
+  "rewrites": [
+    {
+      "source": "/strapi-api/:path*",
+      "destination": "https://strapi-final-funcional.onrender.com/api/:path*"
+    }
+  ]
+}

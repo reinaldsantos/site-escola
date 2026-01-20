@@ -228,4 +228,28 @@ const NoticiasPage = () => {
   );
 };
 
+
+const buscarNoticias = async () => {
+  try {
+    const response = await fetch(
+      "https://strapi-final-funcional.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc",
+      {
+        mode: 'cors', // ← ADICIONE ESTA LINHA
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    const data = await response.json();
+    setDados(prev => ({ ...prev, noticias: data.data || [] }));
+  } catch (error) {
+    console.error("Erro ao buscar notícias:", error);
+  } finally {
+    setCarregando(prev => ({ ...prev, noticias: false }));
+  }
+};
+
+// FAÇA O MESMO PARA buscarEventos E buscarAvisos
+
 export default NoticiasPage;

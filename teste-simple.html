@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <h2>🧪 Teste CORS Simples</h2>
+    <button onclick="testar()">Testar Conexão</button>
+    <div id="result"></div>
+    
+    <script>
+    async function testar() {
+        const urls = [
+            '/strapi-api/noticias',
+            'https://strapi-final-funcional.onrender.com/api/noticias'
+        ];
+        
+        for (const url of urls) {
+            try {
+                const res = await fetch(url);
+                document.getElementById('result').innerHTML += 
+                    `<div style="color: green">✅ ${url}: OK</div>`;
+            } catch (err) {
+                document.getElementById('result').innerHTML += 
+                    `<div style="color: red">❌ ${url}: ${err.message}</div>`;
+            }
+        }
+    }
+    </script>
+</body>
+</html>
