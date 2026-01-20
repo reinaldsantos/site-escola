@@ -17,11 +17,11 @@ const NoticiasPage = () => {
 
   const buscarNoticias = async () => {
     try {
-      const response = await fetch("http://site-escola-65zi.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc");
       const data = await response.json();
       setDados(prev => ({ ...prev, noticias: data.data || [] }));
     } catch (error) {
-      console.error("Erro ao buscar notícias:", error);
+      console.error("Erro ao buscar notÃ­cias:", error);
     } finally {
       setCarregando(prev => ({ ...prev, noticias: false }));
     }
@@ -29,7 +29,7 @@ const NoticiasPage = () => {
 
   const buscarEventos = async () => {
     try {
-      const response = await fetch("http://site-escola-65zi.onrender.com/api/eventos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/eventos?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, eventos: data.data || [] }));
@@ -43,7 +43,7 @@ const NoticiasPage = () => {
 
   const buscarAvisos = async () => {
     try {
-      const response = await fetch("http://site-escola-65zi.onrender.com/api/avisos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/avisos?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, avisos: data.data || [] }));
@@ -63,9 +63,9 @@ const NoticiasPage = () => {
     buscarAvisos();
   }, []);
 
-  // FUNÇÃO PARA EXTRAIR TEXTO DO CONTEÚDO
+  // FUNÃ‡ÃƒO PARA EXTRAIR TEXTO DO CONTEÃšDO
   const extrairTextoConteudo = (conteudo) => {
-    if (!conteudo) return "Sem conteúdo";
+    if (!conteudo) return "Sem conteÃºdo";
     
     if (Array.isArray(conteudo)) {
       return conteudo.map(block => {
@@ -79,7 +79,7 @@ const NoticiasPage = () => {
     return conteudo.substring(0, 150) + '...';
   };
 
-  // FUNÇÃO PARA OBTER URL DA IMAGEM
+  // FUNÃ‡ÃƒO PARA OBTER URL DA IMAGEM
   const getImagemUrl = (item) => {
     if (!item.attributes?.image) return null;
     
@@ -87,24 +87,24 @@ const NoticiasPage = () => {
     
     // Diferentes estruturas do Strapi v4
     if (image?.data?.attributes?.url) {
-      return http://site-escola-65zi.onrender.com + image.data.attributes.url;
+      return `https://strapi-final-funcional.onrender.com${image.data.attributes.url}`;
     }
     
     if (image?.url) {
-      return http://site-escola-65zi.onrender.com + image.url;
+      return `https://strapi-final-funcional.onrender.com${image.url}`;
     }
     
     if (image?.data?.url) {
-      return http://site-escola-65zi.onrender.com + image.data.url;
+      return `https://strapi-final-funcional.onrender.com${image.data.url}`;
     }
     
-    // Outras chaves possíveis
+    // Outras chaves possÃ­veis
     if (item.attributes?.imagem?.data?.attributes?.url) {
-      return http://site-escola-65zi.onrender.com + item.attributes.imagem.data.attributes.url;
+      return `https://strapi-final-funcional.onrender.com${item.attributes.imagem.data.attributes.url}`;
     }
     
     if (item.attributes?.capa?.data?.attributes?.url) {
-      return http://site-escola-65zi.onrender.com + item.attributes.capa.data.attributes.url;
+      return `https://strapi-final-funcional.onrender.com${item.attributes.capa.data.attributes.url}`;
     }
     
     return null;
@@ -113,27 +113,33 @@ const NoticiasPage = () => {
   return (
     <div className="noticias-page">
       <header className="noticias-cabecalho">
-        <h1>Notícias EPF</h1>
-        <p className="subtitulo">Fique por dentro das últimas novidades da nossa escola</p>
+        <h1>NotÃ­cias EPF</h1>
+        <p className="subtitulo">Fique por dentro das Ãºltimas novidades da nossa escola</p>
         <div className="cabecalho-info">
           <div className="contador-noticias">
             <span className="numero">{dados.noticias.length}</span>
-            <span className="label">notícias</span>
+            <span className="label">notÃ­cias</span>
           </div>
           <button className="btn-atualizar" onClick={buscarNoticias}>Atualizar</button>
         </div>
       </header>
 
       <div className="mensagem-boas-vindas">
-        <p className="mensagem-destaque">Evoluímos juntos.</p>
-        <p className="mensagem-sub">Evoluímos juntos.</p>
+        <p className="mensagem-destaque">EvoluÃ­mos juntos.</p>
+        <p className="mensagem-sub">EvoluÃ­mos juntos.</p>
       </div>
 
       <nav className="noticias-navegacao">
         <div className="abas-container">
-          <button className={\ba \\} onClick={() => setAbaAtiva("noticias")}>Notícias</button>
-          <button className={\ba \\} onClick={() => setAbaAtiva("eventos")}>Eventos</button>
-          <button className={\ba \\} onClick={() => setAbaAtiva("avisos")}>Avisos</button>
+          <button className={`aba ${abaAtiva === "noticias" ? "ativa" : ""}`} onClick={() => setAbaAtiva("noticias")}>
+            NotÃ­cias
+          </button>
+          <button className={`aba ${abaAtiva === "eventos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("eventos")}>
+            Eventos
+          </button>
+          <button className={`aba ${abaAtiva === "avisos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("avisos")}>
+            Avisos
+          </button>
         </div>
       </nav>
 
@@ -145,7 +151,7 @@ const NoticiasPage = () => {
           </div>
         ) : dados[abaAtiva].length === 0 ? (
           <div className="sem-conteudo">
-            <p>Nenhum conteúdo publicado ainda na coleção <strong>{abaAtiva}</strong>.</p>
+            <p>Nenhum conteÃºdo publicado ainda na coleÃ§Ã£o <strong>{abaAtiva}</strong>.</p>
             <p>Publique no <strong>Strapi Admin</strong></p>
           </div>
         ) : (
@@ -159,7 +165,7 @@ const NoticiasPage = () => {
                     <div className="noticia-imagem-container">
                       <img 
                         src={imagemUrl} 
-                        alt={item.attributes?.titulo || "Notícia"} 
+                        alt={item.attributes?.titulo || "NotÃ­cia"} 
                         className="noticia-imagem"
                         loading="lazy"
                         onError={(e) => {
@@ -187,7 +193,7 @@ const NoticiasPage = () => {
                       </span>
                       <span className="noticia-tipo">{abaAtiva.toUpperCase()}</span>
                     </div>
-                    <h3 className="noticia-titulo">{item.attributes?.titulo || "Sem título"}</h3>
+                    <h3 className="noticia-titulo">{item.attributes?.titulo || "Sem tÃ­tulo"}</h3>
                     <p className="noticia-descricao">
                       {extrairTextoConteudo(item.attributes?.conteudo)}
                     </p>
@@ -196,7 +202,9 @@ const NoticiasPage = () => {
                         <span className="status-badge">Publicada</span>
                         <span className="noticia-autor">EPF Escola</span>
                       </span>
-                      <Link to={\/\/\\} className="noticia-link">Ver completo ?</Link>
+                      <Link to={`/${abaAtiva}/${item.id}`} className="noticia-link">
+                        Ver completo â†’
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -208,12 +216,12 @@ const NoticiasPage = () => {
 
       <footer className="noticias-rodape">
         <div className="informacoes-importantes">
-          <h3>INFORMAÇÕES IMPORTANTES</h3>
-          <p>Todas as informações são atualizadas automaticamente através do nosso sistema. Para mais informações, contacte a secretaria da escola.</p>
+          <h3>INFORMAÃ‡Ã•ES IMPORTANTES</h3>
+          <p>Todas as informaÃ§Ãµes sÃ£o atualizadas automaticamente atravÃ©s do nosso sistema. Para mais informaÃ§Ãµes, contacte a secretaria da escola.</p>
           <Link to="/contactos" className="btn-contactar">CONTACTAR SECRETARIA</Link>
         </div>
         <div className="copyright">
-          <p>© 2026 EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
+          <p>Â© 2026 EPF - Escola Profissional. Todas as notÃ­cias sÃ£o atualizadas regularmente.</p>
         </div>
       </footer>
     </div>
@@ -221,4 +229,3 @@ const NoticiasPage = () => {
 };
 
 export default NoticiasPage;
-

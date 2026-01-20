@@ -1,4 +1,4 @@
-﻿// src/pages/News/WorkshopDigital.jsx
+// src/pages/News/WorkshopDigital.jsx
 import { Link } from 'react-router-dom';
 import './NoticiaDetalhe.css';
 
@@ -25,12 +25,12 @@ const WorkshopDigital = () => {
           
           <div className="noticia-meta">
             <div className="meta-item">
-              <span className="meta-icon">👤</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Autor:</span>
               <span className="meta-value">Formação</span>
             </div>
             <div className="meta-item">
-              <span className="meta-icon">📅</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Publicado em:</span>
               <span className="meta-value">15 de Dezembro, 2024</span>
             </div>
@@ -46,7 +46,7 @@ const WorkshopDigital = () => {
                 <h2>Workshop Gratuito sobre Competências Digitais para a Empregabilidade</h2>
                 <p>Inscrições abertas para todos os alunos interessados em desenvolver competências digitais essenciais para o mercado de trabalho atual.</p>
                 
-                <h3>🎯 Conteúdos do Workshop:</h3>
+                <h3>?? Conteúdos do Workshop:</h3>
                 <ul>
                   <li><strong>Ferramentas Digitais:</strong> Google Workspace, Microsoft 365</li>
                   <li><strong>Comunicação Online:</strong> Email profissional, videoconferências</li>
@@ -55,7 +55,7 @@ const WorkshopDigital = () => {
                   <li><strong>Colaboração:</strong> Trabalho em equipa com ferramentas digitais</li>
                 </ul>
                 
-                <h3>📅 Informações:</h3>
+                <h3>?? Informações:</h3>
                 <ul>
                   <li><strong>Data:</strong> 20 de Janeiro, 2025</li>
                   <li><strong>Hora:</strong> 14h00 - 17h00</li>
@@ -65,22 +65,22 @@ const WorkshopDigital = () => {
                 </ul>
                 
                 <div className="cta-box">
-                  <p><strong>👨‍🏫 Formador:</strong> Prof. Carlos Silva (Especialista em Tecnologias Educativas)</p>
-                  <p><strong>📞 Contacto:</strong> formacao@escola.edu.pt | 255 123 458</p>
+                  <p><strong>????? Formador:</strong> Prof. Carlos Silva (Especialista em Tecnologias Educativas)</p>
+                  <p><strong>?? Contacto:</strong> formacao@escola.edu.pt | 255 123 458</p>
                 </div>
               </div>
             </div>
 
             <div className="sidebar">
               <div className="sidebar-card">
-                <h3>📰 Outras Notícias</h3>
+                <h3>?? Outras Notícias</h3>
                 <div className="related-news">
                   <Link to="/noticias/feira-empregabilidade" className="related-item">
                     <span className="related-category" style={{ color: '#FF9800' }}>
                       Empregabilidade
                     </span>
                     <h4>Feira de Empregabilidade</h4>
-                    <span className="related-date">📅 7 de Janeiro, 2025</span>
+                    <span className="related-date">?? 7 de Janeiro, 2025</span>
                   </Link>
                 </div>
                 <Link to="/noticias" className="btn btn-outline btn-block">
@@ -95,7 +95,7 @@ const WorkshopDigital = () => {
       <section className="back-section">
         <div className="container">
           <Link to="/noticias" className="btn btn-primary">
-            ← Voltar para Notícias
+            ? Voltar para Notícias
           </Link>
         </div>
       </section>

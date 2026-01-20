@@ -13,9 +13,9 @@ const AdminLayout = ({ children }) => {
   };
 
   const menuItems = [
-    { path: '/admin/dashboard', label: 'Dashboard', icon: '📊' },
-    { path: '/admin/news', label: 'Notícias', icon: '📰' },
-    { path: '/admin/courses', label: 'Cursos', icon: '📚' }
+    { path: '/admin/dashboard', label: 'Dashboard', icon: 'ðŸ“Š' },
+    { path: '/admin/news', label: 'NotÃ­cias', icon: 'ðŸ“°' },
+    { path: '/admin/courses', label: 'Cursos', icon: 'ðŸ“š' }
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -25,7 +25,7 @@ const AdminLayout = ({ children }) => {
       <aside className="admin-sidebar">
         <div className="sidebar-header">
           <h2>Admin</h2>
-          <p>EPF Fundão</p>
+          <p>EPF FundÃ£o</p>
         </div>
         
         <nav className="sidebar-nav">
@@ -43,11 +43,11 @@ const AdminLayout = ({ children }) => {
 
         <div className="sidebar-footer">
           <Link to="/" className="nav-item">
-            <span className="nav-icon">🏠</span>
+            <span className="nav-icon">ðŸ </span>
             Ver Site
           </Link>
           <button onClick={handleLogout} className="logout-btn">
-            <span className="nav-icon">🚪</span>
+            <span className="nav-icon">ðŸšª</span>
             Sair
           </button>
         </div>

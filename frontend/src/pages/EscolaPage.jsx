@@ -1,4 +1,4 @@
-﻿﻿import React from 'react';
+import React from 'react';
 import './EscolaPage.css';
 
 const EscolaPage = () => {
@@ -69,3 +69,4 @@ const EscolaPage = () => {
 };
 
 export default EscolaPage;
+

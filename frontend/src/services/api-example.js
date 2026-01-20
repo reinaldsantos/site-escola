@@ -18,7 +18,7 @@ export const getNoticias = async () => {
         
         return data;
     } catch (error) {
-        console.error('Erro ao buscar notícias:', error);
+        console.error('Erro ao buscar notÃ­cias:', error);
         return [];
     }
 };
@@ -34,7 +34,7 @@ export const getNoticiaById = async (id) => {
             ...data.data.attributes
         };
     } catch (error) {
-        console.error('Erro ao buscar notícia:', error);
+        console.error('Erro ao buscar notÃ­cia:', error);
         return null;
     }
 };

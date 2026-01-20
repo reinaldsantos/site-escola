@@ -1,5 +1,5 @@
-﻿// Cole este código no Console do Navegador (F12) para limpar cache
-console.log("🔧 Limpando cache do navegador...");
+// Cole este código no Console do Navegador (F12) para limpar cache
+console.log("?? Limpando cache do navegador...");
 
 // Limpar cache de CSS e JS
 caches.keys().then(function(names) {
@@ -25,5 +25,5 @@ for (let script of scripts) {
     }
 }
 
-console.log("✅ Cache limpo! Recarregue a página (Ctrl+R)");
+console.log("? Cache limpo! Recarregue a página (Ctrl+R)");
 alert("Cache limpo! Recarregue a página (Ctrl+R)");

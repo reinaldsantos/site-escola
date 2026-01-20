@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NewsPage.css';
 import newsService from '../services/strapi';
 
@@ -46,7 +46,7 @@ const NewsPage = () => {
     <div style={{maxWidth: '1200px', margin: '0 auto', padding: '20px'}}>
       {/* CABEÇALHO SIMPLES */}
       <div style={{textAlign: 'center', marginBottom: '40px'}}>
-        <h1 style={{color: '#2c3e50', fontSize: '2.5rem'}}>📰 Notícias EPF</h1>
+        <h1 style={{color: '#2c3e50', fontSize: '2.5rem'}}>?? Notícias EPF</h1>
         <h3 style={{
           color: '#3498db',
           fontSize: '1.3rem',
@@ -67,7 +67,7 @@ const NewsPage = () => {
             borderRadius: '25px'
           }}>
             <span style={{color: '#3498db'}}>
-              📅 {newsData.length} notícia{newsData.length !== 1 ? 's' : ''}
+              ?? {newsData.length} notícia{newsData.length !== 1 ? 's' : ''}
             </span>
             <button 
               onClick={fetchNews}
@@ -81,7 +81,7 @@ const NewsPage = () => {
                 fontSize: '14px'
               }}
             >
-              🔁 Atualizar
+              ?? Atualizar
             </button>
           </div>
         )}
@@ -142,7 +142,7 @@ const NewsPage = () => {
                     Notícia
                   </span>
                   <span style={{color: '#7f8c8d'}}>
-                    📅 {formatDate(item.date)}
+                    ?? {formatDate(item.date)}
                   </span>
                 </div>
                 
@@ -179,7 +179,7 @@ const NewsPage = () => {
                     color: item.published ? '#27ae60' : '#f39c12',
                     fontWeight: '500'
                   }}>
-                    {item.published ? '✅ Publicada' : '⏳ Em breve'}
+                    {item.published ? '? Publicada' : '? Em breve'}
                   </span>
                   <span style={{
                     fontSize: '12px',

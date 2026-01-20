@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import logoEPF from '../assets/images/logos/logo_w.png';
@@ -24,7 +24,7 @@ function Header() {
         <ul className="nav-menu">
           <li><Link to="/">Início</Link></li>
           <li className="dropdown">
-            <Link to="/escola">A Escola ▼</Link>
+            <Link to="/escola">A Escola ?</Link>
             <ul className="dropdown-menu">
               <li><Link to="/escola/historia">História</Link></li>
               <li><Link to="/escola/missao">Missão e Valores</Link></li>
@@ -32,7 +32,7 @@ function Header() {
             </ul>
           </li>
           <li className="dropdown">
-            <Link to="/formacao">Formação ▼</Link>
+            <Link to="/formacao">Formação ?</Link>
             <ul className="dropdown-menu">
               <li><Link to="/formacao/cursos">Cursos</Link></li>
               <li><Link to="/formacao/horarios">Horários</Link></li>
@@ -41,7 +41,7 @@ function Header() {
           </li>
           <li><Link to="/noticias">Notícias</Link></li>
           <li className="dropdown">
-            <Link to="/alumni">Alumni e Parceiros ▼</Link>
+            <Link to="/alumni">Alumni e Parceiros ?</Link>
             <ul className="dropdown-menu">
               <li><Link to="/alumni/ex-alunos">Ex-Alunos</Link></li>
               <li><Link to="/alumni/parceiros">Parceiros</Link></li>
@@ -49,7 +49,7 @@ function Header() {
           </li>
           <li><Link to="/erasmus">Erasmus+</Link></li>
           <li className="dropdown">
-            <Link to="/eqvei">EQ/VEI ▼</Link>
+            <Link to="/eqvei">EQ/VEI ?</Link>
             <ul className="dropdown-menu">
               <li><Link to="/eqvei/qualidade">Qualidade</Link></li>
               <li><Link to="/eqvei/vei">VEI</Link></li>

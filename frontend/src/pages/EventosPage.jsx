@@ -1,5 +1,5 @@
 // ================================================
-// P¡GINA: EventosPage.jsx
+// P√ÅGINA: EventosPage.jsx
 // Mostra TODOS os eventos do Strapi
 // ================================================
 
@@ -30,7 +30,7 @@ const EventosPage = () => {
                 <header className="cabecalho-eventos">
                     <h1>?? Eventos da Escola</h1>
                     <p className="subtitulo">
-                        Calend·rio de atividades, workshops e encontros
+                        Calend√°rio de atividades, workshops e encontros
                     </p>
                 </header>
                 
@@ -44,8 +44,8 @@ const EventosPage = () => {
                         <div className="icone-sem-eventos">??</div>
                         <h3>Nenhum evento agendado</h3>
                         <p>
-                            Os eventos aparecer„o aqui automaticamente quando forem 
-                            publicados no <a href="http://site-escola-65zi.onrender.com/admin">Strapi Admin</a>
+                            Os eventos aparecer√£o aqui automaticamente quando forem 
+                            publicados no <a href="http://strapi-final-funcional.onrender.com/admin">Strapi Admin</a>
                         </p>
                     </div>
                 ) : (
@@ -53,7 +53,7 @@ const EventosPage = () => {
                         {eventosFuturos.length > 0 && (
                             <section className="secao-eventos">
                                 <h2 className="secao-titulo">
-                                    ?? PrÛximos Eventos
+                                    ?? Pr√≥ximos Eventos
                                     <span className="badge-secao">{eventosFuturos.length}</span>
                                 </h2>
                                 <div className="grid-eventos">
@@ -82,7 +82,7 @@ const EventosPage = () => {
                 
                 <div className="voltar-home">
                     <Link to="/" className="link-voltar">
-                        ? Voltar para a p·gina inicial
+                        ? Voltar para a p√°gina inicial
                     </Link>
                 </div>
             </div>
@@ -142,5 +142,6 @@ const EventoCard = ({ evento, tipo }) => {
 };
 
 export default EventosPage;
+
 
 

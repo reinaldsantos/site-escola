@@ -1,4 +1,4 @@
-﻿// CONFIGURAÇÃO DE CURSOS COM PÁGINAS INDIVIDUAIS
+// CONFIGURAÇÃO DE CURSOS COM PÁGINAS INDIVIDUAIS
 // ================================================
 
 const cursosConfig = {
@@ -7,7 +7,7 @@ const cursosConfig = {
       id: "manutencao",
       nome: "Manutenção Industrial",
       cor: "#3498db",
-      icon: "🔧",
+      icon: "??",
       cursos: [
         {
           id: 1,
@@ -35,7 +35,7 @@ const cursosConfig = {
       id: "alimentacao",
       nome: "Alimentação",
       cor: "#e74c3c",
-      icon: "🍽️",
+      icon: "???",
       cursos: [
         {
           id: 3,
@@ -63,7 +63,7 @@ const cursosConfig = {
       id: "construcao",
       nome: "Construção Civil",
       cor: "#f39c12",
-      icon: "🏗️",
+      icon: "???",
       cursos: [
         {
           id: 5,
@@ -81,7 +81,7 @@ const cursosConfig = {
       id: "informatica",
       nome: "Informática",
       cor: "#9b59b6",
-      icon: "💻",
+      icon: "??",
       cursos: [
         {
           id: 6,

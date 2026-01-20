@@ -1,4 +1,4 @@
-﻿// CONFIGURAÇÃO ATUALIZADA DE CURSOS EPF
+// CONFIGURAÇÃO ATUALIZADA DE CURSOS EPF
 // =========================================
 
 const cursosImagens = {
@@ -21,7 +21,7 @@ const cursosImagens = {
       }
     ],
     cor: "#3498db",
-    icon: "🔧",
+    icon: "??",
     duracao: "3 anos",
     certificacao: "Nível 4",
     saidas: ["Técnico de Manutenção", "Técnico de Mecatrónica", "Operador Industrial"]
@@ -46,7 +46,7 @@ const cursosImagens = {
       }
     ],
     cor: "#e74c3c",
-    icon: "🍽️",
+    icon: "???",
     duracao: "2 anos",
     certificacao: "Nível 2/3",
     saidas: ["Padeiro", "Pastelero", "Empregado de Mesa", "Barman"]
@@ -64,7 +64,7 @@ const cursosImagens = {
       }
     ],
     cor: "#f39c12",
-    icon: "🏗️",
+    icon: "???",
     duracao: "3 anos",
     certificacao: "Nível 4",
     saidas: ["Desenhador Projetista", "Técnico de Obra", "Fiscal de Obra"]
@@ -82,7 +82,7 @@ const cursosImagens = {
       }
     ],
     cor: "#9b59b6",
-    icon: "💻",
+    icon: "??",
     duracao: "3 anos",
     certificacao: "Nível 4",
     saidas: ["Programador", "Desenvolvedor Web", "Analista de Sistemas"]

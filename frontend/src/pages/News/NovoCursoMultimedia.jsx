@@ -1,4 +1,4 @@
-﻿// src/pages/News/NovoCursoMultimedia.jsx
+// src/pages/News/NovoCursoMultimedia.jsx
 import { Link } from 'react-router-dom';
 import './NoticiaDetalhe.css';
 
@@ -22,7 +22,7 @@ const NovoCursoMultimedia = () => {
               Cursos
             </div>
             <div className="featured-badge">
-              ⭐ Destaque
+              ? Destaque
             </div>
           </div>
           
@@ -30,12 +30,12 @@ const NovoCursoMultimedia = () => {
           
           <div className="noticia-meta">
             <div className="meta-item">
-              <span className="meta-icon">👤</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Autor:</span>
               <span className="meta-value">Direção Pedagógica</span>
             </div>
             <div className="meta-item">
-              <span className="meta-icon">📅</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Publicado em:</span>
               <span className="meta-value">10 de Janeiro, 2025</span>
             </div>
@@ -63,7 +63,7 @@ const NovoCursoMultimedia = () => {
                     fontSize: '5rem',
                     borderRadius: '10px'
                   }}>
-                    🎨
+                    ??
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@ const NovoCursoMultimedia = () => {
                 <h2>Lançamento do Novo Curso de Multimédia</h2>
                 <p>Estamos orgulhosos em anunciar o lançamento do nosso novo curso técnico de Multimédia, que irá preparar os alunos para as demandas do mercado criativo digital.</p>
                 
-                <h3>🎯 Áreas de Estudo:</h3>
+                <h3>?? Áreas de Estudo:</h3>
                 <ul>
                   <li><strong>Design Gráfico:</strong> Adobe Photoshop, Illustrator, InDesign</li>
                   <li><strong>Edição de Vídeo:</strong> Adobe Premiere, After Effects</li>
@@ -83,10 +83,10 @@ const NovoCursoMultimedia = () => {
                   <li><strong>UI/UX Design:</strong> Design de interfaces e experiência do usuário</li>
                 </ul>
                 
-                <h3>📅 Duração e Certificação:</h3>
+                <h3>?? Duração e Certificação:</h3>
                 <p>O curso tem duração de 2 anos (4 semestres) e confere <strong>Certificação Profissional Nível IV</strong>.</p>
                 
-                <h3>💼 Saídas Profissionais:</h3>
+                <h3>?? Saídas Profissionais:</h3>
                 <ul>
                   <li>Designer Gráfico</li>
                   <li>Editor de Vídeo</li>
@@ -97,7 +97,7 @@ const NovoCursoMultimedia = () => {
                   <li>Social Media Designer</li>
                 </ul>
                 
-                <h3>🎓 Requisitos de Acesso:</h3>
+                <h3>?? Requisitos de Acesso:</h3>
                 <ul>
                   <li>12º ano completo ou equivalente</li>
                   <li>Prova de Aptidão (apresentação de portfólio)</li>
@@ -105,8 +105,8 @@ const NovoCursoMultimedia = () => {
                 </ul>
                 
                 <div className="cta-box">
-                  <p><strong>📞 Mais informações:</strong> coordenacao@escola.edu.pt | 255 123 457</p>
-                  <p><strong>📍 Inscrições:</strong> Até 31 de Março de 2025</p>
+                  <p><strong>?? Mais informações:</strong> coordenacao@escola.edu.pt | 255 123 457</p>
+                  <p><strong>?? Inscrições:</strong> Até 31 de Março de 2025</p>
                 </div>
               </div>
             </div>
@@ -114,14 +114,14 @@ const NovoCursoMultimedia = () => {
             {/* SIDEBAR */}
             <div className="sidebar">
               <div className="sidebar-card">
-                <h3>📰 Outras Notícias</h3>
+                <h3>?? Outras Notícias</h3>
                 <div className="related-news">
                   <Link to="/noticias/inscricoes-abertas" className="related-item">
                     <span className="related-category" style={{ color: '#4CAF50' }}>
                       Inscrições
                     </span>
                     <h4>Inscrições 2025/2026 Abertas</h4>
-                    <span className="related-date">📅 15 de Janeiro, 2025</span>
+                    <span className="related-date">?? 15 de Janeiro, 2025</span>
                   </Link>
                   
                   <Link to="/noticias/laboratorios-informatica" className="related-item">
@@ -129,7 +129,7 @@ const NovoCursoMultimedia = () => {
                       Infraestrutura
                     </span>
                     <h4>Novos Laboratórios de Informática</h4>
-                    <span className="related-date">📅 5 de Janeiro, 2025</span>
+                    <span className="related-date">?? 5 de Janeiro, 2025</span>
                   </Link>
                 </div>
                 <Link to="/noticias" className="btn btn-outline btn-block">
@@ -145,7 +145,7 @@ const NovoCursoMultimedia = () => {
       <section className="back-section">
         <div className="container">
           <Link to="/noticias" className="btn btn-primary">
-            ← Voltar para Notícias
+            ? Voltar para Notícias
           </Link>
         </div>
       </section>

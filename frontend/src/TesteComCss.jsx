@@ -1,26 +1,26 @@
-﻿import React from "react"
+import React from "react"
 
 function TesteComCss() {
   return (
     <div style={styles.container}>
       <header style={styles.header}>
-        <h1 style={styles.title}>🎨 CSS FUNCIONANDO!</h1>
+        <h1 style={styles.title}>?? CSS FUNCIONANDO!</h1>
         <p style={styles.subtitle}>Se você vê cores, o CSS está funcionando!</p>
       </header>
       
       <main style={styles.main}>
         <div style={styles.card}>
-          <h2>✅ Header.jsx corrigido</h2>
+          <h2>? Header.jsx corrigido</h2>
           <p>O erro na linha 31-32 foi resolvido</p>
         </div>
         
         <div style={styles.card}>
-          <h2>✅ React carregando</h2>
+          <h2>? React carregando</h2>
           <p>Seu site está funcionando sem erros</p>
         </div>
         
         <div style={styles.card}>
-          <h2>🎯 Próximo passo</h2>
+          <h2>?? Próximo passo</h2>
           <p>Agora vamos carregar o CSS dos arquivos</p>
         </div>
       </main>

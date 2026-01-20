@@ -1,4 +1,4 @@
-﻿// ================================================
+// ================================================
 // STRAPI SERVICE UNIVERSAL - NUNCA MAIS MEXER
 // Use em QUALQUER componente para QUALQUER coleção
 // ================================================
@@ -9,7 +9,7 @@ export const strapiService = {
     // ========== MÉTODO PRINCIPAL ==========
     // Para buscar QUALQUER coleção: strapiService.buscar('nomedacolecao')
     buscar: async (colecao, limite = 10) => {
-        console.log(`🚀 strapiService.buscar("${colecao}")`);
+        console.log(`?? strapiService.buscar("${colecao}")`);
         return await CONFIG_STRAPI.buscar(colecao, limite);
     },
     

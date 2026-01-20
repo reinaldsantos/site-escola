@@ -1,4 +1,4 @@
-﻿// src/components/CursoCard.jsx - VERSÃO PROFISSIONAL
+// src/components/CursoCard.jsx - VERSÃO PROFISSIONAL
 import React from "react";
 import { Link } from "react-router-dom";
 import "./CursoCard.css";

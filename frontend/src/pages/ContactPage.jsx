@@ -1,4 +1,4 @@
-﻿// src/pages/ContactPage.jsx - VERSÃO SIMPLES E LIMPA
+// src/pages/ContactPage.jsx - VERSÃO SIMPLES E LIMPA
 import React from "react";
 import "./ContactPage.css";
 

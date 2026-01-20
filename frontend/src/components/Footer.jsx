@@ -1,4 +1,4 @@
-﻿// src/components/Footer.jsx - VERSÃO SIMPLIFICADA E ATUALIZADA
+// src/components/Footer.jsx - VERSÃO SIMPLIFICADA E ATUALIZADA
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -142,7 +142,7 @@ const Footer = () => {
                   justifyContent: "center",
                   flexShrink: "0"
                 }}>
-                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>📍</span>
+                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>??</span>
                 </div>
                 <div>
                   <div style={{ fontWeight: "600", color: "#FFFFFF", fontSize: "0.9rem" }}>ENDEREÇO</div>
@@ -163,7 +163,7 @@ const Footer = () => {
                   justifyContent: "center",
                   flexShrink: "0"
                 }}>
-                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>📞</span>
+                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>??</span>
                 </div>
                 <div>
                   <div style={{ fontWeight: "600", color: "#FFFFFF", fontSize: "0.9rem" }}>TELEFONE</div>
@@ -183,7 +183,7 @@ const Footer = () => {
                   justifyContent: "center",
                   flexShrink: "0"
                 }}>
-                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>✉️</span>
+                  <span style={{ fontSize: "1.2rem", color: "#FFFFFF" }}>??</span>
                 </div>
                 <div>
                   <div style={{ fontWeight: "600", color: "#FFFFFF", fontSize: "0.9rem" }}>EMAIL</div>

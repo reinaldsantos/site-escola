@@ -1,4 +1,4 @@
-﻿// src/pages/News/InscricoesAbertas.jsx
+// src/pages/News/InscricoesAbertas.jsx
 import { Link } from 'react-router-dom';
 import './NoticiaDetalhe.css';
 
@@ -22,7 +22,7 @@ const InscricoesAbertas = () => {
               Inscrições
             </div>
             <div className="featured-badge">
-              ⭐ Destaque
+              ? Destaque
             </div>
           </div>
           
@@ -30,12 +30,12 @@ const InscricoesAbertas = () => {
           
           <div className="noticia-meta">
             <div className="meta-item">
-              <span className="meta-icon">👤</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Autor:</span>
               <span className="meta-value">Secretaria</span>
             </div>
             <div className="meta-item">
-              <span className="meta-icon">📅</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Publicado em:</span>
               <span className="meta-value">15 de Janeiro, 2025</span>
             </div>
@@ -63,7 +63,7 @@ const InscricoesAbertas = () => {
                     fontSize: '5rem',
                     borderRadius: '10px'
                   }}>
-                    📋
+                    ??
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@ const InscricoesAbertas = () => {
                 <h2>Inscrições Abertas para o Ano Letivo 2025/2026</h2>
                 <p>O processo de candidatura para novos alunos já se encontra disponível online através do nosso portal.</p>
                 
-                <h3>📋 Como se inscrever:</h3>
+                <h3>?? Como se inscrever:</h3>
                 <ul>
                   <li>Acesso ao portal de inscrições no nosso site</li>
                   <li>Preenchimento do formulário online</li>
@@ -81,7 +81,7 @@ const InscricoesAbertas = () => {
                   <li>Submissão da candidatura</li>
                 </ul>
                 
-                <h3>📅 Datas Importantes:</h3>
+                <h3>?? Datas Importantes:</h3>
                 <ul>
                   <li><strong>Início das inscrições:</strong> 9 de Janeiro de 2025</li>
                   <li><strong>Fim das inscrições:</strong> 31 de Julho de 2025</li>
@@ -89,7 +89,7 @@ const InscricoesAbertas = () => {
                   <li><strong>Matrículas:</strong> 1 a 15 de Setembro de 2025</li>
                 </ul>
                 
-                <h3>📄 Documentação Necessária:</h3>
+                <h3>?? Documentação Necessária:</h3>
                 <ul>
                   <li>Cartão de Cidadão/Bilhete de Identidade</li>
                   <li>Número de Identificação Fiscal (NIF)</li>
@@ -100,8 +100,8 @@ const InscricoesAbertas = () => {
                 </ul>
                 
                 <div className="cta-box">
-                  <p><strong>📍 Inscrições Presenciais:</strong> Também disponíveis na nossa secretaria, de segunda a sexta, das 9h às 18h.</p>
-                  <p><strong>📞 Contactos:</strong> 255 123 456 | secretaria@escola.edu.pt</p>
+                  <p><strong>?? Inscrições Presenciais:</strong> Também disponíveis na nossa secretaria, de segunda a sexta, das 9h às 18h.</p>
+                  <p><strong>?? Contactos:</strong> 255 123 456 | secretaria@escola.edu.pt</p>
                 </div>
               </div>
             </div>
@@ -109,14 +109,14 @@ const InscricoesAbertas = () => {
             {/* SIDEBAR */}
             <div className="sidebar">
               <div className="sidebar-card">
-                <h3>📰 Outras Notícias</h3>
+                <h3>?? Outras Notícias</h3>
                 <div className="related-news">
                   <Link to="/noticias/novo-curso" className="related-item">
                     <span className="related-category" style={{ color: '#2196F3' }}>
                       Cursos
                     </span>
                     <h4>Novo Curso de Multimédia</h4>
-                    <span className="related-date">📅 10 de Janeiro, 2025</span>
+                    <span className="related-date">?? 10 de Janeiro, 2025</span>
                   </Link>
                   
                   <Link to="/noticias/torneio-futebol" className="related-item">
@@ -124,7 +124,7 @@ const InscricoesAbertas = () => {
                       Eventos
                     </span>
                     <h4>Torneio de Futebol da EPF</h4>
-                    <span className="related-date">📅 15 de Dezembro, 2024</span>
+                    <span className="related-date">?? 15 de Dezembro, 2024</span>
                   </Link>
                 </div>
                 <Link to="/noticias" className="btn btn-outline btn-block">
@@ -140,7 +140,7 @@ const InscricoesAbertas = () => {
       <section className="back-section">
         <div className="container">
           <Link to="/noticias" className="btn btn-primary">
-            ← Voltar para Notícias
+            ? Voltar para Notícias
           </Link>
         </div>
       </section>

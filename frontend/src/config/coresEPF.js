@@ -1,4 +1,4 @@
-﻿// SISTEMA DE CORES EPF - VERDE COMPLETO
+// SISTEMA DE CORES EPF - VERDE COMPLETO
 const coresEPF = {
   // ESCALA DE VERDES (do mais escuro ao mais claro)
   verdeEscuro: "#006400",      // Dark Green - mais profissional

@@ -1,4 +1,4 @@
-﻿// src/pages/ErasmusPage.jsx - VERSÃO SEM CORES VERDES
+// src/pages/ErasmusPage.jsx - VERSÃO SEM CORES VERDES
 import React from "react";
 import "./ErasmusPage.css";
 import ErasmusStats from "../components/ErasmusStats";

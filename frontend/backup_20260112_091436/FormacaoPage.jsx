@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./FormacaoPage.css";
 import cursosConfig from "../config/cursosConfig";
@@ -18,7 +18,7 @@ const FormacaoPage = () => {
             {curso.descricao && <p>{curso.descricao}</p>}
             {curso.link && (
               <Link to={curso.link} className="saiba-mais-btn">
-                Ver Curso Completo →
+                Ver Curso Completo ?
               </Link>
             )}
           </div>

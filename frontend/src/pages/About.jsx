@@ -12,24 +12,24 @@ const About = () => {
       <section className="about-content">
         <div className="container">
           <div className="about-section">
-            <h2>Sobre Nós</h2>
+            <h2>Sobre NÃ³s</h2>
             <p>
-              Com uma experiência de trinta anos de formação e com elevados índices 
-              de empregabilidade, a Escola Profissional do Fundão promove o jovem, 
-              incrementa competência e gera valor.
+              Com uma experiÃªncia de trinta anos de formaÃ§Ã£o e com elevados Ã­ndices 
+              de empregabilidade, a Escola Profissional do FundÃ£o promove o jovem, 
+              incrementa competÃªncia e gera valor.
             </p>
             <p>
-              Somos uma instituição dedicada à formação profissional de qualidade, 
+              Somos uma instituiÃ§Ã£o dedicada Ã  formaÃ§Ã£o profissional de qualidade, 
               oferecendo cursos que preparam os nossos alunos para o mercado de trabalho 
-              com competências práticas e teóricas.
+              com competÃªncias prÃ¡ticas e teÃ³ricas.
             </p>
           </div>
 
           <div className="about-section">
-            <h2>Missão</h2>
+            <h2>MissÃ£o</h2>
             <p>
               Formar jovens profissionais competentes, preparados para os desafios 
-              do mercado de trabalho, promovendo a excelência educativa e o desenvolvimento 
+              do mercado de trabalho, promovendo a excelÃªncia educativa e o desenvolvimento 
               pessoal e profissional.
             </p>
           </div>
@@ -37,19 +37,19 @@ const About = () => {
           <div className="about-section">
             <h2>Valores</h2>
             <ul>
-              <li>Excelência na formação</li>
-              <li>Inovação pedagógica</li>
+              <li>ExcelÃªncia na formaÃ§Ã£o</li>
+              <li>InovaÃ§Ã£o pedagÃ³gica</li>
               <li>Compromisso com o sucesso dos alunos</li>
-              <li>Parcerias estratégicas com empresas</li>
+              <li>Parcerias estratÃ©gicas com empresas</li>
               <li>Responsabilidade social</li>
             </ul>
           </div>
 
           <div className="about-section">
-            <h2>Organização Escolar</h2>
+            <h2>OrganizaÃ§Ã£o Escolar</h2>
             <p>
-              A nossa organização está estruturada para proporcionar uma formação 
-              completa e de qualidade, com equipas especializadas e instalações modernas.
+              A nossa organizaÃ§Ã£o estÃ¡ estruturada para proporcionar uma formaÃ§Ã£o 
+              completa e de qualidade, com equipas especializadas e instalaÃ§Ãµes modernas.
             </p>
           </div>
         </div>

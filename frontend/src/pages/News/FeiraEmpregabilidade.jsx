@@ -1,4 +1,4 @@
-﻿// src/pages/News/FeiraEmpregabilidade.jsx
+// src/pages/News/FeiraEmpregabilidade.jsx
 import { Link } from 'react-router-dom';
 import './NoticiaDetalhe.css';
 
@@ -25,12 +25,12 @@ const FeiraEmpregabilidade = () => {
           
           <div className="noticia-meta">
             <div className="meta-item">
-              <span className="meta-icon">👤</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Autor:</span>
               <span className="meta-value">Direção</span>
             </div>
             <div className="meta-item">
-              <span className="meta-icon">📅</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Publicado em:</span>
               <span className="meta-value">7 de Janeiro, 2025</span>
             </div>
@@ -46,7 +46,7 @@ const FeiraEmpregabilidade = () => {
                 <h2>30 Empresas Recrutam na Nossa Feira Anual de Empregabilidade</h2>
                 <p>A nossa feira anual de empregabilidade contará com a participação de 30 empresas de diversos setores, oferecendo oportunidades de estágio e emprego aos nossos alunos e finalistas.</p>
                 
-                <h3>🏢 Empresas Participantes:</h3>
+                <h3>?? Empresas Participantes:</h3>
                 <ul>
                   <li><strong>Tecnologia:</strong> TechSolutions, SoftwareHouse, WebInnovate</li>
                   <li><strong>Design:</strong> CreativeStudio, PixelMasters</li>
@@ -54,7 +54,7 @@ const FeiraEmpregabilidade = () => {
                   <li><strong>Turismo:</strong> TravelExperts, HotelManagement</li>
                 </ul>
                 
-                <h3>📅 Informações do Evento:</h3>
+                <h3>?? Informações do Evento:</h3>
                 <ul>
                   <li><strong>Data:</strong> 25 de Janeiro, 2025</li>
                   <li><strong>Hora:</strong> 10h00 - 17h00</li>
@@ -63,22 +63,22 @@ const FeiraEmpregabilidade = () => {
                 </ul>
                 
                 <div className="cta-box">
-                  <p><strong>📍 Preparação para a Feira:</strong> Traga o seu CV atualizado e esteja preparado para entrevistas rápidas.</p>
-                  <p><strong>📞 Informações:</strong> empregabilidade@escola.edu.pt | 255 123 457</p>
+                  <p><strong>?? Preparação para a Feira:</strong> Traga o seu CV atualizado e esteja preparado para entrevistas rápidas.</p>
+                  <p><strong>?? Informações:</strong> empregabilidade@escola.edu.pt | 255 123 457</p>
                 </div>
               </div>
             </div>
 
             <div className="sidebar">
               <div className="sidebar-card">
-                <h3>📰 Outras Notícias</h3>
+                <h3>?? Outras Notícias</h3>
                 <div className="related-news">
                   <Link to="/noticias/inscricoes-abertas" className="related-item">
                     <span className="related-category" style={{ color: '#4CAF50' }}>
                       Inscrições
                     </span>
                     <h4>Inscrições 2025/2026 Abertas</h4>
-                    <span className="related-date">📅 15 de Janeiro, 2025</span>
+                    <span className="related-date">?? 15 de Janeiro, 2025</span>
                   </Link>
                 </div>
                 <Link to="/noticias" className="btn btn-outline btn-block">
@@ -93,7 +93,7 @@ const FeiraEmpregabilidade = () => {
       <section className="back-section">
         <div className="container">
           <Link to="/noticias" className="btn btn-primary">
-            ← Voltar para Notícias
+            ? Voltar para Notícias
           </Link>
         </div>
       </section>

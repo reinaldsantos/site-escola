@@ -1,4 +1,4 @@
-// src/components/ContentUniversal.jsx - VERSÃO COM LINKS PERSONALIZADOS
+// src/components/ContentUniversal.jsx - VERSÃƒO COM LINKS PERSONALIZADOS
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiUniversal from '../hooks/useStrapiUniversal';
@@ -32,10 +32,10 @@ const ContentUniversal = ({
           {title || collectionName.charAt(0).toUpperCase() + collectionName.slice(1)}
         </h2>
         <p className="empty-message">
-          Nenhum conteúdo publicado ainda na coleção <strong>{collectionName}</strong>.
+          Nenhum conteÃºdo publicado ainda na coleÃ§Ã£o <strong>{collectionName}</strong>.
           <br />
           <small>
-            Publique no <a href="http://site-escola-65zi.onrender.com/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
+            Publique no <a href="http://strapi-final-funcional.onrender.com/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
           </small>
         </p>
       </div>
@@ -45,14 +45,14 @@ const ContentUniversal = ({
   const displayTitle = title ||
     collectionName.charAt(0).toUpperCase() + collectionName.slice(1);
 
-  // Função para extrair valor CORRETA
+  // FunÃ§Ã£o para extrair valor CORRETA
   const extrairValor = (item, campo) => {
     if (!campo) return null;
     
     // Acessar campo direto ou aninhado
     let valor = item[campo];
     
-    // Se não encontrar, tentar em attributes (Strapi v4)
+    // Se nÃ£o encontrar, tentar em attributes (Strapi v4)
     if (valor === undefined && item.attributes) {
       valor = item.attributes[campo];
     }
@@ -60,43 +60,43 @@ const ContentUniversal = ({
     return valor;
   };
 
-  // Função para extrair URL da imagem CORRETA
+  // FunÃ§Ã£o para extrair URL da imagem CORRETA
   const extrairImagemUrl = (imagem) => {
     if (!imagem) return null;
     
     // Formato Strapi v4
     if (imagem.data?.attributes?.url) {
-      return `http://site-escola-65zi.onrender.com${imagem.data.attributes.url}`;
+      return `http://strapi-final-funcional.onrender.com${imagem.data.attributes.url}`;
     }
     // Formato direto com atributos
     else if (imagem.attributes?.url) {
-      return `http://site-escola-65zi.onrender.com${imagem.attributes.url}`;
+      return `http://strapi-final-funcional.onrender.com${imagem.attributes.url}`;
     }
     // Formato antigo
     else if (imagem.url) {
-      return `http://site-escola-65zi.onrender.com${imagem.url}`;
+      return `http://strapi-final-funcional.onrender.com${imagem.url}`;
     }
     // Formato thumbnail
     else if (imagem.formats?.thumbnail?.url) {
-      return `http://site-escola-65zi.onrender.com${imagem.formats.thumbnail.url}`;
+      return `http://strapi-final-funcional.onrender.com${imagem.formats.thumbnail.url}`;
     }
     
     return null;
   };
 
-  // Determinar para onde vai o link de detalhes (botão dentro do card)
+  // Determinar para onde vai o link de detalhes (botÃ£o dentro do card)
   const getDetailPath = () => {
-    // Se tiver página customizada definida
+    // Se tiver pÃ¡gina customizada definida
     if (customDetailPage) {
       return `/${customDetailPage}`;
     }
     
-    // Mapeamento padrão baseado na coleção
+    // Mapeamento padrÃ£o baseado na coleÃ§Ã£o
     const mapeamento = {
-      'noticias': null,          // NOTÍCIAS: NÃO TEM BOTÃO
+      'noticias': null,          // NOTÃCIAS: NÃƒO TEM BOTÃƒO
       'eventos': 'noticias',     // EVENTOS: vai para /noticias (listagem)
       'cursos': 'formacao',      // CURSOS: vai para /formacao (mesmo que "Ver todos")
-      'avisos': null             // AVISOS: NÃO TEM BOTÃO
+      'avisos': null             // AVISOS: NÃƒO TEM BOTÃƒO
     };
     
     const destino = mapeamento[collectionName];
@@ -105,30 +105,30 @@ const ContentUniversal = ({
 
   // Determinar para onde vai o link "Ver todos"
   const getViewAllPath = () => {
-    // Se tiver página customizada para "Ver todos"
+    // Se tiver pÃ¡gina customizada para "Ver todos"
     if (customViewAllPage) {
       return `/${customViewAllPage}`;
     }
     
-    // Mapeamento padrão para "Ver todos"
+    // Mapeamento padrÃ£o para "Ver todos"
     const mapeamentoViewAll = {
-      'noticias': 'noticias',    // Ver todas notícias ? página de notícias
-      'eventos': 'noticias',     // Ver todos eventos ? página de notícias
-      'cursos': 'formacao',      // Ver todos cursos ? página de formação
-      'avisos': 'noticias'       // Ver todos avisos ? página de notícias
+      'noticias': 'noticias',    // Ver todas notÃ­cias ? pÃ¡gina de notÃ­cias
+      'eventos': 'noticias',     // Ver todos eventos ? pÃ¡gina de notÃ­cias
+      'cursos': 'formacao',      // Ver todos cursos ? pÃ¡gina de formaÃ§Ã£o
+      'avisos': 'noticias'       // Ver todos avisos ? pÃ¡gina de notÃ­cias
     };
     
     return `/${mapeamentoViewAll[collectionName] || collectionName}`;
   };
 
-  // Determinar se deve mostrar botão dentro do card
+  // Determinar se deve mostrar botÃ£o dentro do card
   const shouldShowCardButton = () => {
-    // Só mostra botão para eventos e cursos
-    // Notícias e avisos NÃO têm botão
+    // SÃ³ mostra botÃ£o para eventos e cursos
+    // NotÃ­cias e avisos NÃƒO tÃªm botÃ£o
     return collectionName === 'eventos' || collectionName === 'cursos';
   };
 
-  // Determinar o texto do botão
+  // Determinar o texto do botÃ£o
   const getButtonText = () => {
     const textos = {
       'cursos': 'VER CURSOS',
@@ -147,7 +147,7 @@ const ContentUniversal = ({
       <div className="content-grid">
         {items.map(item => {
           // Usar campos detectados CORRETAMENTE
-          const titulo = extrairValor(item, campos.titulo) || 'Sem título';
+          const titulo = extrairValor(item, campos.titulo) || 'Sem tÃ­tulo';
           const conteudo = extrairValor(item, campos.conteudo);
           const data = extrairValor(item, campos.data) || item.createdAt;
           const imagem = extrairValor(item, campos.imagem);
@@ -174,7 +174,7 @@ const ContentUniversal = ({
             }
           }
 
-          // Extrair texto do conteúdo
+          // Extrair texto do conteÃºdo
           let textoDescricao = '';
           if (conteudo && showDescription) {
             textoDescricao = extractTextFromContent(conteudo, 100);
@@ -186,7 +186,7 @@ const ContentUniversal = ({
                 <div className="card-image-container">
                   <img src={imagemUrl} alt={titulo} className="card-image" />
                   
-                  {/* BOTÃO DENTRO DA IMAGEM - Só aparece para eventos e cursos */}
+                  {/* BOTÃƒO DENTRO DA IMAGEM - SÃ³ aparece para eventos e cursos */}
                   {shouldShowCardButton() && getDetailPath() && (
                     <div className="card-overlay">
                       <Link
@@ -211,13 +211,13 @@ const ContentUniversal = ({
                   <p className="card-description">{textoDescricao}</p>
                 )}
 
-                {/* Campos específicos */}
+                {/* Campos especÃ­ficos */}
                 <div className="card-details">
                   {local && <span className="detail-item">?? {local}</span>}
                   {horario && <span className="detail-item">? {horario}</span>}
                 </div>
 
-                {/* BOTÃO PARA CARDS SEM IMAGEM - Só aparece para eventos e cursos */}
+                {/* BOTÃƒO PARA CARDS SEM IMAGEM - SÃ³ aparece para eventos e cursos */}
                 {!imagemUrl && shouldShowCardButton() && getDetailPath() && (
                   <div className="card-footer">
                     <Link
@@ -246,7 +246,7 @@ const ContentUniversal = ({
   );
 };
 
-// Função para extrair texto de qualquer tipo de conteúdo
+// FunÃ§Ã£o para extrair texto de qualquer tipo de conteÃºdo
 const extractTextFromContent = (content, maxLength = 100) => {
   if (!content) return '';
 
@@ -283,14 +283,15 @@ const extractTextFromContent = (content, maxLength = 100) => {
         ? text.substring(0, maxLength) + '...'
         : text;
     } catch (e) {
-      return 'Conteúdo disponível...';
+      return 'ConteÃºdo disponÃ­vel...';
     }
   }
 
-  return 'Conteúdo disponível...';
+  return 'ConteÃºdo disponÃ­vel...';
 };
 
 export default ContentUniversal;
+
 
 
 

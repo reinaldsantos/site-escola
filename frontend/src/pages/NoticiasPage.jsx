@@ -17,11 +17,11 @@ const NoticiasPage = () => {
 
   const buscarNoticias = async () => {
     try {
-      const response = await fetch("http://site-escola-65zi.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc");
       const data = await response.json();
       setDados(prev => ({ ...prev, noticias: data.data || [] }));
     } catch (error) {
-      console.error("Erro ao buscar not�cias:", error);
+      console.error("Erro ao buscar notícias:", error);
     } finally {
       setCarregando(prev => ({ ...prev, noticias: false }));
     }
@@ -29,7 +29,7 @@ const NoticiasPage = () => {
 
   const buscarEventos = async () => {
     try {
-      const response = await fetch("http://site-escola-65zi.onrender.com/api/eventos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/eventos?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, eventos: data.data || [] }));
@@ -43,7 +43,7 @@ const NoticiasPage = () => {
 
   const buscarAvisos = async () => {
     try {
-      const response = await fetch("http://site-escola-65zi.onrender.com/api/avisos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/avisos?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, avisos: data.data || [] }));
@@ -63,9 +63,9 @@ const NoticiasPage = () => {
     buscarAvisos();
   }, []);
 
-  // FUN��O PARA EXTRAIR TEXTO DO CONTE�DO
+  // FUNÇÃO PARA EXTRAIR TEXTO DO CONTEÚDO
   const extrairTextoConteudo = (conteudo) => {
-    if (!conteudo) return "Sem conte�do";
+    if (!conteudo) return "Sem conteúdo";
     
     if (Array.isArray(conteudo)) {
       return conteudo.map(block => {
@@ -79,7 +79,7 @@ const NoticiasPage = () => {
     return conteudo.substring(0, 120) + '...';
   };
 
-  // FUN��O PARA OBTER URL DA IMAGEM
+  // FUNÇÃO PARA OBTER URL DA IMAGEM
   const getImagemUrl = (item) => {
     if (!item) return null;
     
@@ -91,31 +91,31 @@ const NoticiasPage = () => {
         const fieldData = item.attributes?.[field] || item[field];
         if (fieldData) {
           const img = fieldData;
-          if (img.data?.attributes?.url) return `http://site-escola-65zi.onrender.com${img.data.attributes.url}`;
-          if (img.url) return `http://site-escola-65zi.onrender.com${img.url}`;
+          if (img.data?.attributes?.url) return `https://strapi-final-funcional.onrender.com${img.data.attributes.url}`;
+          if (img.url) return `https://strapi-final-funcional.onrender.com${img.url}`;
         }
       }
       return null;
     }
     
     if (image.data?.attributes?.url) {
-      return `http://site-escola-65zi.onrender.com${image.data.attributes.url}`;
+      return `https://strapi-final-funcional.onrender.com${image.data.attributes.url}`;
     }
     
     if (image.url) {
-      return `http://site-escola-65zi.onrender.com${image.url}`;
+      return `https://strapi-final-funcional.onrender.com${image.url}`;
     }
     
     if (image.data?.url) {
-      return `http://site-escola-65zi.onrender.com${image.data.url}`;
+      return `https://strapi-final-funcional.onrender.com${image.data.url}`;
     }
     
     return null;
   };
 
-  // FUN��O PARA FORMATAR DATA
+  // FUNÇÃO PARA FORMATAR DATA
   const formatarData = (dataString) => {
-    if (!dataString) return "Data n�o dispon�vel";
+    if (!dataString) return "Data não disponível";
     
     try {
       const data = new Date(dataString);
@@ -125,21 +125,21 @@ const NoticiasPage = () => {
         year: "numeric",
       });
     } catch (error) {
-      return "Data inv�lida";
+      return "Data inválida";
     }
   };
 
-  // FUN��O PARA OBTER T�TULO
+  // FUNÇÃO PARA OBTER TÍTULO
   const getTitulo = (item) => {
-    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem t�tulo";
+    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem título";
   };
 
-  // FUN��O PARA OBTER CONTE�DO
+  // FUNÇÃO PARA OBTER CONTEÚDO
   const getConteudo = (item) => {
     return item.attributes?.conteudo || item.conteudo || item.attributes?.content || item.content || "";
   };
 
-  // FUN��O PARA OBTER DATA
+  // FUNÇÃO PARA OBTER DATA
   const getData = (item) => {
     return item.attributes?.data_publicacao || item.data_publicacao || 
            item.attributes?.data_evento || item.data_evento || 
@@ -149,8 +149,8 @@ const NoticiasPage = () => {
   return (
     <div className="noticias-page">
       <header className="noticias-cabecalho">
-        <h1>Not�cias EPF</h1>
-        <p className="subtitulo">Fique por dentro das ultimas novidades da nossa escola</p>
+        <h1>Notícias EPF</h1>
+        <p className="subtitulo">Fique por dentro das últimas novidades da nossa escola</p>
         <div className="cabecalho-info">
           <div className="contador-noticias">
             <span className="numero">{dados.noticias.length + dados.eventos.length}</span>
@@ -165,14 +165,14 @@ const NoticiasPage = () => {
       </header>
 
       <div className="mensagem-boas-vindas">
-        <p className="mensagem-destaque">Evoluimos juntos.</p>
-        <p className="mensagem-sub">Evoluimos juntos.</p>
+        <p className="mensagem-destaque">Evoluímos juntos.</p>
+        <p className="mensagem-sub">Evoluímos juntos.</p>
       </div>
 
       <nav className="noticias-navegacao">
         <div className="abas-container">
           <button className={`aba ${abaAtiva === "noticias" ? "ativa" : ""}`} onClick={() => setAbaAtiva("noticias")}>
-            Not�cias ({dados.noticias.length})
+            Notícias ({dados.noticias.length})
           </button>
           <button className={`aba ${abaAtiva === "eventos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("eventos")}>
             Eventos ({dados.eventos.length})
@@ -191,7 +191,7 @@ const NoticiasPage = () => {
           </div>
         ) : dados[abaAtiva].length === 0 ? (
           <div className="sem-conteudo">
-            <p>Nenhum conteúdo publicado ainda na coleções <strong>{abaAtiva}</strong>.</p>
+            <p>Nenhum conteúdo publicado ainda na coleção <strong>{abaAtiva}</strong>.</p>
             <p>Publique no <strong>Strapi Admin</strong></p>
           </div>
         ) : (
@@ -240,7 +240,7 @@ const NoticiasPage = () => {
                         <span className="status-badge">{abaAtiva === 'eventos' ? 'Agendado' : 'Publicado'}</span>
                       </span>
                       <Link to={`/${abaAtiva}/${item.id}`} className="noticia-link">
-                        Ver {abaAtiva === 'eventos' ? 'detalhes' : 'completo'} ?
+                        Ver {abaAtiva === 'eventos' ? 'detalhes' : 'completo'} →
                       </Link>
                     </div>
                   </div>
@@ -258,7 +258,7 @@ const NoticiasPage = () => {
           <Link to="/contactos" className="btn-contactar">CONTACTAR SECRETARIA</Link>
         </div>
         <div className="copyright">
-          <p>� {new Date().getFullYear()} EPF - Escola Profissional. Todas as noticias são atualizadas regularmente.</p>
+          <p>© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
         </div>
       </footer>
     </div>

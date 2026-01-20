@@ -1,4 +1,4 @@
-﻿// ================================================
+// ================================================
 // COMPONENTE: EventosStrapi.jsx
 // Mostra eventos do Strapi - Use em QUALQUER página
 // ================================================
@@ -32,7 +32,7 @@ const EventosStrapi = ({ limite = 3, mostrarTitulo = true }) => {
     return (
         <div className="eventos-strapi">
             {mostrarTitulo && (
-                <h2 className="eventos-titulo">📅 PRÓXIMOS EVENTOS</h2>
+                <h2 className="eventos-titulo">?? PRÓXIMOS EVENTOS</h2>
             )}
             
             {carregando ? (
@@ -70,13 +70,13 @@ const EventosStrapi = ({ limite = 3, mostrarTitulo = true }) => {
                                     <div className="evento-detalhes">
                                         {evento.local && (
                                             <span className="evento-local">
-                                                📍 {evento.local}
+                                                ?? {evento.local}
                                             </span>
                                         )}
                                         
                                         {evento.horario && (
                                             <span className="evento-horario">
-                                                ⏰ {evento.horario}
+                                                ? {evento.horario}
                                             </span>
                                         )}
                                     </div>
@@ -97,7 +97,7 @@ const EventosStrapi = ({ limite = 3, mostrarTitulo = true }) => {
             {!carregando && eventosFuturos.length > 0 && (
                 <div className="eventos-ver-todos">
                     <Link to="/eventos" className="btn-ver-eventos">
-                        📅 Ver todos os eventos
+                        ?? Ver todos os eventos
                     </Link>
                 </div>
             )}

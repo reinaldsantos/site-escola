@@ -1,4 +1,4 @@
-﻿// src/components/NoticiasStrapi.jsx - VERSÃO UNIVERSAL
+// src/components/NoticiasStrapi.jsx - VERSÃO UNIVERSAL
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiData from '../hooks/useStrapiData';
@@ -15,7 +15,7 @@ const NoticiasStrapi = ({
   
   // Título padrão baseado na coleção
   const tituloExibicao = titulo || (
-    colecao === 'eventos' ? '📅 PRÓXIMOS EVENTOS' : '📰 ÚLTIMAS NOTÍCIAS'
+    colecao === 'eventos' ? '?? PRÓXIMOS EVENTOS' : '?? ÚLTIMAS NOTÍCIAS'
   );
   
   // Se não quiser mostrar quando não há dados
@@ -89,10 +89,10 @@ const NoticiasStrapi = ({
                   {colecao === 'eventos' && (
                     <div className="evento-detalhes">
                       {item.local && (
-                        <span className="evento-local">📍 {item.local}</span>
+                        <span className="evento-local">?? {item.local}</span>
                       )}
                       {item.horario && (
-                        <span className="evento-horario">⏰ {item.horario}</span>
+                        <span className="evento-horario">? {item.horario}</span>
                       )}
                     </div>
                   )}
@@ -101,7 +101,7 @@ const NoticiasStrapi = ({
                     to={`/${colecao}/${item.id}`} 
                     className="noticia-link"
                   >
-                    {colecao === 'eventos' ? 'Mais informações →' : 'Ler mais →'}
+                    {colecao === 'eventos' ? 'Mais informações ?' : 'Ler mais ?'}
                   </Link>
                 </div>
               </div>
@@ -113,7 +113,7 @@ const NoticiasStrapi = ({
       {!carregando && itens.length > 0 && (
         <div className="noticias-ver-todos">
           <Link to={`/${colecao}`} className="btn-ver-noticias">
-            {colecao === 'eventos' ? '📅 Ver todos os eventos' : '📰 Ver todas as notícias'}
+            {colecao === 'eventos' ? '?? Ver todos os eventos' : '?? Ver todas as notícias'}
           </Link>
         </div>
       )}

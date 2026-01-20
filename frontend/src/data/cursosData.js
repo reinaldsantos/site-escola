@@ -1,4 +1,4 @@
-﻿// src/pages/Cursos/data/cursosData.js - VERSÃO COMPLETA COM TODOS OS CURSOS
+// src/pages/Cursos/data/cursosData.js - VERSÃO COMPLETA COM TODOS OS CURSOS
 const cursosData = [
   // ========== CURSOS PROFISSIONAIS ==========
   {
@@ -7,7 +7,7 @@ const cursosData = [
     nome: "Técnico de Comércio",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "💼",
+    icon: "??",
     cor: "#2196F3",
     descricaoBreve: "Profissional qualificado para organizar e planear vendas em estabelecimentos comerciais.",
     
@@ -73,7 +73,7 @@ const cursosData = [
     nome: "Técnico de Cozinha/Pastelaria",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "👨‍🍳",
+    icon: "?????",
     cor: "#FF9800",
     descricaoBreve: "Um ativo na área da restauração com formação em gastronomia.",
     
@@ -122,7 +122,7 @@ const cursosData = [
     nome: "Técnico de Restaurante/Bar",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "🍽️",
+    icon: "???",
     cor: "#4CAF50",
     descricaoBreve: "Especializado em atendimento e serviço de mesa em restauração.",
     
@@ -173,7 +173,7 @@ const cursosData = [
     nome: "Técnico de Gestão do Ambiente",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "🌱",
+    icon: "??",
     cor: "#009688",
     descricaoBreve: "Profissional qualificado para gestão ambiental e desenvolvimento sustentável.",
     
@@ -225,7 +225,7 @@ const cursosData = [
     nome: "Técnico de Desenho da Construção Civil",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "🏗️",
+    icon: "???",
     cor: "#795548",
     descricaoBreve: "Especializado em acompanhamento de obras e apoio a gabinetes de arquitetura.",
     
@@ -276,7 +276,7 @@ const cursosData = [
     nome: "Técnico de Manutenção Industrial - Electromecânica",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "🔧",
+    icon: "??",
     cor: "#607D8B",
     descricaoBreve: "Profissional qualificado na análise, diagnóstico e manutenção de aparelhos industriais.",
     
@@ -327,7 +327,7 @@ const cursosData = [
     nome: "Técnico de Mecatrónica Automóvel",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "🚗",
+    icon: "??",
     cor: "#F44336",
     descricaoBreve: "Técnico especializado em diagnóstico e reparação de sistemas automóveis.",
     
@@ -379,7 +379,7 @@ const cursosData = [
     nome: "Programador de Informática",
     tipo: "Profissional",
     duracao: "3 anos letivos",
-    icon: "💻",
+    icon: "??",
     cor: "#3F51B5",
     descricaoBreve: "Curso de programação com formação em desenvolvimento de software e aplicações.",
     
@@ -431,7 +431,7 @@ const cursosData = [
     nome: "Eletricista de Instalações",
     tipo: "CEF",
     duracao: "2 anos",
-    icon: "⚡",
+    icon: "?",
     cor: "#FFC107",
     descricaoBreve: "Curso CEF para executar instalações elétricas de edificações.",
     
@@ -477,7 +477,7 @@ const cursosData = [
     nome: "Pastelaria/Padaria",
     tipo: "CEF",
     duracao: "2 anos",
-    icon: "🥐",
+    icon: "??",
     cor: "#E91E63",
     descricaoBreve: "Curso CEF especializado em confeção de bolos, pão e produtos de pastelaria.",
     
@@ -524,7 +524,7 @@ const cursosData = [
     nome: "Empregado de Restaurante/Bar",
     tipo: "CEF",
     duracao: "2 anos",
-    icon: "🍸",
+    icon: "??",
     cor: "#9C27B0",
     descricaoBreve: "Curso CEF para organização e execução de serviço de restaurante/bar.",
     

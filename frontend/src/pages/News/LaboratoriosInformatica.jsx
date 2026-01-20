@@ -1,4 +1,4 @@
-﻿// src/pages/News/LaboratoriosInformatica.jsx
+// src/pages/News/LaboratoriosInformatica.jsx
 import { Link } from 'react-router-dom';
 import './NoticiaDetalhe.css';
 
@@ -25,12 +25,12 @@ const LaboratoriosInformatica = () => {
           
           <div className="noticia-meta">
             <div className="meta-item">
-              <span className="meta-icon">👤</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Autor:</span>
               <span className="meta-value">Coordenação</span>
             </div>
             <div className="meta-item">
-              <span className="meta-icon">📅</span>
+              <span className="meta-icon">??</span>
               <span className="meta-label">Publicado em:</span>
               <span className="meta-value">5 de Janeiro, 2025</span>
             </div>
@@ -55,7 +55,7 @@ const LaboratoriosInformatica = () => {
                     fontSize: '5rem',
                     borderRadius: '10px'
                   }}>
-                    🖥️
+                    ???
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@ const LaboratoriosInformatica = () => {
                 <h2>Inauguração dos Novos Laboratórios de Informática</h2>
                 <p>A nossa escola acaba de inaugurar dois novos laboratórios de informática totalmente equipados com tecnologia de última geração, proporcionando melhores condições de aprendizagem para os nossos alunos.</p>
                 
-                <h3>💻 Equipamento Instalado:</h3>
+                <h3>?? Equipamento Instalado:</h3>
                 <ul>
                   <li><strong>30 Computadores</strong> de última geração (i7, 16GB RAM, SSD 512GB)</li>
                   <li><strong>Monitores</strong> de 24" Full HD</li>
@@ -74,7 +74,7 @@ const LaboratoriosInformatica = () => {
                   <li><strong>Mobiliário</strong> ergonómico ajustável</li>
                 </ul>
                 
-                <h3>🛠️ Software Disponibilizado:</h3>
+                <h3>??? Software Disponibilizado:</h3>
                 <div className="software-grid">
                   <div className="software-category">
                     <h4>Programação</h4>
@@ -98,7 +98,7 @@ const LaboratoriosInformatica = () => {
                 </div>
                 
                 <div className="access-info">
-                  <h4>📋 Horário de Utilização:</h4>
+                  <h4>?? Horário de Utilização:</h4>
                   <p><strong>Segunda a Sexta:</strong> 8h30 às 19h00</p>
                   <p><strong>Sábado:</strong> 9h00 às 13h00 (para trabalhos de grupo)</p>
                 </div>
@@ -107,14 +107,14 @@ const LaboratoriosInformatica = () => {
 
             <div className="sidebar">
               <div className="sidebar-card">
-                <h3>📰 Outras Notícias</h3>
+                <h3>?? Outras Notícias</h3>
                 <div className="related-news">
                   <Link to="/noticias/inscricoes-abertas" className="related-item">
                     <span className="related-category" style={{ color: '#4CAF50' }}>
                       Inscrições
                     </span>
                     <h4>Inscrições 2025/2026 Abertas</h4>
-                    <span className="related-date">📅 15 de Janeiro, 2025</span>
+                    <span className="related-date">?? 15 de Janeiro, 2025</span>
                   </Link>
                 </div>
                 <Link to="/noticias" className="btn btn-outline btn-block">
@@ -129,7 +129,7 @@ const LaboratoriosInformatica = () => {
       <section className="back-section">
         <div className="container">
           <Link to="/noticias" className="btn btn-primary">
-            ← Voltar para Notícias
+            ? Voltar para Notícias
           </Link>
         </div>
       </section>

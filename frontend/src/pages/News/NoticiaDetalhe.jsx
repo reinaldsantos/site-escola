@@ -1,4 +1,4 @@
-﻿// src/pages/News/NoticiaDetalhe.jsx - VERSÃO CORRIGIDA
+// src/pages/News/NoticiaDetalhe.jsx - VERSÃO CORRIGIDA
 import { useParams } from 'react-router-dom';
 
 const NoticiaDetalhe = () => {
@@ -11,7 +11,7 @@ const NoticiaDetalhe = () => {
       title: "Inscrições 2025/2026 Abertas",
       date: "15 de Janeiro, 2025",
       author: "Secretaria",
-      image: "📋",
+      image: "??",
       fullContent: `
         <h2>Inscrições Abertas para o Ano Letivo 2025/2026</h2>
         <p>O processo de candidatura para novos alunos já se encontra disponível online através do nosso portal.</p>
@@ -35,7 +35,7 @@ const NoticiaDetalhe = () => {
       title: "Novo Curso de Multimédia",
       date: "10 de Janeiro, 2025",
       author: "Direção Pedagógica",
-      image: "🎨",
+      image: "??",
       fullContent: `
         <h2>Lançamento do Novo Curso de Multimédia</h2>
         <p>Estamos orgulhosos em anunciar o lançamento do nosso novo curso técnico de Multimédia.</p>
@@ -95,8 +95,8 @@ const NoticiaDetalhe = () => {
             marginBottom: '2rem',
             flexWrap: 'wrap'
           }}>
-            <span>📅 {noticia.date}</span>
-            <span>✍️ Por: {noticia.author}</span>
+            <span>?? {noticia.date}</span>
+            <span>?? Por: {noticia.author}</span>
           </div>
         </div>
         
@@ -137,7 +137,7 @@ const NoticiaDetalhe = () => {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            ← Voltar às Notícias
+            ? Voltar às Notícias
           </a>
         </div>
       </div>

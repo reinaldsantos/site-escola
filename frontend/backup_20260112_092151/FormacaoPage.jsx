@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./FormacaoPage.css";
 import cursosConfig from "../config/cursosConfig";
@@ -104,7 +104,7 @@ const FormacaoPage = () => {
                     {area.cursos.length} curso{area.cursos.length !== 1 ? 's' : ''}
                   </p>
                   <span className="area-explorar">
-                    Explorar →
+                    Explorar ?
                   </span>
                 </div>
               </Link>
@@ -135,32 +135,32 @@ const FormacaoPage = () => {
           
           <div className="beneficios-grid">
             <div className="beneficio-card">
-              <div className="beneficio-icon">🎓</div>
+              <div className="beneficio-icon">??</div>
               <h3>Certificação Dupla</h3>
               <p>Diploma profissional + Equivalência ao 12º ano</p>
             </div>
             <div className="beneficio-card">
-              <div className="beneficio-icon">💼</div>
+              <div className="beneficio-icon">??</div>
               <h3>Estágio Remunerado</h3>
               <p>Experiência em empresas parceiras com possibilidade de contrato</p>
             </div>
             <div className="beneficio-card">
-              <div className="beneficio-icon">🌍</div>
+              <div className="beneficio-icon">??</div>
               <h3>Mobilidade Internacional</h3>
               <p>Programas Erasmus+ em vários países europeus</p>
             </div>
             <div className="beneficio-card">
-              <div className="beneficio-icon">👨‍🏫</div>
+              <div className="beneficio-icon">?????</div>
               <h3>Corpo Docente</h3>
               <p>Professores com vasta experiência profissional</p>
             </div>
             <div className="beneficio-card">
-              <div className="beneficio-icon">💻</div>
+              <div className="beneficio-icon">??</div>
               <h3>Laboratórios Modernos</h3>
               <p>Equipamentos atualizados e tecnologia de ponta</p>
             </div>
             <div className="beneficio-card">
-              <div className="beneficio-icon">🤝</div>
+              <div className="beneficio-icon">??</div>
               <h3>Parcerias Empresariais</h3>
               <p>Rede de empresas para estágios e empregabilidade</p>
             </div>
@@ -176,14 +176,14 @@ const FormacaoPage = () => {
             <p>Inscreva-se agora e dê o primeiro passo na sua carreira profissional</p>
             <div className="cta-buttons">
               <Link to="/inscricao" className="btn-cta-primary">
-                🎯 Inscrever-se Agora
+                ?? Inscrever-se Agora
               </Link>
               <Link to="/contactos" className="btn-cta-secondary">
-                📞 Falar com Secretaria
+                ?? Falar com Secretaria
               </Link>
             </div>
             <p className="cta-info">
-              📅 Inscrições abertas todo o ano | 📞 275 000 000 | ✉️ secretaria@epf.edu.pt
+              ?? Inscrições abertas todo o ano | ?? 275 000 000 | ?? secretaria@epf.edu.pt
             </p>
           </div>
         </div>

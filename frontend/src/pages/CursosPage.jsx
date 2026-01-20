@@ -1,4 +1,4 @@
-﻿﻿// src/pages/CursosPage.jsx - VERSÃO PROFISSIONAL UNIFICADA
+// src/pages/CursosPage.jsx - VERSÃO PROFISSIONAL UNIFICADA
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./CursosPage.css";
@@ -248,3 +248,4 @@ const CursosPage = () => {
 };
 
 export default CursosPage;
+

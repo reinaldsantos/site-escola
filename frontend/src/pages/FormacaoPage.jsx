@@ -1,4 +1,4 @@
-﻿// src/pages/FormacaoPage.jsx - VERSÃO ATUALIZADA COM SUAS IMAGENS
+// src/pages/FormacaoPage.jsx - VERSÃO ATUALIZADA COM SUAS IMAGENS
 import React from "react";
 import { Link } from "react-router-dom";
 import "./FormacaoPage.css";
@@ -136,7 +136,7 @@ const FormacaoPage = () => {
           
           <div className="vantagens-lista">
             <div className="vantagem-item">
-              <div className="vantagem-icone">📄</div>
+              <div className="vantagem-icone">??</div>
               <div className="vantagem-conteudo">
                 <h3>Certificação Oficial</h3>
                 <p>Diploma reconhecido nacionalmente com equivalência ao 12º ano</p>
@@ -144,7 +144,7 @@ const FormacaoPage = () => {
             </div>
             
             <div className="vantagem-item">
-              <div className="vantagem-icone">💼</div>
+              <div className="vantagem-icone">??</div>
               <div className="vantagem-conteudo">
                 <h3>Estágio Garantido</h3>
                 <p>Experiência prática em empresas parceiras com possibilidade de contrato</p>
@@ -152,7 +152,7 @@ const FormacaoPage = () => {
             </div>
             
             <div className="vantagem-item">
-              <div className="vantagem-icone">🌍</div>
+              <div className="vantagem-icone">??</div>
               <div className="vantagem-conteudo">
                 <h3>Programa Erasmus+</h3>
                 <p>Mobilidade internacional em países europeus</p>
@@ -160,7 +160,7 @@ const FormacaoPage = () => {
             </div>
             
             <div className="vantagem-item">
-              <div className="vantagem-icone">👨‍🏫</div>
+              <div className="vantagem-icone">?????</div>
               <div className="vantagem-conteudo">
                 <h3>Corpo Docente Especializado</h3>
                 <p>Professores com vasta experiência profissional</p>

@@ -13,18 +13,18 @@ const NoticiaDetailPage = () => {
     const buscarNoticia = async () => {
       try {
         setCarregando(true);
-        // URL para buscar uma notícia específica
-        const response = await fetch(`http://site-escola-65zi.onrender.com/api/noticias/${id}?populate=*`);
+        // URL para buscar uma notÃ­cia especÃ­fica
+        const response = await fetch(`https://strapi-final-funcional.onrender.com/api/noticias/${id}?populate=*`);
         
         if (!response.ok) {
-          throw new Error("Notícia não encontrada");
+          throw new Error("NotÃ­cia nÃ£o encontrada");
         }
         
         const data = await response.json();
         setNoticia(data.data);
       } catch (error) {
         setErro(error.message);
-        console.error("Erro ao buscar notícia:", error);
+        console.error("Erro ao buscar notÃ­cia:", error);
       } finally {
         setCarregando(false);
       }
@@ -37,7 +37,7 @@ const NoticiaDetailPage = () => {
     return (
       <div className="noticia-detail-container loading">
         <div className="spinner"></div>
-        <p>Carregando notícia...</p>
+        <p>Carregando notÃ­cia...</p>
       </div>
     );
   }
@@ -48,7 +48,7 @@ const NoticiaDetailPage = () => {
         <h1>Erro</h1>
         <p>{erro}</p>
         <Link to="/noticias" className="btn-voltar">
-          ? Voltar para Notícias
+          â† Voltar para NotÃ­cias
         </Link>
       </div>
     );
@@ -57,25 +57,34 @@ const NoticiaDetailPage = () => {
   if (!noticia) {
     return (
       <div className="noticia-detail-container not-found">
-        <h1>Notícia não encontrada</h1>
-        <p>A notícia que você está procurando não existe ou foi removida.</p>
+        <h1>NotÃ­cia nÃ£o encontrada</h1>
+        <p>A notÃ­cia que vocÃª estÃ¡ procurando nÃ£o existe ou foi removida.</p>
         <Link to="/noticias" className="btn-voltar">
-          ? Voltar para Notícias
+          â† Voltar para NotÃ­cias
         </Link>
       </div>
     );
   }
 
   const { attributes } = noticia;
-  const titulo = attributes?.titulo || "Sem título";
+  const titulo = attributes?.titulo || "Sem tÃ­tulo";
   const conteudo = attributes?.conteudo || "";
   const data = attributes?.data_publicacao || attributes?.createdAt;
-  const imagem = attributes?.imagem;
-
-  // Extrair URL da imagem
+  
+  // Extrair URL da imagem - tenta diferentes campos
   let imagemUrl = null;
-  if (imagem?.data?.attributes?.url) {
-    imagemUrl = `http://site-escola-65zi.onrender.com${imagem.data.attributes.url}`;
+  
+  // Tenta campo 'imagem' primeiro
+  if (attributes?.imagem?.data?.attributes?.url) {
+    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.imagem.data.attributes.url}`;
+  } 
+  // Tenta campo 'image' (inglÃªs)
+  else if (attributes?.image?.data?.attributes?.url) {
+    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.image.data.attributes.url}`;
+  }
+  // Tenta campo 'capa'
+  else if (attributes?.capa?.data?.attributes?.url) {
+    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.capa.data.attributes.url}`;
   }
 
   // Formatar data
@@ -102,7 +111,7 @@ const NoticiaDetailPage = () => {
     <div className="noticia-detail-container">
       <article className="noticia-detail">
         <Link to="/noticias" className="btn-voltar">
-          ? Voltar para Notícias
+          â† Voltar para NotÃ­cias
         </Link>
         
         {imagemUrl && (
@@ -114,16 +123,16 @@ const NoticiaDetailPage = () => {
         <header className="noticia-header">
           {dataFormatada && (
             <time className="noticia-data" dateTime={data}>
-              ?? Publicado em {dataFormatada}
+              ğŸ“… Publicado em {dataFormatada}
             </time>
           )}
           
           <h1 className="noticia-titulo">{titulo}</h1>
           
           <div className="noticia-meta">
-            <span className="badge-tipo">?? Notícia</span>
+            <span className="badge-tipo">ğŸ“° NotÃ­cia</span>
             {attributes?.autor && (
-              <span className="noticia-autor">?? Por {attributes.autor}</span>
+              <span className="noticia-autor">âœï¸ Por {attributes.autor}</span>
             )}
           </div>
         </header>
@@ -135,10 +144,10 @@ const NoticiaDetailPage = () => {
         <footer className="noticia-footer">
           <div className="acoes">
             <Link to="/noticias" className="btn-acao">
-              ? Ver todas as notícias
+              ğŸ“° Ver todas as notÃ­cias
             </Link>
             <button className="btn-acao compartilhar">
-              ?? Compartilhar
+              ğŸ“¤ Compartilhar
             </button>
           </div>
         </footer>
@@ -147,9 +156,9 @@ const NoticiaDetailPage = () => {
   );
 };
 
-// Função para renderizar conteúdo (suporta rich text do Strapi)
+// FunÃ§Ã£o para renderizar conteÃºdo (suporta rich text do Strapi)
 const renderConteudo = (conteudo) => {
-  if (!conteudo) return <p>Sem conteúdo disponível.</p>;
+  if (!conteudo) return <p>Sem conteÃºdo disponÃ­vel.</p>;
 
   // Se for string simples
   if (typeof conteudo === 'string') {
@@ -184,10 +193,7 @@ const renderConteudo = (conteudo) => {
     );
   }
 
-  return <p>Conteúdo em formato não suportado.</p>;
+  return <p>ConteÃºdo em formato nÃ£o suportado.</p>;
 };
 
 export default NoticiaDetailPage;
-
-
-

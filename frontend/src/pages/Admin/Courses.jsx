@@ -131,7 +131,7 @@ const AdminCourses = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Duração</label>
+                  <label>DuraÃ§Ã£o</label>
                   <input
                     type="text"
                     value={formData.duration}
@@ -142,7 +142,7 @@ const AdminCourses = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Descrição</label>
+                  <label>DescriÃ§Ã£o</label>
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -185,7 +185,7 @@ const AdminCourses = () => {
                 </span>
               </div>
               <p className="course-item-type">{course.type.toUpperCase()}</p>
-              <p className="course-item-duration">Duração: {course.duration}</p>
+              <p className="course-item-duration">DuraÃ§Ã£o: {course.duration}</p>
               <p className="course-item-description">{course.description}</p>
               <div className="course-item-actions">
                 <button onClick={() => handleEdit(course)} className="btn btn-secondary btn-sm">

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./CursoCard.css";
 
@@ -16,18 +16,18 @@ const CursoCard = ({ curso, area }) => {
         
         <div className="curso-details">
           <div className="detail-item">
-            <span className="detail-label">⏱️ Duração:</span>
+            <span className="detail-label">?? Duração:</span>
             <span className="detail-value">{curso.duracao}</span>
           </div>
           <div className="detail-item">
-            <span className="detail-label">📜 Certificação:</span>
+            <span className="detail-label">?? Certificação:</span>
             <span className="detail-value">{curso.certificacao}</span>
           </div>
         </div>
         
         {curso.saidas && curso.saidas.length > 0 && (
           <div className="saidas-profissionais">
-            <strong>💼 Saídas:</strong>
+            <strong>?? Saídas:</strong>
             <div className="saidas-tags">
               {curso.saidas.slice(0, 3).map((saida, index) => (
                 <span key={index} className="saida-tag">{saida}</span>
@@ -39,10 +39,10 @@ const CursoCard = ({ curso, area }) => {
       
       <div className="curso-card-footer">
         <Link to={`/cursos/${curso.id}`} className="btn-saiba-mais">
-          Ver Curso Completo →
+          Ver Curso Completo ?
         </Link>
         <button className="btn-inscricao" onClick={() => alert('Inscrição em breve!')}>
-          🎯 Inscrever-se
+          ?? Inscrever-se
         </button>
       </div>
     </div>

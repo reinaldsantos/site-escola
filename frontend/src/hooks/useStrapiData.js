@@ -12,7 +12,7 @@ const useStrapiData = (collectionName, limit = 10) => {
         setCarregando(true);
         setErro(null);
         
-        const url = `http://site-escola-65zi.onrender.com/api/${collectionName}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
+        const url = `http://strapi-final-funcional.onrender.com/api/${collectionName}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
         const response = await fetch(url);
         
         if (!response.ok) {
@@ -48,5 +48,6 @@ const useStrapiData = (collectionName, limit = 10) => {
 };
 
 export default useStrapiData;
+
 
 

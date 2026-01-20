@@ -14,7 +14,7 @@ function NewsList() {
     try {
       setLoading(true);
       setError(null);
-      console.log("?? Iniciando busca de notÌcias...");
+      console.log("?? Iniciando busca de not√≠cias...");
       
       const newsData = await newsService.getAllNews();
       console.log("?? Dados recebidos:", newsData);
@@ -31,8 +31,8 @@ function NewsList() {
   if (loading) {
     return (
       <div style={{padding: '20px', textAlign: 'center'}}>
-        <h3>Carregando notÌcias...</h3>
-        <p>Conectando ao Strapi: http://site-escola-65zi.onrender.com/api/noticias</p>
+        <h3>Carregando not√≠cias...</h3>
+        <p>Conectando ao Strapi: http://strapi-final-funcional.onrender.com/api/noticias</p>
       </div>
     );
   }
@@ -40,7 +40,7 @@ function NewsList() {
   if (error) {
     return (
       <div style={{padding: '20px', background: '#ffebee', border: '1px solid #ffcdd2'}}>
-        <h3>Erro de Conex„o</h3>
+        <h3>Erro de Conex√£o</h3>
         <p>{error}</p>
         <button onClick={fetchNews}>Tentar Novamente</button>
       </div>
@@ -49,14 +49,14 @@ function NewsList() {
 
   return (
     <div style={{padding: '20px'}}>
-      <h2>NotÌcias da Escola</h2>
+      <h2>Not√≠cias da Escola</h2>
       <button onClick={fetchNews} style={{marginBottom: '20px'}}>Atualizar</button>
       
       {posts.length === 0 ? (
-        <p>Nenhuma notÌcia encontrada.</p>
+        <p>Nenhuma not√≠cia encontrada.</p>
       ) : (
         <div>
-          <p><strong>Total de notÌcias:</strong> {posts.length}</p>
+          <p><strong>Total de not√≠cias:</strong> {posts.length}</p>
           {posts.map(post => (
             <div key={post.id} style={{
               border: '1px solid #ccc',
@@ -65,7 +65,7 @@ function NewsList() {
               borderRadius: '5px'
             }}>
               <h3>{post.title}</h3>
-              <p>{post.content || "Sem conte˙do"}</p>
+              <p>{post.content || "Sem conte√∫do"}</p>
               <small>
                 Data: {new Date(post.date).toLocaleDateString('pt-BR')} | 
                 Status: {post.published ? 'Publicado' : 'Rascunho'}
@@ -82,17 +82,17 @@ function NewsList() {
       
       <div style={{marginTop: '30px', padding: '15px', background: '#f5f5f5'}}>
         <h4>Debug Info:</h4>
-        <p>API URL: http://site-escola-65zi.onrender.com/api/noticias</p>
+        <p>API URL: http://strapi-final-funcional.onrender.com/api/noticias</p>
         <p>Frontend: http://localhost:3000</p>
         <button onClick={() => {
           console.log("Posts no estado:", posts);
           console.log("Testando API...");
-          fetch("http://site-escola-65zi.onrender.com/api/noticias")
+          fetch("http://strapi-final-funcional.onrender.com/api/noticias")
             .then(res => res.json())
             .then(data => console.log("Resposta API:", data))
             .catch(err => console.error("Erro API:", err));
         }}>
-          Testar Conex„o
+          Testar Conex√£o
         </button>
       </div>
     </div>
@@ -100,4 +100,5 @@ function NewsList() {
 }
 
 export default NewsList;
+
 

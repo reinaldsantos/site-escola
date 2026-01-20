@@ -25,7 +25,7 @@ const AdminNews = () => {
       const response = await api.get('/admin/news');
       setNews(response.data);
     } catch (error) {
-      console.error('Erro ao carregar notícias:', error);
+      console.error('Erro ao carregar notÃ­cias:', error);
     } finally {
       setLoading(false);
     }
@@ -43,8 +43,8 @@ const AdminNews = () => {
       resetForm();
       fetchNews();
     } catch (error) {
-      console.error('Erro ao salvar notícia:', error);
-      alert('Erro ao salvar notícia');
+      console.error('Erro ao salvar notÃ­cia:', error);
+      alert('Erro ao salvar notÃ­cia');
     }
   };
 
@@ -61,14 +61,14 @@ const AdminNews = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Tem certeza que deseja deletar esta notícia?')) return;
+    if (!confirm('Tem certeza que deseja deletar esta notÃ­cia?')) return;
 
     try {
       await api.delete(`/admin/news/${id}`);
       fetchNews();
     } catch (error) {
-      console.error('Erro ao deletar notícia:', error);
-      alert('Erro ao deletar notícia');
+      console.error('Erro ao deletar notÃ­cia:', error);
+      alert('Erro ao deletar notÃ­cia');
     }
   };
 
@@ -96,19 +96,19 @@ const AdminNews = () => {
     <AdminLayout>
       <div className="admin-news">
         <div className="page-header-admin">
-          <h1>Gerir Notícias</h1>
+          <h1>Gerir NotÃ­cias</h1>
           <button onClick={() => setShowForm(true)} className="btn btn-primary">
-            + Nova Notícia
+            + Nova NotÃ­cia
           </button>
         </div>
 
         {showForm && (
           <div className="form-modal">
             <div className="form-modal-content">
-              <h2>{editingNews ? 'Editar Notícia' : 'Nova Notícia'}</h2>
+              <h2>{editingNews ? 'Editar NotÃ­cia' : 'Nova NotÃ­cia'}</h2>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label>Título</label>
+                  <label>TÃ­tulo</label>
                   <input
                     type="text"
                     value={formData.title}
@@ -118,7 +118,7 @@ const AdminNews = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Conteúdo</label>
+                  <label>ConteÃºdo</label>
                   <textarea
                     value={formData.content}
                     onChange={(e) => setFormData({ ...formData, content: e.target.value })}
@@ -133,8 +133,8 @@ const AdminNews = () => {
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   >
-                    <option value="inscricoes">Inscrições</option>
-                    <option value="formacao">Formação</option>
+                    <option value="inscricoes">InscriÃ§Ãµes</option>
+                    <option value="formacao">FormaÃ§Ã£o</option>
                     <option value="eventos">Eventos</option>
                     <option value="outros">Outros</option>
                   </select>
@@ -197,7 +197,7 @@ const AdminNews = () => {
 
           {news.length === 0 && (
             <p style={{ textAlign: 'center', padding: '2rem', color: '#666' }}>
-              Nenhuma notícia encontrada
+              Nenhuma notÃ­cia encontrada
             </p>
           )}
         </div>

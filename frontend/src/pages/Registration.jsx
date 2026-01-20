@@ -1,4 +1,4 @@
-﻿// src/pages/Registration.jsx - VERSÃO CORRIGIDA
+// src/pages/Registration.jsx - VERSÃO CORRIGIDA
 import { useState } from 'react';
 
 const Registration = () => {
@@ -42,7 +42,7 @@ const Registration = () => {
           marginBottom: '2rem',
           fontSize: '2.5rem'
         }}>
-          📝 Inscrições
+          ?? Inscrições
         </h1>
         
         <form onSubmit={handleSubmit}>

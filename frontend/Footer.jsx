@@ -1,4 +1,4 @@
-﻿// src/components/Footer.jsx - VERSÃO COMPLETA E PROFISSIONAL
+// src/components/Footer.jsx - VERSÃO COMPLETA E PROFISSIONAL
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -39,7 +39,7 @@ const Footer = () => {
                 fontSize: '2.5rem',
                 color: '#f8b133'
               }}>
-                🎓
+                ??
               </div>
               <div>
                 <h3 style={{ 
@@ -85,7 +85,7 @@ const Footer = () => {
                 transition: 'transform 0.3s ease'
               }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}>
-                <span style={{ fontSize: '1.1rem' }}>📘</span>
+                <span style={{ fontSize: '1.1rem' }}>??</span>
               </a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{
                 background: 'linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)',
@@ -100,7 +100,7 @@ const Footer = () => {
                 transition: 'transform 0.3s ease'
               }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}>
-                <span style={{ fontSize: '1.1rem' }}>📷</span>
+                <span style={{ fontSize: '1.1rem' }}>??</span>
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{
                 background: '#0077b5',
@@ -115,7 +115,7 @@ const Footer = () => {
                 transition: 'transform 0.3s ease'
               }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
                  onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}>
-                <span style={{ fontSize: '1.1rem' }}>💼</span>
+                <span style={{ fontSize: '1.1rem' }}>??</span>
               </a>
             </div>
           </div>
@@ -130,7 +130,7 @@ const Footer = () => {
               borderBottom: '2px solid rgba(248, 177, 51, 0.3)',
               paddingBottom: '0.5rem'
             }}>
-              📋 Links Rápidos
+              ?? Links Rápidos
             </h4>
             <ul style={{
               listStyle: 'none',
@@ -153,7 +153,7 @@ const Footer = () => {
                   e.currentTarget.style.opacity = '0.9';
                   e.currentTarget.style.paddingLeft = '0';
                 }}>
-                  <span>🏠</span> Início
+                  <span>??</span> Início
                 </Link>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -172,7 +172,7 @@ const Footer = () => {
                   e.currentTarget.style.opacity = '0.9';
                   e.currentTarget.style.paddingLeft = '0';
                 }}>
-                  <span>🎓</span> Formação
+                  <span>??</span> Formação
                 </Link>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -191,7 +191,7 @@ const Footer = () => {
                   e.currentTarget.style.opacity = '0.9';
                   e.currentTarget.style.paddingLeft = '0';
                 }}>
-                  <span>🏫</span> Escola
+                  <span>??</span> Escola
                 </Link>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -210,7 +210,7 @@ const Footer = () => {
                   e.currentTarget.style.opacity = '0.9';
                   e.currentTarget.style.paddingLeft = '0';
                 }}>
-                  <span>🌍</span> Erasmus+
+                  <span>??</span> Erasmus+
                 </Link>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -229,7 +229,7 @@ const Footer = () => {
                   e.currentTarget.style.opacity = '0.9';
                   e.currentTarget.style.paddingLeft = '0';
                 }}>
-                  <span>📞</span> Contactos
+                  <span>??</span> Contactos
                 </Link>
               </li>
             </ul>
@@ -245,7 +245,7 @@ const Footer = () => {
               borderBottom: '2px solid rgba(248, 177, 51, 0.3)',
               paddingBottom: '0.5rem'
             }}>
-              📚 Nossos Cursos
+              ?? Nossos Cursos
             </h4>
             <ul style={{
               listStyle: 'none',
@@ -260,7 +260,7 @@ const Footer = () => {
                   gap: '8px',
                   opacity: '0.9'
                 }}>
-                  <span>⚙️</span> Manutenção Industrial
+                  <span>??</span> Manutenção Industrial
                 </span>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -271,7 +271,7 @@ const Footer = () => {
                   gap: '8px',
                   opacity: '0.9'
                 }}>
-                  <span>🚗</span> Mecatrónica Automóvel
+                  <span>??</span> Mecatrónica Automóvel
                 </span>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -282,7 +282,7 @@ const Footer = () => {
                   gap: '8px',
                   opacity: '0.9'
                 }}>
-                  <span>🍳</span> Cozinha/Pastelaria
+                  <span>??</span> Cozinha/Pastelaria
                 </span>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -293,7 +293,7 @@ const Footer = () => {
                   gap: '8px',
                   opacity: '0.9'
                 }}>
-                  <span>🏗️</span> Construção Civil
+                  <span>???</span> Construção Civil
                 </span>
               </li>
               <li style={{ marginBottom: '0.8rem' }}>
@@ -304,7 +304,7 @@ const Footer = () => {
                   gap: '8px',
                   opacity: '0.9'
                 }}>
-                  <span>💻</span> Informática
+                  <span>??</span> Informática
                 </span>
               </li>
             </ul>
@@ -320,7 +320,7 @@ const Footer = () => {
               borderBottom: '2px solid rgba(248, 177, 51, 0.3)',
               paddingBottom: '0.5rem'
             }}>
-              📞 Contactos
+              ?? Contactos
             </h4>
             <ul style={{
               listStyle: 'none',
@@ -338,7 +338,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   flexShrink: '0'
                 }}>
-                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>📍</span>
+                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>??</span>
                 </div>
                 <div>
                   <div style={{ fontWeight: '600', color: '#f8b133' }}>Endereço</div>
@@ -357,7 +357,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   flexShrink: '0'
                 }}>
-                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>📞</span>
+                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>??</span>
                 </div>
                 <div>
                   <div style={{ fontWeight: '600', color: '#f8b133' }}>Telefone</div>
@@ -375,7 +375,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   flexShrink: '0'
                 }}>
-                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>✉️</span>
+                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>??</span>
                 </div>
                 <div>
                   <div style={{ fontWeight: '600', color: '#f8b133' }}>Email</div>
@@ -393,7 +393,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   flexShrink: '0'
                 }}>
-                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>🕒</span>
+                  <span style={{ fontSize: '1.2rem', color: '#f8b133' }}>??</span>
                 </div>
                 <div>
                   <div style={{ fontWeight: '600', color: '#f8b133' }}>Horário</div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://site-escola-65zi.onrender.com/api';
-const STRAPI_URL = 'https://site-escola-65zi.onrender.com';
+const API_URL = import.meta.env.VITE_API_URL || 'https://strapi-final-funcional.onrender.com/api';
+const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'https://strapi-final-funcional.onrender.com';
 
 const strapiApi = axios.create({
   baseURL: API_URL,
@@ -11,30 +11,30 @@ const strapiApi = axios.create({
 export const newsService = {
   async getAllNews() {
     try {
-      console.log('?? Buscando notícias do Strapi...');
+      console.log('?? Buscando notÃ­cias do Strapi...');
       const response = await strapiApi.get('/noticias?populate=*&sort=createdAt:desc');
       
       console.log('? API respondeu com sucesso');
       
       if (response.data && response.data.data) {
-        console.log(`?? Encontradas ${response.data.data.length} notícias`);
+        console.log(`?? Encontradas ${response.data.data.length} notÃ­cias`);
         const news = this.formatNews(response.data.data);
         return news;
       }
       return [];
       
     } catch (error) {
-      console.error('? Erro ao buscar notícias:', error.message);
+      console.error('? Erro ao buscar notÃ­cias:', error.message);
       return [];
     }
   },
 
   formatNews(newsData) {
     return newsData.map(item => {
-      // SEUS DADOS ESTÃO DIRETAMENTE NO ITEM!
+      // SEUS DADOS ESTÃƒO DIRETAMENTE NO ITEM!
       // A API retorna: {id: 2, titulo: "...", conteudo: [...], ...}
       
-      console.log('?? Processando notícia:', item);
+      console.log('?? Processando notÃ­cia:', item);
       
       // Extrai texto do Rich Text
       let contentText = '';
@@ -59,19 +59,19 @@ export const newsService = {
       
       return {
         id: item.id,
-        title: item.titulo || 'Sem título',
+        title: item.titulo || 'Sem tÃ­tulo',
         content: contentText.trim(),
         excerpt: this.createExcerpt(contentText, 150),
         date: item.data_publicacao || item.createdAt,
         published: item.publicado === true,
         image: imageData,
-        category: 'Notícia'
+        category: 'NotÃ­cia'
       };
     });
   },
 
   createExcerpt(text, maxLength) {
-    if (!text || text.trim() === '') return 'Sem conteúdo disponível...';
+    if (!text || text.trim() === '') return 'Sem conteÃºdo disponÃ­vel...';
     const cleanText = text.trim();
     return cleanText.length > maxLength 
       ? cleanText.substring(0, maxLength) + '...' 
@@ -80,3 +80,5 @@ export const newsService = {
 };
 
 export default newsService;
+
+

@@ -9,19 +9,19 @@ const AdminLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // login fake só para teste
+    // login fake sÃ³ para teste
     if (email === "admin@teste.com" && password === "1234") {
       localStorage.setItem("adminLoggedIn", "true");
       alert("Login OK (fake)");
       navigate("/");
     } else {
-      alert("Credenciais inválidas");
+      alert("Credenciais invÃ¡lidas");
     }
   };
 
   return (
     <div style={{ padding: "3rem", maxWidth: "400px", margin: "auto" }}>
-      <h1>Área Administrativa</h1>
+      <h1>Ãrea Administrativa</h1>
 
       <form onSubmit={handleSubmit}>
         <input

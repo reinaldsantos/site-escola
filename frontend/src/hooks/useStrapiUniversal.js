@@ -1,4 +1,4 @@
-﻿// src/hooks/useStrapiUniversal.js
+// src/hooks/useStrapiUniversal.js
 import { useState, useEffect } from 'react';
 
 const useStrapiUniversal = (collectionName, limit = 10) => {
@@ -54,9 +54,9 @@ const useStrapiUniversal = (collectionName, limit = 10) => {
       setCarregando(true);
       
       // URL correta para Strapi v4
-      const apiUrl = `https://site-escola-65zi.onrender.com/api/${collectionName}?populate=*&sort=createdAt:desc&pagination[pageSize]=${limit}`;
+      const apiUrl = `https://strapi-final-funcional.onrender.com/api/${collectionName}?populate=*&sort=createdAt:desc&pagination[pageSize]=${limit}`;
       
-      console.log(`🔍 Buscando: ${apiUrl}`); // Debug
+      console.log(`?? Buscando: ${apiUrl}`); // Debug
       
       const response = await fetch(apiUrl);
       
@@ -65,7 +65,7 @@ const useStrapiUniversal = (collectionName, limit = 10) => {
       }
       
       const data = await response.json();
-      console.log(`📦 Dados recebidos de ${collectionName}:`, data); // Debug
+      console.log(`?? Dados recebidos de ${collectionName}:`, data); // Debug
       
       // Strapi v4 retorna data.data
       const items = data.data || [];
@@ -87,8 +87,8 @@ const useStrapiUniversal = (collectionName, limit = 10) => {
           };
         });
         
-        console.log(`✅ Campos detectados para ${collectionName}:`, camposDetectados); // Debug
-        console.log(`📊 Primeiro item:`, dadosFormatados[0]); // Debug
+        console.log(`? Campos detectados para ${collectionName}:`, camposDetectados); // Debug
+        console.log(`?? Primeiro item:`, dadosFormatados[0]); // Debug
         
         setDados(dadosFormatados);
         setCampos(camposDetectados);
@@ -98,7 +98,7 @@ const useStrapiUniversal = (collectionName, limit = 10) => {
       }
       
     } catch (erro) {
-      console.error(`❌ Erro ao buscar ${collectionName}:`, erro);
+      console.error(`? Erro ao buscar ${collectionName}:`, erro);
       setDados([]);
       setCampos({});
     } finally {
@@ -114,5 +114,6 @@ const useStrapiUniversal = (collectionName, limit = 10) => {
 };
 
 export default useStrapiUniversal;
+
 
 
