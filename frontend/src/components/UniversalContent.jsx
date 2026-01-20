@@ -48,9 +48,9 @@ const UniversalContent = ({
           // Extrair imagem se existir (formato Strapi v5)
           let imagemUrl = null;
           if (imagem?.data?.attributes?.url) {
-            imagemUrl = `http://strapi-final-funcional.onrender.com${imagem.data.attributes.url}`;
+            imagemUrl = `https://strapi-final-funcional.onrender.com${imagem.data.attributes.url}`;
           } else if (imagem?.url) {
-            imagemUrl = `http://strapi-final-funcional.onrender.com${imagem.url}`;
+            imagemUrl = `https://strapi-final-funcional.onrender.com${imagem.url}`;
           }
           
           // Formatar data corretamente
@@ -141,5 +141,6 @@ const extrairTextoRichText = (richText, maxLength = 100) => {
 };
 
 export default UniversalContent;
+
 
 

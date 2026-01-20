@@ -1,8 +1,8 @@
-﻿// Teste da API do Strapi para verificar estrutura das imagens
+// Teste da API do Strapi para verificar estrutura das imagens
 async function testStrapiImages() {
   try {
-    // Testar endpoint de notÃ­cias
-    const response = await fetch('http://strapi-final-funcional.onrender.com/api/noticias?populate=*');
+    // Testar endpoint de notícias
+    const response = await fetch('https://strapi-final-funcional.onrender.com/api/noticias?populate=*');
     const data = await response.json();
     
     console.log('?? ESTRUTURA DA API:');
@@ -20,8 +20,8 @@ async function testStrapiImages() {
       } else {
         console.log('? Sem imagem no atributo "imagem"');
         
-        // Verificar outros atributos possÃ­veis
-        console.log('Atributos disponÃ­veis:', Object.keys(firstItem.attributes));
+        // Verificar outros atributos possíveis
+        console.log('Atributos disponíveis:', Object.keys(firstItem.attributes));
       }
     }
   } catch (error) {

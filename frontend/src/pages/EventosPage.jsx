@@ -45,7 +45,7 @@ const EventosPage = () => {
                         <h3>Nenhum evento agendado</h3>
                         <p>
                             Os eventos aparecerão aqui automaticamente quando forem 
-                            publicados no <a href="http://strapi-final-funcional.onrender.com/admin">Strapi Admin</a>
+                            publicados no <a href="https://strapi-final-funcional.onrender.com/admin">Strapi Admin</a>
                         </p>
                     </div>
                 ) : (
@@ -142,6 +142,7 @@ const EventoCard = ({ evento, tipo }) => {
 };
 
 export default EventosPage;
+
 
 
 

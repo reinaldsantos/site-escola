@@ -1,4 +1,4 @@
-﻿// src/hooks/useStrapiData.js
+// src/hooks/useStrapiData.js
 import { useState, useEffect } from 'react';
 
 const useStrapiData = (collectionName, limit = 10) => {
@@ -12,7 +12,7 @@ const useStrapiData = (collectionName, limit = 10) => {
         setCarregando(true);
         setErro(null);
         
-        const url = `http://strapi-final-funcional.onrender.com/api/${collectionName}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
+        const url = `https://strapi-final-funcional.onrender.com/api/${collectionName}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
         const response = await fetch(url);
         
         if (!response.ok) {

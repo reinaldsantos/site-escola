@@ -1,6 +1,6 @@
-﻿import axios from 'axios';
+import axios from 'axios';
 
-// ConfiguraÃƒÂ§ÃƒÂ£o do axios com baseURL baseado no ambiente
+// ConfiguraÃ§Ã£o do axios com baseURL baseado no ambiente
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'https://strapi-final-funcional.onrender.com/api',
   headers: {
@@ -8,7 +8,7 @@ const api = axios.create({
   }
 });
 
-// Interceptor para adicionar token nas requisiÃƒÂ§ÃƒÂµes
+// Interceptor para adicionar token nas requisiÃ§Ãµes
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -35,6 +35,5 @@ api.interceptors.response.use(
 );
 
 export default api;
-
 
 
