@@ -1,6 +1,4 @@
-﻿// CONFIGURAÇÃO FIXA para PostgreSQL no Render
-// Sem variáveis de ambiente, sem parsing - APENAS OS VALORES DIRETOS
-
+﻿// FORMATO 1: Exportação direta do objeto
 module.exports = {
   connection: {
     client: 'postgres',
