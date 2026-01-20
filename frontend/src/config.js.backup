@@ -1,11 +1,11 @@
-﻿// CONFIG.JS SIMPLIFICADO - USA SEMPRE PROXY LOCAL
+// CONFIG.JS SIMPLIFICADO - USA SEMPRE PROXY LOCAL
 const getConfig = () => {
   return {
     // ?? SEMPRE usa proxy do React (localhost:3000/api ? strapi-final-funcional.onrender.com/api)
     API_URL: import.meta.env.VITE_API_URL || 'https://strapi-final-funcional.onrender.com/api',
     BASE_URL: '',
 
-    // ========== MÃ‰TODO PRINCIPAL ==========
+    // ========== MÉTODO PRINCIPAL ==========
     buscar: async (colecao, limite = 10) => {
       const config = getConfig();
       console.log(`?? Buscando "${colecao}" de ${config.API_URL}`);
@@ -83,7 +83,6 @@ const getConfig = () => {
 };
 
 export default getConfig;
-
 
 
 

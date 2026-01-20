@@ -12,14 +12,5 @@
   </body>
 
   <link rel="icon" type="image/png" href="/epf-logo.png">
-
-
-
-  module.exports = {
-    async bootstrap({ strapi }) {
-      // Chama o script de permissões
-      await require('./extensions/users-permissions/config/permissions')({ strapi });
-    },
-  };
   
 </html>

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import "./HomePage.css";
 import ContentUniversal from "../components/ContentUniversal";
 
@@ -11,7 +11,7 @@ const HomePage = () => {
           <h1>ESCOLA PROFISSIONAL DO FUNDÃO</h1>
           <p className="slogan">
             <span>#PROXIMIDADE</span>
-            <span>QUALIDADE</span>
+            <span>#QUALIDADE</span>
             <span>#LomodEFF</span>
           </p>
         </div>
