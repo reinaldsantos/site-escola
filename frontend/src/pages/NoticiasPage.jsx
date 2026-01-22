@@ -17,7 +17,7 @@ const NoticiasPage = () => {
 
   const buscarNoticias = async () => {
     try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticia?populate=*&sort=data_publicacao:desc");
       const data = await response.json();
       setDados(prev => ({ ...prev, noticias: data.data || [] }));
     } catch (error) {
@@ -29,7 +29,7 @@ const NoticiasPage = () => {
 
   const buscarEventos = async () => {
     try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/eventos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/evento?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, eventos: data.data || [] }));
@@ -43,7 +43,7 @@ const NoticiasPage = () => {
 
   const buscarAvisos = async () => {
     try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/avisos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/aviso?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, avisos: data.data || [] }));

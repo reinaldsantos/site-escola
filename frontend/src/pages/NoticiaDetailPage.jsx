@@ -13,8 +13,8 @@ const NoticiaDetailPage = () => {
     const buscarNoticia = async () => {
       try {
         setCarregando(true);
-        // URL para buscar uma notícia específica
-        const response = await fetch(`https://strapi-final-funcional.onrender.com/api/noticias/${id}?populate=*`);
+        // URL para buscar uma notícia específica - CORRIGIDO: usar singular
+        const response = await fetch(`https://strapi-final-funcional.onrender.com/api/noticia/${id}?populate=*`);
         
         if (!response.ok) {
           throw new Error("Notícia não encontrada");
@@ -86,6 +86,13 @@ const NoticiaDetailPage = () => {
   else if (attributes?.capa?.data?.attributes?.url) {
     imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.capa.data.attributes.url}`;
   }
+  // Adicione mais campos se necessário
+  else if (attributes?.foto?.data?.attributes?.url) {
+    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.foto.data.attributes.url}`;
+  }
+  else if (attributes?.thumbnail?.data?.attributes?.url) {
+    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.thumbnail.data.attributes.url}`;
+  }
 
   // Formatar data
   let dataFormatada = "";
@@ -107,6 +114,23 @@ const NoticiaDetailPage = () => {
     }
   }
 
+  // Função para compartilhar
+  const handleCompartilhar = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: titulo,
+        text: `Confira esta notícia da EPF: ${titulo}`,
+        url: window.location.href,
+      })
+      .catch(error => console.log('Erro ao compartilhar:', error));
+    } else {
+      // Fallback para copiar link
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => alert('Link copiado para a área de transferência!'))
+        .catch(err => console.error('Erro ao copiar link:', err));
+    }
+  };
+
   return (
     <div className="noticia-detail-container">
       <article className="noticia-detail">
@@ -116,7 +140,14 @@ const NoticiaDetailPage = () => {
         
         {imagemUrl && (
           <div className="noticia-imagem-principal">
-            <img src={imagemUrl} alt={titulo} />
+            <img 
+              src={imagemUrl} 
+              alt={titulo} 
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.parentElement.classList.add('sem-imagem');
+              }}
+            />
           </div>
         )}
 
@@ -146,9 +177,20 @@ const NoticiaDetailPage = () => {
             <Link to="/noticias" className="btn-acao">
               📰 Ver todas as notícias
             </Link>
-            <button className="btn-acao compartilhar">
+            <button className="btn-acao compartilhar" onClick={handleCompartilhar}>
               📤 Compartilhar
             </button>
+          </div>
+          
+          <div className="tags">
+            {attributes?.tags && Array.isArray(attributes.tags) && attributes.tags.length > 0 && (
+              <div className="tags-container">
+                <span className="tags-label">🏷️ Tags:</span>
+                {attributes.tags.map((tag, index) => (
+                  <span key={index} className="tag">{tag}</span>
+                ))}
+              </div>
+            )}
           </div>
         </footer>
       </article>
@@ -162,31 +204,92 @@ const renderConteudo = (conteudo) => {
 
   // Se for string simples
   if (typeof conteudo === 'string') {
-    return <div dangerouslySetInnerHTML={{ __html: conteudo.replace(/\n/g, '<br/>') }} />;
+    // Verifica se é HTML
+    if (conteudo.includes('<') && conteudo.includes('>')) {
+      return <div dangerouslySetInnerHTML={{ __html: conteudo }} />;
+    }
+    // Se for texto puro
+    return <p>{conteudo}</p>;
   }
 
-  // Se for array (rich text do Strapi)
+  // Se for array (rich text do Strapi v4)
   if (Array.isArray(conteudo)) {
     return (
       <div>
         {conteudo.map((block, index) => {
+          if (!block) return null;
+          
+          // Paragraph
           if (block.type === 'paragraph') {
-            return <p key={index}>{block.children?.map(child => child.text).join(' ')}</p>;
+            return (
+              <p key={index}>
+                {block.children?.map((child, childIndex) => {
+                  if (child.type === 'text') {
+                    if (child.bold) return <strong key={childIndex}>{child.text}</strong>;
+                    if (child.italic) return <em key={childIndex}>{child.text}</em>;
+                    if (child.underline) return <u key={childIndex}>{child.text}</u>;
+                    return child.text;
+                  }
+                  return null;
+                })}
+              </p>
+            );
           }
+          
+          // Heading
           if (block.type === 'heading') {
-            const Tag = `h${block.level}`;
-            return <Tag key={index}>{block.children?.map(child => child.text).join(' ')}</Tag>;
+            const Tag = `h${block.level || 2}`;
+            return (
+              <Tag key={index}>
+                {block.children?.map((child, childIndex) => {
+                  if (child.type === 'text') {
+                    if (child.bold) return <strong key={childIndex}>{child.text}</strong>;
+                    if (child.italic) return <em key={childIndex}>{child.text}</em>;
+                    return child.text;
+                  }
+                  return null;
+                })}
+              </Tag>
+            );
           }
+          
+          // List
           if (block.type === 'list') {
             const Tag = block.format === 'ordered' ? 'ol' : 'ul';
             return (
               <Tag key={index}>
-                {block.children?.map((item, i) => (
-                  <li key={i}>{item.children?.map(child => child.text).join(' ')}</li>
+                {block.children?.map((item, itemIndex) => (
+                  <li key={itemIndex}>
+                    {item.children?.map((child, childIndex) => {
+                      if (child.type === 'text') {
+                        if (child.bold) return <strong key={childIndex}>{child.text}</strong>;
+                        if (child.italic) return <em key={childIndex}>{child.text}</em>;
+                        return child.text;
+                      }
+                      return null;
+                    })}
+                  </li>
                 ))}
               </Tag>
             );
           }
+          
+          // Image (se houver imagens no conteúdo)
+          if (block.type === 'image') {
+            const imageUrl = block.image?.url || block.url;
+            if (imageUrl) {
+              return (
+                <figure key={index} className="imagem-conteudo">
+                  <img 
+                    src={`https://strapi-final-funcional.onrender.com${imageUrl}`} 
+                    alt={block.caption || "Imagem da notícia"}
+                  />
+                  {block.caption && <figcaption>{block.caption}</figcaption>}
+                </figure>
+              );
+            }
+          }
+          
           return null;
         })}
       </div>

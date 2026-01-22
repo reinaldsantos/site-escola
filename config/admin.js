@@ -10,4 +10,14 @@
       salt: env('TRANSFER_TOKEN_SALT', 'mytransfersalt2025render'),
     },
   },
+  // ⚠️ CONFIGURAÇÃO NUCLEAR - DESATIVA PROBLEMAS
+  flags: {
+    nps: false,           // Desativa pesquisas
+    promoteEE: false,     // Desativa promoções
+  },
+  // Otimizações de performance
+  watchIgnoreFiles: [
+    '**/config/sync/**',
+    '**/src/**',
+  ],
 });

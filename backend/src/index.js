@@ -4,14 +4,14 @@ module.exports = {
   async bootstrap({ strapi }) {
     console.log("?? BOOTSTRAP INICIADO: Registrando APIs...");
     
-    // Forçar registro de todas as content-types
+    // Forï¿½ar registro de todas as content-types
     try {
       await strapi.contentTypes.initialize();
       console.log("? APIs registradas com sucesso!");
       
-      // Forçar recarregamento das permissões
+      // Forï¿½ar recarregamento das permissï¿½es
       await strapi.plugin("users-permissions").service("users-permissions").initialize();
-      console.log("? Permissões inicializadas!");
+      console.log("? Permissï¿½es inicializadas!");
     } catch (error) {
       console.error("? Erro no bootstrap:", error.message);
     }

@@ -17,7 +17,7 @@ const NoticiasPage = () => {
 
   const buscarNoticias = async () => {
     try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticias?populate=*&sort=data_publicacao:desc");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticia?populate=*&sort=data_publicacao:desc");
       const data = await response.json();
       setDados(prev => ({ ...prev, noticias: data.data || [] }));
     } catch (error) {
@@ -29,7 +29,7 @@ const NoticiasPage = () => {
 
   const buscarEventos = async () => {
     try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/eventos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/evento?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, eventos: data.data || [] }));
@@ -43,7 +43,7 @@ const NoticiasPage = () => {
 
   const buscarAvisos = async () => {
     try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/avisos?populate=*");
+      const response = await fetch("https://strapi-final-funcional.onrender.com/api/aviso?populate=*");
       if (response.ok) {
         const data = await response.json();
         setDados(prev => ({ ...prev, avisos: data.data || [] }));
@@ -120,7 +120,11 @@ const NoticiasPage = () => {
             <span className="numero">{dados.noticias.length}</span>
             <span className="label">notícias</span>
           </div>
-          <button className="btn-atualizar" onClick={buscarNoticias}>Atualizar</button>
+          <button className="btn-atualizar" onClick={() => {
+            buscarNoticias();
+            buscarEventos();
+            buscarAvisos();
+          }}>Atualizar</button>
         </div>
       </header>
 
@@ -132,13 +136,13 @@ const NoticiasPage = () => {
       <nav className="noticias-navegacao">
         <div className="abas-container">
           <button className={`aba ${abaAtiva === "noticias" ? "ativa" : ""}`} onClick={() => setAbaAtiva("noticias")}>
-            Notícias
+            Notícias ({dados.noticias.length})
           </button>
           <button className={`aba ${abaAtiva === "eventos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("eventos")}>
-            Eventos
+            Eventos ({dados.eventos.length})
           </button>
           <button className={`aba ${abaAtiva === "avisos" ? "ativa" : ""}`} onClick={() => setAbaAtiva("avisos")}>
-            Avisos
+            Avisos ({dados.avisos.length})
           </button>
         </div>
       </nav>
@@ -221,7 +225,7 @@ const NoticiasPage = () => {
           <Link to="/contactos" className="btn-contactar">CONTACTAR SECRETARIA</Link>
         </div>
         <div className="copyright">
-          <p>© 2026 EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
+          <p>© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
         </div>
       </footer>
     </div>
