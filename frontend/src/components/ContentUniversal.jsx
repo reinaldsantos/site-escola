@@ -1,4 +1,4 @@
-// src/components/ContentUniversal.jsx - VERSÃO COM LINKS PERSONALIZADOS
+// src/components/ContentUniversal.jsx - VERSÃO FINAL CORRIGIDA
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStrapiUniversal from '../hooks/useStrapiUniversal';
@@ -35,7 +35,7 @@ const ContentUniversal = ({
           Nenhum conteúdo publicado ainda na coleção <strong>{collectionName}</strong>.
           <br />
           <small>
-            Publique no <a href="https://strapi-final-funcional.onrender.com/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
+            Publique no <a href="https://strapi-definitivo.onrender.com/admin" target="_blank" rel="noreferrer">Strapi Admin</a>
           </small>
         </p>
       </div>
@@ -45,47 +45,137 @@ const ContentUniversal = ({
   const displayTitle = title ||
     collectionName.charAt(0).toUpperCase() + collectionName.slice(1);
 
-  // Função para extrair valor CORRETA
+  // CORREÇÃO: Função MELHORADA para extrair valor
   const extrairValor = (item, campo) => {
     if (!campo) return null;
     
-    // Acessar campo direto ou aninhado
-    let valor = item[campo];
+    console.log(`🔍 Extraindo campo "${campo}" do item:`, item.id);
     
-    // Se não encontrar, tentar em attributes (Strapi v4)
-    if (valor === undefined && item.attributes) {
-      valor = item.attributes[campo];
+    // 1. Primeiro, tentar no item diretamente
+    if (item[campo] !== undefined) {
+      console.log(`✅ Campo "${campo}" encontrado diretamente:`, item[campo]);
+      return item[campo];
     }
     
-    return valor;
+    // 2. Tentar com nomes alternativos
+    const alternativos = {
+      'titulo': ['title', 'nome', 'name'],
+      'conteudo': ['content', 'descricao', 'description', 'texto', 'text'],
+      'imagem': ['image', 'foto', 'photo', 'capa', 'cover', 'banner', 'thumbnail'],
+      'data': ['date', 'data_publicacao', 'data_evento', 'data_hora', 'publishedAt']
+    };
+    
+    if (alternativos[campo]) {
+      for (const alternativo of alternativos[campo]) {
+        if (item[alternativo] !== undefined) {
+          console.log(`✅ Campo "${campo}" encontrado como "${alternativo}":`, item[alternativo]);
+          return item[alternativo];
+        }
+      }
+    }
+    
+    console.log(`❌ Campo "${campo}" não encontrado`);
+    return null;
   };
 
-  // Função para extrair URL da imagem CORRETA
-  const extrairImagemUrl = (imagem) => {
-    if (!imagem) return null;
+  // CORREÇÃO: Função MELHORADA para extrair URL da imagem
+  const extrairImagemUrl = (item) => {
+    if (!item) return null;
     
-    // Formato Strapi v4
-    if (imagem.data?.attributes?.url) {
-      return `https://strapi-final-funcional.onrender.com${imagem.data.attributes.url}`;
-    }
-    // Formato direto com atributos
-    else if (imagem.attributes?.url) {
-      return `https://strapi-final-funcional.onrender.com${imagem.attributes.url}`;
-    }
-    // Formato antigo
-    else if (imagem.url) {
-      return `https://strapi-final-funcional.onrender.com${imagem.url}`;
-    }
-    // Formato thumbnail
-    else if (imagem.formats?.thumbnail?.url) {
-      return `https://strapi-final-funcional.onrender.com${imagem.formats.thumbnail.url}`;
+    console.log(`🔍 Extraindo imagem do item:`, item.id, item.titulo || item.nome);
+    
+    const BASE_URL = "https://strapi-definitivo.onrender.com";
+    
+    // 1. Se já tem imagemUrl do hook (CASO MAIS COMUM - FUNCIONA!)
+    if (item.imagemUrl) {
+      console.log('✅ imagemUrl do hook:', item.imagemUrl);
+      return item.imagemUrl;
     }
     
+    // 2. Verificar TODOS os campos possíveis de imagem
+    const camposImagem = [
+      'imagem', 'image', 'foto', 'photo', 
+      'capa', 'cover', 'banner', 'thumbnail'
+    ];
+    
+    for (const campo of camposImagem) {
+      const valor = item[campo];
+      
+      if (valor) {
+        console.log(`📸 Campo "${campo}" encontrado:`, valor);
+        
+        // Se for string (URL direta)
+        if (typeof valor === 'string') {
+          if (valor.startsWith('http')) {
+            console.log(`✅ URL direta em "${campo}":`, valor);
+            return valor;
+          } else if (valor.startsWith('/')) {
+            const url = `${BASE_URL}${valor}`;
+            console.log(`✅ URL relativa em "${campo}":`, url);
+            return url;
+          }
+        }
+        
+        // Se for objeto com URL
+        if (valor.url) {
+          const url = valor.url.startsWith('http') ? valor.url : `${BASE_URL}${valor.url}`;
+          console.log(`✅ URL em "${campo}.url":`, url);
+          return url;
+        }
+        
+        // Se for objeto com data.attributes
+        if (valor.data?.attributes?.url) {
+          const url = `${BASE_URL}${valor.data.attributes.url}`;
+          console.log(`✅ URL em "${campo}.data.attributes.url":`, url);
+          return url;
+        }
+        
+        // Se tem thumbnail
+        if (valor.formats?.thumbnail?.url) {
+          const url = `${BASE_URL}${valor.formats.thumbnail.url}`;
+          console.log(`✅ URL thumbnail em "${campo}":`, url);
+          return url;
+        }
+      }
+    }
+    
+    // 3. Se for evento, verificar se tem banner específico
+    if (collectionName === 'eventos') {
+      console.log('🔍 Procurando banner em eventos...');
+      
+      // Eventos podem ter a imagem em campos diferentes
+      const camposEvento = ['banner', 'imagem_evento', 'event_image'];
+      
+      for (const campo of camposEvento) {
+        if (item[campo]?.url) {
+          const url = item[campo].url.startsWith('http') 
+            ? item[campo].url 
+            : `${BASE_URL}${item[campo].url}`;
+          console.log(`✅ Banner encontrado em "${campo}":`, url);
+          return url;
+        }
+      }
+    }
+    
+    // 4. Se for curso, verificar campo específico
+    if (collectionName === 'cursos') {
+      console.log('🔍 Procurando imagem em cursos...');
+      
+      if (item.logo?.url) {
+        const url = item.logo.url.startsWith('http')
+          ? item.logo.url
+          : `${BASE_URL}${item.logo.url}`;
+        console.log('✅ Logo do curso encontrada:', url);
+        return url;
+      }
+    }
+    
+    console.log('❌ Nenhuma imagem encontrada');
     return null;
   };
 
   // Determinar para onde vai o link de detalhes (botão dentro do card)
-  const getDetailPath = () => {
+  const getDetailPath = (item) => {
     // Se tiver página customizada definida
     if (customDetailPage) {
       return `/${customDetailPage}`;
@@ -93,14 +183,14 @@ const ContentUniversal = ({
     
     // Mapeamento padrão baseado na coleção
     const mapeamento = {
-      'noticias': null,          // NOTÍCIAS: NÃO TEM BOTÃO
-      'eventos': 'noticias',     // EVENTOS: vai para /noticias (listagem)
-      'cursos': 'formacao',      // CURSOS: vai para /formacao (mesmo que "Ver todos")
-      'avisos': null             // AVISOS: NÃO TEM BOTÃO
+      'noticias': 'noticias',
+      'eventos': 'noticias',  // Eventos vão para /noticias com aba eventos
+      'cursos': 'cursos',     // Cursos vão para página própria
+      'avisos': 'noticias'    // Avisos vão para /noticias com aba avisos
     };
     
     const destino = mapeamento[collectionName];
-    return destino ? `/${destino}` : null;
+    return destino ? `/${destino}/${item.id}` : null;
   };
 
   // Determinar para onde vai o link "Ver todos"
@@ -112,10 +202,10 @@ const ContentUniversal = ({
     
     // Mapeamento padrão para "Ver todos"
     const mapeamentoViewAll = {
-      'noticias': 'noticias',    // Ver todas notícias ? página de notícias
-      'eventos': 'noticias',     // Ver todos eventos ? página de notícias
-      'cursos': 'formacao',      // Ver todos cursos ? página de formação
-      'avisos': 'noticias'       // Ver todos avisos ? página de notícias
+      'noticias': 'noticias',
+      'eventos': 'noticias',
+      'cursos': 'cursos',
+      'avisos': 'noticias'
     };
     
     return `/${mapeamentoViewAll[collectionName] || collectionName}`;
@@ -123,16 +213,14 @@ const ContentUniversal = ({
 
   // Determinar se deve mostrar botão dentro do card
   const shouldShowCardButton = () => {
-    // Só mostra botão para eventos e cursos
-    // Notícias e avisos NÃO têm botão
     return collectionName === 'eventos' || collectionName === 'cursos';
   };
 
   // Determinar o texto do botão
   const getButtonText = () => {
     const textos = {
-      'cursos': 'VER CURSOS',
-      'eventos': 'VER EVENTOS'
+      'cursos': 'VER CURSO',
+      'eventos': 'VER EVENTO'
     };
     return textos[collectionName] || 'VER MAIS';
   };
@@ -146,16 +234,15 @@ const ContentUniversal = ({
 
       <div className="content-grid">
         {items.map(item => {
-          // Usar campos detectados CORRETAMENTE
-          const titulo = extrairValor(item, campos.titulo) || 'Sem título';
-          const conteudo = extrairValor(item, campos.conteudo);
-          const data = extrairValor(item, campos.data) || item.createdAt;
-          const imagem = extrairValor(item, campos.imagem);
-          const local = extrairValor(item, campos.local);
-          const horario = extrairValor(item, campos.horario);
-
-          // Extrair URL da imagem
-          const imagemUrl = extrairImagemUrl(imagem);
+          // Extrair valores usando a função melhorada
+          const titulo = extrairValor(item, 'titulo') || item.titulo || item.nome || item.title || 'Sem título';
+          const conteudo = extrairValor(item, 'conteudo') || item.conteudo || item.descricao || item.content || '';
+          const data = extrairValor(item, 'data') || item.data || item.data_publicacao || item.data_hora || item.data_evento || item.createdAt;
+          const local = extrairValor(item, 'local') || item.local;
+          const horario = extrairValor(item, 'horario') || item.horario;
+          
+          // CORREÇÃO: Usar a nova função extrairImagemUrl
+          const imagemUrl = extrairImagemUrl(item);
 
           // Formatar data
           let dataFormatada = '';
@@ -180,29 +267,62 @@ const ContentUniversal = ({
             textoDescricao = extractTextFromContent(conteudo, 100);
           }
 
+          // CORREÇÃO: Link de detalhe específico por item
+          const detailPath = getDetailPath(item);
+
           return (
-            <div key={item.id} className="content-card">
-              {imagemUrl && (
-                <div className="card-image-container">
-                  <img src={imagemUrl} alt={titulo} className="card-image" />
-                  
-                  {/* BOTÃO DENTRO DA IMAGEM - Só aparece para eventos e cursos */}
-                  {shouldShowCardButton() && getDetailPath() && (
-                    <div className="card-overlay">
-                      <Link
-                        to={getDetailPath()}
-                        className="card-link-overlay"
-                      >
-                        {getButtonText()}
-                      </Link>
+            <div key={item.id} className="content-card" data-collection={collectionName}>
+              <div className="card-image-container">
+                {imagemUrl ? (
+                  <img 
+                    src={imagemUrl} 
+                    alt={titulo} 
+                    className="card-image"
+                    onError={(e) => {
+                      console.error(`❌ Erro ao carregar imagem: ${imagemUrl}`);
+                      e.target.style.display = 'none';
+                      
+                      // Mostrar placeholder
+                      const placeholder = document.createElement('div');
+                      placeholder.className = 'image-error-placeholder';
+                      placeholder.innerHTML = `
+                        <div class="placeholder-icon">
+                          ${collectionName === 'eventos' ? '📅' : 
+                            collectionName === 'cursos' ? '🎓' : 
+                            collectionName === 'avisos' ? '⚠️' : '📰'}
+                        </div>
+                        <div class="placeholder-text">${collectionName.toUpperCase()}</div>
+                      `;
+                      e.target.parentElement.appendChild(placeholder);
+                    }}
+                    onLoad={() => {
+                      console.log(`✅ Imagem carregada: ${titulo} (${collectionName})`);
+                    }}
+                  />
+                ) : (
+                  <div className="image-placeholder-default">
+                    <div className="placeholder-icon">
+                      {collectionName === 'eventos' ? '📅' : 
+                       collectionName === 'cursos' ? '🎓' : 
+                       collectionName === 'avisos' ? '⚠️' : '📰'}
                     </div>
-                  )}
-                </div>
-              )}
+                    <div className="placeholder-text">{collectionName.toUpperCase()}</div>
+                  </div>
+                )}
+                
+                {/* BOTÃO DENTRO DA IMAGEM - Só aparece para eventos e cursos */}
+                {shouldShowCardButton() && detailPath && (
+                  <div className="card-overlay">
+                    <Link to={detailPath} className="card-link-overlay">
+                      {getButtonText()}
+                    </Link>
+                  </div>
+                )}
+              </div>
 
               <div className="card-content">
                 {dataFormatada && (
-                  <span className="card-date">?? {dataFormatada}</span>
+                  <span className="card-date">📅 {dataFormatada}</span>
                 )}
 
                 <h3 className="card-title">{titulo}</h3>
@@ -213,18 +333,26 @@ const ContentUniversal = ({
 
                 {/* Campos específicos */}
                 <div className="card-details">
-                  {local && <span className="detail-item">?? {local}</span>}
-                  {horario && <span className="detail-item">? {horario}</span>}
+                  {local && <span className="detail-item">📍 {local}</span>}
+                  {horario && <span className="detail-item">⏰ {horario}</span>}
+                  
+                  {/* Informações específicas por coleção */}
+                  {collectionName === 'cursos' && item.duracao && (
+                    <span className="detail-item">⏱️ {item.duracao}</span>
+                  )}
+                  {collectionName === 'cursos' && item.nivel && (
+                    <span className="detail-item">📊 {item.nivel}</span>
+                  )}
+                  {collectionName === 'eventos' && item.vagas && (
+                    <span className="detail-item">🎫 {item.vagas} vagas</span>
+                  )}
                 </div>
 
-                {/* BOTÃO PARA CARDS SEM IMAGEM - Só aparece para eventos e cursos */}
-                {!imagemUrl && shouldShowCardButton() && getDetailPath() && (
+                {/* BOTÃO FORA DA IMAGEM para detalhes */}
+                {detailPath && !shouldShowCardButton() && (
                   <div className="card-footer">
-                    <Link
-                      to={getDetailPath()}
-                      className="card-link-inside"
-                    >
-                      {getButtonText()}
+                    <Link to={detailPath} className="card-link-inside">
+                      Ver detalhes →
                     </Link>
                   </div>
                 )}
@@ -236,9 +364,8 @@ const ContentUniversal = ({
 
       {showViewAll && items.length > 0 && (
         <div className="view-all-section">
-          {/* LINK "VER TODOS" - Usa getViewAllPath() */}
           <Link to={getViewAllPath()} className="btn-view-all">
-            ?? Ver todos os {collectionName}
+            👁️ Ver todos os {collectionName}
           </Link>
         </div>
       )}
@@ -291,10 +418,3 @@ const extractTextFromContent = (content, maxLength = 100) => {
 };
 
 export default ContentUniversal;
-
-
-
-
-
-
-

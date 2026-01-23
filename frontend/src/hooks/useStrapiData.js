@@ -12,16 +12,33 @@ const useStrapiData = (collectionName, limit = 10) => {
         setCarregando(true);
         setErro(null);
         
-        const url = `https://strapi-final-funcional.onrender.com/api/${collectionName}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
+        // CORREÇÃO: Nova URL base e endpoints no plural
+        const baseUrl = 'https://strapi-definitivo.onrender.com';
+        
+        // Mapear nomes das coleções para garantir que estão no plural
+        const collectionsPlural = {
+          'noticia': 'noticias',
+          'evento': 'eventos',
+          'aviso': 'avisos',
+          'curso': 'cursos',
+          // Adicione outras coleções conforme necessário
+        };
+        
+        // Usar o nome no plural, se não fornecermos no plural diretamente
+        const collectionPlural = collectionsPlural[collectionName] || collectionName;
+        
+        const url = `${baseUrl}/api/${collectionPlural}?populate=*&sort=createdAt:DESC${limit ? `&pagination[pageSize]=${limit}` : ''}`;
+        
+        console.log(`🔄 Buscando: ${url}`);
         const response = await fetch(url);
         
         if (!response.ok) {
-          throw new Error(`Erro ${response.status}`);
+          throw new Error(`Erro ${response.status}: ${response.statusText}`);
         }
         
         const data = await response.json();
         
-        // Converter formato Strapi v5
+        // Verificar se há dados antes de formatar
         if (data.data) {
           const formattedData = data.data.map(item => ({
             id: item.id,
@@ -29,13 +46,19 @@ const useStrapiData = (collectionName, limit = 10) => {
           }));
           setDados(formattedData);
         } else {
-          setDados(data);
+          console.warn(`⚠️ Resposta inesperada para ${collectionName}:`, data);
+          setDados([]);
         }
         
       } catch (error) {
-        console.error(`Erro ao buscar ${collectionName}:`, error);
+        console.error(`❌ Erro ao buscar ${collectionName}:`, error);
         setErro(error.message);
         setDados([]);
+        
+        // Adicionar mensagem mais amigável
+        if (error.message.includes('404')) {
+          console.error(`🔍 Endpoint não encontrado. Verifique se a coleção "${collectionName}" existe no Strapi.`);
+        }
       } finally {
         setCarregando(false);
       }
@@ -48,7 +71,3 @@ const useStrapiData = (collectionName, limit = 10) => {
 };
 
 export default useStrapiData;
-
-
-
-

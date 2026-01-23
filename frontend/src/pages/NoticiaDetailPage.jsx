@@ -1,4 +1,3 @@
-// src/pages/NoticiaDetailPage.jsx
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./NoticiaDetailPage.css";
@@ -9,12 +8,15 @@ const NoticiaDetailPage = () => {
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
 
+  // Base URL do novo Strapi - CORRIGIDA para usar plural
+  const STRAPI_BASE_URL = "https://strapi-definitivo.onrender.com";
+
   useEffect(() => {
     const buscarNoticia = async () => {
       try {
         setCarregando(true);
-        // URL para buscar uma notícia específica - CORRIGIDO: usar singular
-        const response = await fetch(`https://strapi-final-funcional.onrender.com/api/noticia/${id}?populate=*`);
+        // CORRETO: usar plural 'noticias'
+        const response = await fetch(`${STRAPI_BASE_URL}/api/noticias/${id}?populate=*`);
         
         if (!response.ok) {
           throw new Error("Notícia não encontrada");
@@ -71,27 +73,23 @@ const NoticiaDetailPage = () => {
   const conteudo = attributes?.conteudo || "";
   const data = attributes?.data_publicacao || attributes?.createdAt;
   
-  // Extrair URL da imagem - tenta diferentes campos
+  // Extrair URL da imagem
   let imagemUrl = null;
   
-  // Tenta campo 'imagem' primeiro
   if (attributes?.imagem?.data?.attributes?.url) {
-    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.imagem.data.attributes.url}`;
+    imagemUrl = `${STRAPI_BASE_URL}${attributes.imagem.data.attributes.url}`;
   } 
-  // Tenta campo 'image' (inglês)
   else if (attributes?.image?.data?.attributes?.url) {
-    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.image.data.attributes.url}`;
+    imagemUrl = `${STRAPI_BASE_URL}${attributes.image.data.attributes.url}`;
   }
-  // Tenta campo 'capa'
   else if (attributes?.capa?.data?.attributes?.url) {
-    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.capa.data.attributes.url}`;
+    imagemUrl = `${STRAPI_BASE_URL}${attributes.capa.data.attributes.url}`;
   }
-  // Adicione mais campos se necessário
   else if (attributes?.foto?.data?.attributes?.url) {
-    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.foto.data.attributes.url}`;
+    imagemUrl = `${STRAPI_BASE_URL}${attributes.foto.data.attributes.url}`;
   }
   else if (attributes?.thumbnail?.data?.attributes?.url) {
-    imagemUrl = `https://strapi-final-funcional.onrender.com${attributes.thumbnail.data.attributes.url}`;
+    imagemUrl = `${STRAPI_BASE_URL}${attributes.thumbnail.data.attributes.url}`;
   }
 
   // Formatar data
@@ -114,7 +112,6 @@ const NoticiaDetailPage = () => {
     }
   }
 
-  // Função para compartilhar
   const handleCompartilhar = () => {
     if (navigator.share) {
       navigator.share({
@@ -124,7 +121,6 @@ const NoticiaDetailPage = () => {
       })
       .catch(error => console.log('Erro ao compartilhar:', error));
     } else {
-      // Fallback para copiar link
       navigator.clipboard.writeText(window.location.href)
         .then(() => alert('Link copiado para a área de transferência!'))
         .catch(err => console.error('Erro ao copiar link:', err));
@@ -169,7 +165,7 @@ const NoticiaDetailPage = () => {
         </header>
 
         <div className="noticia-conteudo">
-          {renderConteudo(conteudo)}
+          {renderConteudo(conteudo, STRAPI_BASE_URL)}
         </div>
 
         <footer className="noticia-footer">
@@ -199,27 +195,22 @@ const NoticiaDetailPage = () => {
 };
 
 // Função para renderizar conteúdo (suporta rich text do Strapi)
-const renderConteudo = (conteudo) => {
+const renderConteudo = (conteudo, baseUrl) => {
   if (!conteudo) return <p>Sem conteúdo disponível.</p>;
 
-  // Se for string simples
   if (typeof conteudo === 'string') {
-    // Verifica se é HTML
     if (conteudo.includes('<') && conteudo.includes('>')) {
       return <div dangerouslySetInnerHTML={{ __html: conteudo }} />;
     }
-    // Se for texto puro
     return <p>{conteudo}</p>;
   }
 
-  // Se for array (rich text do Strapi v4)
   if (Array.isArray(conteudo)) {
     return (
       <div>
         {conteudo.map((block, index) => {
           if (!block) return null;
           
-          // Paragraph
           if (block.type === 'paragraph') {
             return (
               <p key={index}>
@@ -236,7 +227,6 @@ const renderConteudo = (conteudo) => {
             );
           }
           
-          // Heading
           if (block.type === 'heading') {
             const Tag = `h${block.level || 2}`;
             return (
@@ -253,7 +243,6 @@ const renderConteudo = (conteudo) => {
             );
           }
           
-          // List
           if (block.type === 'list') {
             const Tag = block.format === 'ordered' ? 'ol' : 'ul';
             return (
@@ -274,14 +263,13 @@ const renderConteudo = (conteudo) => {
             );
           }
           
-          // Image (se houver imagens no conteúdo)
           if (block.type === 'image') {
             const imageUrl = block.image?.url || block.url;
             if (imageUrl) {
               return (
                 <figure key={index} className="imagem-conteudo">
                   <img 
-                    src={`https://strapi-final-funcional.onrender.com${imageUrl}`} 
+                    src={`${baseUrl}${imageUrl}`} 
                     alt={block.caption || "Imagem da notícia"}
                   />
                   {block.caption && <figcaption>{block.caption}</figcaption>}

@@ -2,66 +2,33 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NoticiasPage.css";
 
+// CORREÇÃO: Importar o hook atualizado
+import useStrapiUniversal from "../hooks/useStrapiUniversal";
+
 const NoticiasPage = () => {
   const [abaAtiva, setAbaAtiva] = useState('noticias');
-  const [dados, setDados] = useState({ 
-    noticias: [], 
-    eventos: [], 
-    avisos: [] 
-  });
-  const [carregando, setCarregando] = useState({ 
-    noticias: true, 
-    eventos: true, 
-    avisos: true 
-  });
-
-  const buscarNoticias = async () => {
-    try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticia?populate=*&sort=data_publicacao:desc");
-      const data = await response.json();
-      setDados(prev => ({ ...prev, noticias: data.data || [] }));
-    } catch (error) {
-      console.error("Erro ao buscar notícias:", error);
-    } finally {
-      setCarregando(prev => ({ ...prev, noticias: false }));
-    }
+  
+  // CORREÇÃO: Usar o hook atualizado em vez de fetch direto
+  const { dados: noticias, carregando: noticiasCarregando } = useStrapiUniversal('noticias', 50);
+  const { dados: eventos, carregando: eventosCarregando } = useStrapiUniversal('eventos', 50);
+  const { dados: avisos, carregando: avisosCarregando } = useStrapiUniversal('avisos', 50);
+  
+  // CORREÇÃO: Base URL centralizada
+  const STRAPI_BASE_URL = "https://strapi-definitivo.onrender.com";
+  
+  // Mapear estados de carregamento
+  const carregando = {
+    noticias: noticiasCarregando,
+    eventos: eventosCarregando,
+    avisos: avisosCarregando
   };
-
-  const buscarEventos = async () => {
-    try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/evento?populate=*");
-      if (response.ok) {
-        const data = await response.json();
-        setDados(prev => ({ ...prev, eventos: data.data || [] }));
-      }
-    } catch (error) {
-      console.error("Erro ao buscar eventos:", error);
-    } finally {
-      setCarregando(prev => ({ ...prev, eventos: false }));
-    }
+  
+  // Mapear dados
+  const dados = {
+    noticias: noticias || [],
+    eventos: eventos || [],
+    avisos: avisos || []
   };
-
-  const buscarAvisos = async () => {
-    try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/aviso?populate=*");
-      if (response.ok) {
-        const data = await response.json();
-        setDados(prev => ({ ...prev, avisos: data.data || [] }));
-      } else {
-        setDados(prev => ({ ...prev, avisos: [] }));
-      }
-    } catch (error) {
-      console.error("Erro ao buscar avisos:", error);
-    } finally {
-      setCarregando(prev => ({ ...prev, avisos: false }));
-    }
-  };
-
-  useEffect(() => {
-    buscarNoticias();
-    buscarEventos();
-    buscarAvisos();
-  }, []);
 
   // FUNÇÃO PARA EXTRAIR TEXTO DO CONTEÚDO
   const extrairTextoConteudo = (conteudo) => {
@@ -76,38 +43,66 @@ const NoticiasPage = () => {
       }).join(' ').substring(0, 150) + '...';
     }
     
-    return conteudo.substring(0, 150) + '...';
+    return typeof conteudo === 'string' ? conteudo.substring(0, 150) + '...' : "Sem conteúdo";
   };
 
-  // FUNÇÃO PARA OBTER URL DA IMAGEM
+  // FUNÇÃO PARA OBTER URL DA IMAGEM (compatível com hook)
   const getImagemUrl = (item) => {
-    if (!item.attributes?.image) return null;
+    if (!item) return null;
     
-    const image = item.attributes.image;
-    
-    // Diferentes estruturas do Strapi v4
-    if (image?.data?.attributes?.url) {
-      return `https://strapi-final-funcional.onrender.com${image.data.attributes.url}`;
+    // Tenta usar imagemUrl do hook primeiro
+    if (item.imagemUrl) {
+      return item.imagemUrl;
     }
     
-    if (image?.url) {
-      return `https://strapi-final-funcional.onrender.com${image.url}`;
-    }
+    // Fallback: procura em campos comuns
+    const camposImagem = ['imagem', 'image', 'foto', 'capa', 'thumbnail'];
     
-    if (image?.data?.url) {
-      return `https://strapi-final-funcional.onrender.com${image.data.url}`;
-    }
-    
-    // Outras chaves possíveis
-    if (item.attributes?.imagem?.data?.attributes?.url) {
-      return `https://strapi-final-funcional.onrender.com${item.attributes.imagem.data.attributes.url}`;
-    }
-    
-    if (item.attributes?.capa?.data?.attributes?.url) {
-      return `https://strapi-final-funcional.onrender.com${item.attributes.capa.data.attributes.url}`;
+    for (const campo of camposImagem) {
+      const imagemData = item[campo];
+      
+      if (imagemData) {
+        if (imagemData.data?.attributes?.url) {
+          return `${STRAPI_BASE_URL}${imagemData.data.attributes.url}`;
+        }
+        if (imagemData.url) {
+          return `${STRAPI_BASE_URL}${imagemData.url}`;
+        }
+      }
     }
     
     return null;
+  };
+
+  // FUNÇÃO PARA FORMATAR DATA
+  const formatarData = (dataString) => {
+    if (!dataString) return "Data não disponível";
+    
+    try {
+      const data = new Date(dataString);
+      return data.toLocaleDateString("pt-PT", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    } catch (error) {
+      return "Data inválida";
+    }
+  };
+
+  // FUNÇÃO PARA OBTER TÍTULO
+  const getTitulo = (item) => {
+    return item?.titulo || item?.title || "Sem título";
+  };
+
+  // FUNÇÃO PARA OBTER CONTEÚDO
+  const getConteudo = (item) => {
+    return item?.conteudo || item?.content || item?.descricao || "";
+  };
+
+  // FUNÇÃO PARA OBTER DATA
+  const getData = (item) => {
+    return item?.data_publicacao || item?.data_evento || item?.createdAt;
   };
 
   return (
@@ -117,14 +112,12 @@ const NoticiasPage = () => {
         <p className="subtitulo">Fique por dentro das últimas novidades da nossa escola</p>
         <div className="cabecalho-info">
           <div className="contador-noticias">
-            <span className="numero">{dados.noticias.length}</span>
-            <span className="label">notícias</span>
+            <span className="numero">{dados.noticias.length + dados.eventos.length}</span>
+            <span className="label">publicações</span>
           </div>
-          <button className="btn-atualizar" onClick={() => {
-            buscarNoticias();
-            buscarEventos();
-            buscarAvisos();
-          }}>Atualizar</button>
+          <button className="btn-atualizar" onClick={() => window.location.reload()}>
+            Atualizar
+          </button>
         </div>
       </header>
 
@@ -157,11 +150,19 @@ const NoticiasPage = () => {
           <div className="sem-conteudo">
             <p>Nenhum conteúdo publicado ainda na coleção <strong>{abaAtiva}</strong>.</p>
             <p>Publique no <strong>Strapi Admin</strong></p>
+            <p className="admin-link">
+              <a href={`${STRAPI_BASE_URL}/admin`} target="_blank" rel="noopener noreferrer">
+                Acessar Painel Administrativo
+              </a>
+            </p>
           </div>
         ) : (
           <div className="noticias-lista">
             {dados[abaAtiva].map((item) => {
               const imagemUrl = getImagemUrl(item);
+              const titulo = getTitulo(item);
+              const conteudo = getConteudo(item);
+              const data = getData(item);
               
               return (
                 <div key={item.id} className="noticia-item">
@@ -169,7 +170,7 @@ const NoticiasPage = () => {
                     <div className="noticia-imagem-container">
                       <img 
                         src={imagemUrl} 
-                        alt={item.attributes?.titulo || "Notícia"} 
+                        alt={titulo} 
                         className="noticia-imagem"
                         loading="lazy"
                         onError={(e) => {
@@ -183,23 +184,13 @@ const NoticiasPage = () => {
                   <div className="noticia-conteudo">
                     <div className="noticia-meta">
                       <span className="noticia-data">
-                        {item.attributes?.data_publicacao
-                          ? new Date(item.attributes.data_publicacao).toLocaleDateString("pt-PT", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })
-                          : new Date(item.attributes?.createdAt).toLocaleDateString("pt-PT", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
+                        {formatarData(data)}
                       </span>
                       <span className="noticia-tipo">{abaAtiva.toUpperCase()}</span>
                     </div>
-                    <h3 className="noticia-titulo">{item.attributes?.titulo || "Sem título"}</h3>
+                    <h3 className="noticia-titulo">{titulo}</h3>
                     <p className="noticia-descricao">
-                      {extrairTextoConteudo(item.attributes?.conteudo)}
+                      {extrairTextoConteudo(conteudo)}
                     </p>
                     <div className="noticia-rodape">
                       <span className="noticia-status">
@@ -207,7 +198,7 @@ const NoticiasPage = () => {
                         <span className="noticia-autor">EPF Escola</span>
                       </span>
                       <Link to={`/${abaAtiva}/${item.id}`} className="noticia-link">
-                        Ver completo →
+                        Ver {abaAtiva === 'eventos' ? 'detalhes' : 'completo'} →
                       </Link>
                     </div>
                   </div>
@@ -226,6 +217,9 @@ const NoticiasPage = () => {
         </div>
         <div className="copyright">
           <p>© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
+          <p className="admin-note">
+            Sistema alimentado por: <a href={`${STRAPI_BASE_URL}/admin`} target="_blank" rel="noopener noreferrer">Strapi Admin</a>
+          </p>
         </div>
       </footer>
     </div>

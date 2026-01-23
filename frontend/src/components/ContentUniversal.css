@@ -463,3 +463,61 @@
     margin-bottom: 0;
 }
 
+/* Estilos para imagens com erro e placeholders */
+.image-error-placeholder {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .image-placeholder-default {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .image-error-placeholder .placeholder-icon,
+  .image-placeholder-default .placeholder-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .image-error-placeholder .placeholder-text,
+  .image-placeholder-default .placeholder-text {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Cores por tipo de coleção */
+  .content-card[data-collection="noticias"] .image-error-placeholder,
+  .content-card[data-collection="noticias"] .image-placeholder-default {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+  }
+  
+  .content-card[data-collection="eventos"] .image-error-placeholder,
+  .content-card[data-collection="eventos"] .image-placeholder-default {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  }
+  
+  .content-card[data-collection="cursos"] .image-error-placeholder,
+  .content-card[data-collection="cursos"] .image-placeholder-default {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  }
+  
+  .content-card[data-collection="avisos"] .image-error-placeholder,
+  .content-card[data-collection="avisos"] .image-placeholder-default {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  }

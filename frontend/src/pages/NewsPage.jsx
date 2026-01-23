@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import './NewsPage.css';
-import newsService from '../services/strapi';
 
 const NewsPage = () => {
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // CORREÇÃO: Nova URL base
+  const STRAPI_BASE_URL = "https://strapi-definitivo.onrender.com";
 
   useEffect(() => {
     fetchNews();
@@ -13,10 +15,49 @@ const NewsPage = () => {
   const fetchNews = async () => {
     try {
       setLoading(true);
-      const news = await newsService.getAllNews();
-      setNewsData(news);
+      
+      // CORREÇÃO: Endpoint correto no plural
+      const response = await fetch(`${STRAPI_BASE_URL}/api/noticias?populate=*&sort=createdAt:desc`);
+      
+      if (!response.ok) {
+        throw new Error(`Erro ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      
+      // Processar dados do Strapi v4
+      if (data.data) {
+        const formattedNews = data.data.map(item => {
+          const attributes = item.attributes || {};
+          
+          // Extrair URL da imagem
+          let imageUrl = null;
+          if (attributes.imagem?.data?.attributes?.url) {
+            imageUrl = `${STRAPI_BASE_URL}${attributes.imagem.data.attributes.url}`;
+          }
+          
+          return {
+            id: item.id,
+            title: attributes.titulo || attributes.title || "Sem título",
+            date: attributes.data_publicacao || attributes.createdAt,
+            excerpt: attributes.conteudo ? 
+              (typeof attributes.conteudo === 'string' ? 
+                attributes.conteudo.substring(0, 200) + '...' : 
+                'Conteúdo disponível') : 
+              'Sem descrição',
+            image: imageUrl ? { url: imageUrl } : null,
+            published: true
+          };
+        });
+        
+        setNewsData(formattedNews);
+      } else {
+        setNewsData([]);
+      }
+      
     } catch (err) {
       console.error('Erro ao carregar notícias:', err);
+      setNewsData([]);
     } finally {
       setLoading(false);
     }
@@ -30,7 +71,7 @@ const NewsPage = () => {
         year: 'numeric'
       });
     } catch {
-      return '';
+      return 'Data não disponível';
     }
   };
 
@@ -46,7 +87,7 @@ const NewsPage = () => {
     <div style={{maxWidth: '1200px', margin: '0 auto', padding: '20px'}}>
       {/* CABEÇALHO SIMPLES */}
       <div style={{textAlign: 'center', marginBottom: '40px'}}>
-        <h1 style={{color: '#2c3e50', fontSize: '2.5rem'}}>?? Notícias EPF</h1>
+        <h1 style={{color: '#2c3e50', fontSize: '2.5rem'}}>📰 Notícias EPF</h1>
         <h3 style={{
           color: '#3498db',
           fontSize: '1.3rem',
@@ -67,7 +108,7 @@ const NewsPage = () => {
             borderRadius: '25px'
           }}>
             <span style={{color: '#3498db'}}>
-              ?? {newsData.length} notícia{newsData.length !== 1 ? 's' : ''}
+              📊 {newsData.length} notícia{newsData.length !== 1 ? 's' : ''}
             </span>
             <button 
               onClick={fetchNews}
@@ -81,7 +122,7 @@ const NewsPage = () => {
                 fontSize: '14px'
               }}
             >
-              ?? Atualizar
+              🔄 Atualizar
             </button>
           </div>
         )}
@@ -92,32 +133,47 @@ const NewsPage = () => {
         <div style={{textAlign: 'center', padding: '60px', color: '#95a5a6'}}>
           <h3>Nenhuma notícia no momento</h3>
           <p>Em breve teremos novidades para partilhar.</p>
+          <p style={{marginTop: '10px', fontSize: '14px'}}>
+            <a 
+              href={`${STRAPI_BASE_URL}/admin`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{color: '#3498db'}}
+            >
+              Acessar painel administrativo
+            </a>
+          </p>
         </div>
       ) : (
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '30px'}}>
           {newsData.map(item => (
-            <div key={item.id} style={{
-              background: 'white',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 5px 15px rgba(0,0,0,0.08)',
-              transition: 'transform 0.3s ease',
-              border: '1px solid #ecf0f1'
-            }}>
+            <div 
+              key={item.id} 
+              style={{
+                background: 'white',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                boxShadow: '0 5px 15px rgba(0,0,0,0.08)',
+                transition: 'transform 0.3s ease',
+                border: '1px solid #ecf0f1',
+                cursor: 'pointer'
+              }}
+              onClick={() => window.location.href = `/noticias/${item.id}`}
+              onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
               {/* IMAGEM */}
-              {item.image && (
+              {item.image && item.image.url && (
                 <div style={{height: '200px', overflow: 'hidden'}}>
                   <img 
                     src={item.image.url} 
-                    alt={item.image.alt || item.title}
+                    alt={item.title}
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
                       transition: 'transform 0.5s ease'
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   />
                 </div>
               )}
@@ -142,7 +198,7 @@ const NewsPage = () => {
                     Notícia
                   </span>
                   <span style={{color: '#7f8c8d'}}>
-                    ?? {formatDate(item.date)}
+                    📅 {formatDate(item.date)}
                   </span>
                 </div>
                 
@@ -179,7 +235,7 @@ const NewsPage = () => {
                     color: item.published ? '#27ae60' : '#f39c12',
                     fontWeight: '500'
                   }}>
-                    {item.published ? '? Publicada' : '? Em breve'}
+                    {item.published ? '✅ Publicada' : '⏳ Em breve'}
                   </span>
                   <span style={{
                     fontSize: '12px',

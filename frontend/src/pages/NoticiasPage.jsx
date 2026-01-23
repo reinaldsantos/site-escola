@@ -2,148 +2,166 @@
 import { Link } from "react-router-dom";
 import "./NoticiasPage.css";
 
+import useStrapiUniversal from "../hooks/useStrapiUniversal";
+
 const NoticiasPage = () => {
   const [abaAtiva, setAbaAtiva] = useState('noticias');
-  const [dados, setDados] = useState({ 
-    noticias: [], 
-    eventos: [], 
-    avisos: [] 
-  });
-  const [carregando, setCarregando] = useState({ 
-    noticias: true, 
-    eventos: true, 
-    avisos: true 
-  });
-
-  const buscarNoticias = async () => {
-    try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/noticia?populate=*&sort=data_publicacao:desc");
-      const data = await response.json();
-      setDados(prev => ({ ...prev, noticias: data.data || [] }));
-    } catch (error) {
-      console.error("Erro ao buscar notícias:", error);
-    } finally {
-      setCarregando(prev => ({ ...prev, noticias: false }));
-    }
+  
+  const { dados: noticias, carregando: noticiasCarregando } = useStrapiUniversal('noticias', 50);
+  const { dados: eventos, carregando: eventosCarregando } = useStrapiUniversal('eventos', 50);
+  const { dados: avisos, carregando: avisosCarregando } = useStrapiUniversal('avisos', 50);
+  
+  const STRAPI_BASE_URL = "https://strapi-definitivo.onrender.com";
+  
+  const carregando = {
+    noticias: noticiasCarregando,
+    eventos: eventosCarregando,
+    avisos: avisosCarregando
+  };
+  
+  const dados = {
+    noticias: noticias || [],
+    eventos: eventos || [],
+    avisos: avisos || []
   };
 
-  const buscarEventos = async () => {
-    try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/evento?populate=*");
-      if (response.ok) {
-        const data = await response.json();
-        setDados(prev => ({ ...prev, eventos: data.data || [] }));
-      }
-    } catch (error) {
-      console.error("Erro ao buscar eventos:", error);
-    } finally {
-      setCarregando(prev => ({ ...prev, eventos: false }));
-    }
+  // 🔧 FUNÇÕES AUXILIARES
+  const getTitulo = (item) => {
+    // Eventos usam "nome", notícias/avisos usam "titulo"
+    return item?.titulo || item?.nome || item?.title || "Sem título";
   };
 
-  const buscarAvisos = async () => {
-    try {
-      const response = await fetch("https://strapi-final-funcional.onrender.com/api/aviso?populate=*");
-      if (response.ok) {
-        const data = await response.json();
-        setDados(prev => ({ ...prev, avisos: data.data || [] }));
-      } else {
-        setDados(prev => ({ ...prev, avisos: [] }));
-      }
-    } catch (error) {
-      console.error("Erro ao buscar avisos:", error);
-    } finally {
-      setCarregando(prev => ({ ...prev, avisos: false }));
-    }
+  const getConteudo = (item) => {
+    return item?.conteudo || item?.descricao || item?.content || "";
   };
 
-  useEffect(() => {
-    buscarNoticias();
-    buscarEventos();
-    buscarAvisos();
-  }, []);
-
-  // FUNÇÃO PARA EXTRAIR TEXTO DO CONTEÚDO
-  const extrairTextoConteudo = (conteudo) => {
-    if (!conteudo) return "Sem conteúdo";
-    
-    if (Array.isArray(conteudo)) {
-      return conteudo.map(block => {
-        if (block.children) {
-          return block.children.map(child => child.text).join(' ');
-        }
-        return '';
-      }).join(' ').substring(0, 120) + '...';
-    }
-    
-    return conteudo.substring(0, 120) + '...';
+  const getData = (item) => {
+    // Eventos: data_hora, Notícias: data, Avisos: createdAt
+    return item?.data_hora || item?.data || item?.createdAt;
   };
 
-  // FUNÇÃO PARA OBTER URL DA IMAGEM
-  const getImagemUrl = (item) => {
+  // 🎯 FUNÇÃO CORRIGIDA PARA IMAGENS DE EVENTOS
+  const getImagemUrl = (item, tipo = abaAtiva) => {
     if (!item) return null;
     
-    const image = item.attributes?.image || item.image;
+    console.log(`🔍 Buscando imagem para ${tipo}:`, getTitulo(item));
     
-    if (!image) {
-      const possibleImageFields = ['imagem', 'capa', 'foto', 'thumbnail', 'banner'];
-      for (const field of possibleImageFields) {
-        const fieldData = item.attributes?.[field] || item[field];
-        if (fieldData) {
-          const img = fieldData;
-          if (img.data?.attributes?.url) return `https://strapi-final-funcional.onrender.com${img.data.attributes.url}`;
-          if (img.url) return `https://strapi-final-funcional.onrender.com${img.url}`;
-        }
+    // 1. Usar imagemUrl do hook se existir
+    if (item.imagemUrl) {
+      console.log('✅ imagemUrl do hook:', item.imagemUrl);
+      return item.imagemUrl;
+    }
+    
+    // 2. Verificar campos específicos por tipo
+    if (tipo === 'eventos') {
+      // Eventos usam "banner"
+      if (item.banner?.url) {
+        const url = item.banner.url.startsWith('/')
+          ? `${STRAPI_BASE_URL}${item.banner.url}`
+          : item.banner.url;
+        console.log('✅ banner.url encontrado:', url);
+        return url;
       }
-      return null;
+      
+      // Ou pode ter "imagem" também
+      if (item.imagem?.url) {
+        const url = item.imagem.url.startsWith('/')
+          ? `${STRAPI_BASE_URL}${item.imagem.url}`
+          : item.imagem.url;
+        console.log('✅ imagem.url encontrado (evento):', url);
+        return url;
+      }
+    } 
+    else {
+      // Notícias e Avisos usam "imagem"
+      if (item.imagem?.url) {
+        const url = item.imagem.url.startsWith('/')
+          ? `${STRAPI_BASE_URL}${item.imagem.url}`
+          : item.imagem.url;
+        console.log('✅ imagem.url encontrado:', url);
+        return url;
+      }
     }
     
-    if (image.data?.attributes?.url) {
-      return `https://strapi-final-funcional.onrender.com${image.data.attributes.url}`;
-    }
-    
-    if (image.url) {
-      return `https://strapi-final-funcional.onrender.com${image.url}`;
-    }
-    
-    if (image.data?.url) {
-      return `https://strapi-final-funcional.onrender.com${image.data.url}`;
-    }
-    
+    console.log('⚠️ Sem imagem');
     return null;
   };
 
-  // FUNÇÃO PARA FORMATAR DATA
+  const extrairTextoConteudo = (conteudo) => {
+    if (!conteudo) return "Sem descrição";
+    if (typeof conteudo === 'string') {
+      return conteudo.substring(0, 100) + (conteudo.length > 100 ? '...' : '');
+    }
+    return "Descrição disponível";
+  };
+
   const formatarData = (dataString) => {
-    if (!dataString) return "Data não disponível";
-    
+    if (!dataString) return "";
     try {
       const data = new Date(dataString);
+      if (abaAtiva === 'eventos') {
+        // Formato especial para eventos: data + hora
+        return data.toLocaleString("pt-PT", {
+          day: "numeric",
+          month: "short",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+      }
       return data.toLocaleDateString("pt-PT", {
         day: "numeric",
         month: "short",
         year: "numeric",
       });
-    } catch (error) {
-      return "Data inválida";
+    } catch {
+      return "";
     }
   };
 
-  // FUNÇÃO PARA OBTER TÍTULO
-  const getTitulo = (item) => {
-    return item.attributes?.titulo || item.titulo || item.attributes?.title || item.title || "Sem título";
-  };
-
-  // FUNÇÃO PARA OBTER CONTEÚDO
-  const getConteudo = (item) => {
-    return item.attributes?.conteudo || item.conteudo || item.attributes?.content || item.content || "";
-  };
-
-  // FUNÇÃO PARA OBTER DATA
-  const getData = (item) => {
-    return item.attributes?.data_publicacao || item.data_publicacao || 
-           item.attributes?.data_evento || item.data_evento || 
-           item.attributes?.createdAt || item.createdAt;
+  // 🎨 COMPONENTE DE IMAGEM
+  const ImagemCard = ({ item, tipo }) => {
+    const imagemUrl = getImagemUrl(item, tipo);
+    
+    if (imagemUrl) {
+      return (
+        <div className="noticia-imagem-container">
+          <img 
+            src={imagemUrl}
+            alt={getTitulo(item)}
+            className="noticia-imagem"
+            loading="lazy"
+            onLoad={() => console.log(`✅ Imagem carregada: ${getTitulo(item)}`)}
+            onError={(e) => {
+              console.error(`❌ Erro na imagem: ${imagemUrl}`);
+              e.target.style.display = 'none';
+              // Mostrar fallback
+              const fallback = document.createElement('div');
+              fallback.className = 'imagem-fallback';
+              fallback.innerHTML = `
+                <div class="fallback-icon">${tipo === 'eventos' ? '📅' : tipo === 'avisos' ? '⚠️' : '📰'}</div>
+                <div class="fallback-text">${tipo.toUpperCase()}</div>
+              `;
+              e.target.parentElement.appendChild(fallback);
+            }}
+          />
+        </div>
+      );
+    }
+    
+    // Placeholder se não tiver imagem
+    return (
+      <div className={`imagem-placeholder ${tipo}`}>
+        <div className="placeholder-icon">
+          {tipo === 'eventos' ? '📅' : tipo === 'avisos' ? '⚠️' : '📰'}
+        </div>
+        <div className="placeholder-text">
+          {tipo.toUpperCase()}
+          {tipo === 'eventos' && item.local && (
+            <div className="local-info">📍 {item.local}</div>
+          )}
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -153,21 +171,11 @@ const NoticiasPage = () => {
         <p className="subtitulo">Fique por dentro das últimas novidades da nossa escola</p>
         <div className="cabecalho-info">
           <div className="contador-noticias">
-            <span className="numero">{dados.noticias.length + dados.eventos.length}</span>
+            <span className="numero">{dados.noticias.length + dados.eventos.length + dados.avisos.length}</span>
             <span className="label">publicações</span>
           </div>
-          <button className="btn-atualizar" onClick={() => {
-            buscarNoticias();
-            buscarEventos();
-            buscarAvisos();
-          }}>Atualizar</button>
         </div>
       </header>
-
-      <div className="mensagem-boas-vindas">
-        <p className="mensagem-destaque">Evoluímos juntos.</p>
-        <p className="mensagem-sub">Evoluímos juntos.</p>
-      </div>
 
       <nav className="noticias-navegacao">
         <div className="abas-container">
@@ -191,53 +199,40 @@ const NoticiasPage = () => {
           </div>
         ) : dados[abaAtiva].length === 0 ? (
           <div className="sem-conteudo">
-            <p>Nenhum conteúdo publicado ainda na coleção <strong>{abaAtiva}</strong>.</p>
-            <p>Publique no <strong>Strapi Admin</strong></p>
+            <p>Nenhum {abaAtiva} publicado ainda.</p>
           </div>
         ) : (
           <div className="noticias-grid">
             {dados[abaAtiva].map((item) => {
-              const imagemUrl = getImagemUrl(item);
               const titulo = getTitulo(item);
               const conteudo = getConteudo(item);
               const data = getData(item);
               
               return (
                 <div key={item.id} className="noticia-card">
-                  {imagemUrl && (
-                    <div className="noticia-imagem-container">
-                      <img 
-                        src={imagemUrl} 
-                        alt={titulo} 
-                        className="noticia-imagem"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.parentElement.classList.add('sem-imagem');
-                        }}
-                      />
-                    </div>
-                  )}
+                  <ImagemCard item={item} tipo={abaAtiva} />
                   
                   <div className="noticia-info">
                     <div className="noticia-meta">
                       <span className="noticia-data">
                         {formatarData(data)}
+                        {abaAtiva === 'eventos' && item.vagas && (
+                          <span className="vagas-info"> • 🎫 {item.vagas} vagas</span>
+                        )}
                       </span>
                       <span className="noticia-tipo">{abaAtiva.toUpperCase()}</span>
                     </div>
                     
-                    <h3 className="noticia-titulo">
-                      {titulo}
-                    </h3>
+                    <h3 className="noticia-titulo">{titulo}</h3>
                     
                     <p className="noticia-descricao">
                       {extrairTextoConteudo(conteudo)}
                     </p>
                     
                     <div className="noticia-rodape">
-                      <span className="noticia-status">
-                        <span className="status-badge">{abaAtiva === 'eventos' ? 'Agendado' : 'Publicado'}</span>
+                      <span className="status-badge">
+                        {abaAtiva === 'eventos' ? '🎫 Evento' : 
+                         abaAtiva === 'avisos' ? '⚠️ Aviso' : '📰 Notícia'}
                       </span>
                       <Link to={`/${abaAtiva}/${item.id}`} className="noticia-link">
                         Ver {abaAtiva === 'eventos' ? 'detalhes' : 'completo'} →
@@ -250,17 +245,6 @@ const NoticiasPage = () => {
           </div>
         )}
       </main>
-
-      <footer className="noticias-rodape">
-        <div className="informacoes-importantes">
-          <h3>INFORMAÇÕES IMPORTANTES</h3>
-          <p>Todas as informações são atualizadas automaticamente através do nosso sistema. Para mais informações, contacte a secretaria da escola.</p>
-          <Link to="/contactos" className="btn-contactar">CONTACTAR SECRETARIA</Link>
-        </div>
-        <div className="copyright">
-          <p>© {new Date().getFullYear()} EPF - Escola Profissional. Todas as notícias são atualizadas regularmente.</p>
-        </div>
-      </footer>
     </div>
   );
 };
