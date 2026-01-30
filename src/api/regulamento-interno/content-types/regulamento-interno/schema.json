@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "regulamento_internos",
+  "info": {
+    "singularName": "regulamento-interno",
+    "pluralName": "regulamento-internos",
+    "displayName": "regulamento_interno"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "arquivo_pdf": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "descricao": {
+      "type": "blocks"
+    },
+    "data_publicacao": {
+      "type": "date"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

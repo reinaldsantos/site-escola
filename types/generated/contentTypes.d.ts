@@ -482,6 +482,97 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
 }
 
+export interface PluginContentReleasesRelease extends Schema.CollectionType {
+  collectionName: 'strapi_releases';
+  info: {
+    singularName: 'release';
+    pluralName: 'releases';
+    displayName: 'Release';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    releasedAt: Attribute.DateTime;
+    actions: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToMany',
+      'plugin::content-releases.release-action'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginContentReleasesReleaseAction
+  extends Schema.CollectionType {
+  collectionName: 'strapi_release_actions';
+  info: {
+    singularName: 'release-action';
+    pluralName: 'release-actions';
+    displayName: 'Release Action';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
+    entry: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'morphToOne'
+    >;
+    contentType: Attribute.String & Attribute.Required;
+    release: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'manyToOne',
+      'plugin::content-releases.release'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -677,6 +768,42 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAutorizacaoFuncionamentoAutorizacaoFuncionamento
+  extends Schema.CollectionType {
+  collectionName: 'autorizacao_funcionamentos';
+  info: {
+    singularName: 'autorizacao-funcionamento';
+    pluralName: 'autorizacao-funcionamentos';
+    displayName: 'autorizacao_funcionamento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    versao: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::autorizacao-funcionamento.autorizacao-funcionamento',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::autorizacao-funcionamento.autorizacao-funcionamento',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAvisoAviso extends Schema.CollectionType {
   collectionName: 'avisos';
   info: {
@@ -703,6 +830,79 @@ export interface ApiAvisoAviso extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::aviso.aviso',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCategoriaEqavetCategoriaEqavet
+  extends Schema.CollectionType {
+  collectionName: 'categoria_eqavets';
+  info: {
+    singularName: 'categoria-eqavet';
+    pluralName: 'categoria-eqavets';
+    displayName: 'selo_Conformidade_EQAVET';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String & Attribute.Required;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    descricao: Attribute.Blocks;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::categoria-eqavet.categoria-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::categoria-eqavet.categoria-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCertificacaoEqavet20202023CertificacaoEqavet20202023
+  extends Schema.CollectionType {
+  collectionName: 'certificacao_eqavet_2020_2023s';
+  info: {
+    singularName: 'certificacao-eqavet-2020-2023';
+    pluralName: 'certificacao-eqavet-2020-2023s';
+    displayName: 'certificacao_eqavet_2020_2023';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    descricao: Attribute.Blocks;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certificacao-eqavet-2020-2023.certificacao-eqavet-2020-2023',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certificacao-eqavet-2020-2023.certificacao-eqavet-2020-2023',
       'oneToOne',
       'admin::user'
     > &
@@ -737,6 +937,76 @@ export interface ApiCursoCurso extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::curso.curso',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDocumentoBaseEqavetDocumentoBaseEqavet
+  extends Schema.CollectionType {
+  collectionName: 'documento_base_eqavets';
+  info: {
+    singularName: 'documento-base-eqavet';
+    pluralName: 'documento-base-eqavets';
+    displayName: 'documento_base_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::documento-base-eqavet.documento-base-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::documento-base-eqavet.documento-base-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEstatutoEstatuto extends Schema.CollectionType {
+  collectionName: 'estatutos';
+  info: {
+    singularName: 'estatuto';
+    pluralName: 'estatutos';
+    displayName: 'estatuto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    versao: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::estatuto.estatuto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::estatuto.estatuto',
       'oneToOne',
       'admin::user'
     > &
@@ -779,6 +1049,149 @@ export interface ApiEventoEvento extends Schema.CollectionType {
   };
 }
 
+export interface ApiFichaOperacaoFichaOperacao extends Schema.CollectionType {
+  collectionName: 'ficha_operacaos';
+  info: {
+    singularName: 'ficha-operacao';
+    pluralName: 'ficha-operacaos';
+    displayName: 'ficha_operacao';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::ficha-operacao.ficha-operacao',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::ficha-operacao.ficha-operacao',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGuiaoEducacaoInclusivaGuiaoEducacaoInclusiva
+  extends Schema.CollectionType {
+  collectionName: 'guiao_educacao_inclusivas';
+  info: {
+    singularName: 'guiao-educacao-inclusiva';
+    pluralName: 'guiao-educacao-inclusivas';
+    displayName: 'guiao_educacao_inclusiva';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::guiao-educacao-inclusiva.guiao-educacao-inclusiva',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::guiao-educacao-inclusiva.guiao-educacao-inclusiva',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLegislacaoApoioLegislacaoApoio
+  extends Schema.CollectionType {
+  collectionName: 'legislacao_apoios';
+  info: {
+    singularName: 'legislacao-apoio';
+    pluralName: 'legislacao-apoios';
+    displayName: 'legislacao_apoio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::legislacao-apoio.legislacao-apoio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::legislacao-apoio.legislacao-apoio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiManualProcessosEqavetManualProcessosEqavet
+  extends Schema.CollectionType {
+  collectionName: 'manual_processos_eqavets';
+  info: {
+    singularName: 'manual-processos-eqavet';
+    pluralName: 'manual-processos-eqavets';
+    displayName: ' manual_processos_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    descricao: Attribute.Blocks;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::manual-processos-eqavet.manual-processos-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::manual-processos-eqavet.manual-processos-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNoticiaNoticia extends Schema.CollectionType {
   collectionName: 'noticias';
   info: {
@@ -814,6 +1227,366 @@ export interface ApiNoticiaNoticia extends Schema.CollectionType {
   };
 }
 
+export interface ApiOrganizacaoEscolarOrganizacaoEscolar
+  extends Schema.CollectionType {
+  collectionName: 'organizacao_escolars';
+  info: {
+    singularName: 'organizacao-escolar';
+    pluralName: 'organizacao-escolars';
+    displayName: 'organizacao_escolar';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::organizacao-escolar.organizacao-escolar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::organizacao-escolar.organizacao-escolar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPlanoAcaoEqavetPlanoAcaoEqavet
+  extends Schema.CollectionType {
+  collectionName: 'plano_acao_eqavets';
+  info: {
+    singularName: 'plano-acao-eqavet';
+    pluralName: 'plano-acao-eqavets';
+    displayName: 'plano_acao_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    descricao: Attribute.Blocks;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::plano-acao-eqavet.plano-acao-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::plano-acao-eqavet.plano-acao-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPlanoAcaoIntegradoEqavetPlanoAcaoIntegradoEqavet
+  extends Schema.CollectionType {
+  collectionName: 'plano_acao_integrado_eqavets';
+  info: {
+    singularName: 'plano-acao-integrado-eqavet';
+    pluralName: 'plano-acao-integrado-eqavets';
+    displayName: 'plano_acao_integrado_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    descricao: Attribute.Blocks;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::plano-acao-integrado-eqavet.plano-acao-integrado-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::plano-acao-integrado-eqavet.plano-acao-integrado-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPoliticaPrivacidadePoliticaPrivacidade
+  extends Schema.CollectionType {
+  collectionName: 'politica_privacidades';
+  info: {
+    singularName: 'politica-privacidade';
+    pluralName: 'politica-privacidades';
+    displayName: 'politica_privacidade';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::politica-privacidade.politica-privacidade',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::politica-privacidade.politica-privacidade',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjetoEducativoProjetoEducativo
+  extends Schema.CollectionType {
+  collectionName: 'projeto_educativos';
+  info: {
+    singularName: 'projeto-educativo';
+    pluralName: 'projeto-educativos';
+    displayName: 'projeto_educativo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    descricao: Attribute.Blocks;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::projeto-educativo.projeto-educativo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::projeto-educativo.projeto-educativo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRegulamentoInternoRegulamentoInterno
+  extends Schema.CollectionType {
+  collectionName: 'regulamento_internos';
+  info: {
+    singularName: 'regulamento-interno';
+    pluralName: 'regulamento-internos';
+    displayName: 'regulamento_interno';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::regulamento-interno.regulamento-interno',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::regulamento-interno.regulamento-interno',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRelatorioAcompanhamentoEqavetRelatorioAcompanhamentoEqavet
+  extends Schema.CollectionType {
+  collectionName: 'relatorio_acompanhamento_eqavets';
+  info: {
+    singularName: 'relatorio-acompanhamento-eqavet';
+    pluralName: 'relatorio-acompanhamento-eqavets';
+    displayName: 'relatorio_acompanhamento_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    descricao: Attribute.Blocks;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::relatorio-acompanhamento-eqavet.relatorio-acompanhamento-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::relatorio-acompanhamento-eqavet.relatorio-acompanhamento-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRelatorioOperadorEqavetRelatorioOperadorEqavet
+  extends Schema.CollectionType {
+  collectionName: 'relatorio_operador_eqavets';
+  info: {
+    singularName: 'relatorio-operador-eqavet';
+    pluralName: 'relatorio-operador-eqavets';
+    displayName: 'relatorio_operador_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    descricao: Attribute.Blocks;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::relatorio-operador-eqavet.relatorio-operador-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::relatorio-operador-eqavet.relatorio-operador-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRelatorioProgressoAnualEqavetRelatorioProgressoAnualEqavet
+  extends Schema.CollectionType {
+  collectionName: 'relatorio_progresso_anual_eqavets';
+  info: {
+    singularName: 'relatorio-progresso-anual-eqavet';
+    pluralName: 'relatorio-progresso-anual-eqavets';
+    displayName: 'relatorio_progresso_anual_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    aruivo_pdf: Attribute.Media;
+    descricao: Attribute.Blocks;
+    data_publicacao: Attribute.Date;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::relatorio-progresso-anual-eqavet.relatorio-progresso-anual-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::relatorio-progresso-anual-eqavet.relatorio-progresso-anual-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRelatorioVerificacaoEqavetRelatorioVerificacaoEqavet
+  extends Schema.CollectionType {
+  collectionName: 'relatorio_verificacao_eqavets';
+  info: {
+    singularName: 'relatorio-verificacao-eqavet';
+    pluralName: 'relatorio-verificacao-eqavets';
+    displayName: ' relatorio_verificacao_eqavet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Attribute.String;
+    arquivo_pdf: Attribute.Media;
+    data_publicacao: Attribute.Date;
+    descricao: Attribute.Blocks;
+    versao: Attribute.String;
+    ativo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::relatorio-verificacao-eqavet.relatorio-verificacao-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::relatorio-verificacao-eqavet.relatorio-verificacao-eqavet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -826,14 +1599,35 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::content-releases.release': PluginContentReleasesRelease;
+      'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::autorizacao-funcionamento.autorizacao-funcionamento': ApiAutorizacaoFuncionamentoAutorizacaoFuncionamento;
       'api::aviso.aviso': ApiAvisoAviso;
+      'api::categoria-eqavet.categoria-eqavet': ApiCategoriaEqavetCategoriaEqavet;
+      'api::certificacao-eqavet-2020-2023.certificacao-eqavet-2020-2023': ApiCertificacaoEqavet20202023CertificacaoEqavet20202023;
       'api::curso.curso': ApiCursoCurso;
+      'api::documento-base-eqavet.documento-base-eqavet': ApiDocumentoBaseEqavetDocumentoBaseEqavet;
+      'api::estatuto.estatuto': ApiEstatutoEstatuto;
       'api::evento.evento': ApiEventoEvento;
+      'api::ficha-operacao.ficha-operacao': ApiFichaOperacaoFichaOperacao;
+      'api::guiao-educacao-inclusiva.guiao-educacao-inclusiva': ApiGuiaoEducacaoInclusivaGuiaoEducacaoInclusiva;
+      'api::legislacao-apoio.legislacao-apoio': ApiLegislacaoApoioLegislacaoApoio;
+      'api::manual-processos-eqavet.manual-processos-eqavet': ApiManualProcessosEqavetManualProcessosEqavet;
       'api::noticia.noticia': ApiNoticiaNoticia;
+      'api::organizacao-escolar.organizacao-escolar': ApiOrganizacaoEscolarOrganizacaoEscolar;
+      'api::plano-acao-eqavet.plano-acao-eqavet': ApiPlanoAcaoEqavetPlanoAcaoEqavet;
+      'api::plano-acao-integrado-eqavet.plano-acao-integrado-eqavet': ApiPlanoAcaoIntegradoEqavetPlanoAcaoIntegradoEqavet;
+      'api::politica-privacidade.politica-privacidade': ApiPoliticaPrivacidadePoliticaPrivacidade;
+      'api::projeto-educativo.projeto-educativo': ApiProjetoEducativoProjetoEducativo;
+      'api::regulamento-interno.regulamento-interno': ApiRegulamentoInternoRegulamentoInterno;
+      'api::relatorio-acompanhamento-eqavet.relatorio-acompanhamento-eqavet': ApiRelatorioAcompanhamentoEqavetRelatorioAcompanhamentoEqavet;
+      'api::relatorio-operador-eqavet.relatorio-operador-eqavet': ApiRelatorioOperadorEqavetRelatorioOperadorEqavet;
+      'api::relatorio-progresso-anual-eqavet.relatorio-progresso-anual-eqavet': ApiRelatorioProgressoAnualEqavetRelatorioProgressoAnualEqavet;
+      'api::relatorio-verificacao-eqavet.relatorio-verificacao-eqavet': ApiRelatorioVerificacaoEqavetRelatorioVerificacaoEqavet;
     }
   }
 }

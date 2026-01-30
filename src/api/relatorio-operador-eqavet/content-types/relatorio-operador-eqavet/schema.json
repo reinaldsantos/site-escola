@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "relatorio_operador_eqavets",
+  "info": {
+    "singularName": "relatorio-operador-eqavet",
+    "pluralName": "relatorio-operador-eqavets",
+    "displayName": "relatorio_operador_eqavet"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "arquivo_pdf": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "data_publicacao": {
+      "type": "date"
+    },
+    "descricao": {
+      "type": "blocks"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "manual_processos_eqavets",
+  "info": {
+    "singularName": "manual-processos-eqavet",
+    "pluralName": "manual-processos-eqavets",
+    "displayName": " manual_processos_eqavet"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "arquivo_pdf": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "data_publicacao": {
+      "type": "date"
+    },
+    "descricao": {
+      "type": "blocks"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

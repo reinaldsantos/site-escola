@@ -1,5 +1,5 @@
-
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';  // ← IMPORT ADICIONADO
 import './Carousel.css';
 
 const Carousel = () => {
@@ -72,9 +72,11 @@ const Carousel = () => {
               <div className="slide-content">
                 <h1 className="slide-title">{slide.title}</h1>
                 <p className="slide-description">{slide.description}</p>
-                <a href={slide.link} className="slide-btn">
+                
+                {/* MUDEI AQUI: <a href> para <Link to> */}
+                <Link to={slide.link} className="slide-btn">
                   SABER MAIS
-                </a>
+                </Link>
               </div>
             </div>
           </div>

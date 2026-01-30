@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "relatorio_progresso_anual_eqavets",
+  "info": {
+    "singularName": "relatorio-progresso-anual-eqavet",
+    "pluralName": "relatorio-progresso-anual-eqavets",
+    "displayName": "relatorio_progresso_anual_eqavet"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "aruivo_pdf": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "descricao": {
+      "type": "blocks"
+    },
+    "data_publicacao": {
+      "type": "date"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

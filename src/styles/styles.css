@@ -1,0 +1,283 @@
+﻿/* styles.css - CSS único para todas as páginas EQAVET */
+
+/* Reset e configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* Container principal do visualizador */
+.pdf-viewer-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header */
+.pdf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pdf-header-title h1 {
+    color: #2d3748;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.pdf-header-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botões */
+.pdf-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.pdf-btn-primary {
+    background: #4299e1;
+    color: white;
+}
+
+.pdf-btn-primary:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+}
+
+.pdf-btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.pdf-btn-secondary:hover {
+    background: #cbd5e0;
+}
+
+/* Área principal */
+.pdf-main-area {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    height: calc(100vh - 120px);
+}
+
+/* Sidebar */
+.pdf-sidebar {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.pdf-sidebar h2 {
+    color: #2d3748;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    font-size: 18px;
+}
+
+.pdf-list {
+    list-style: none;
+}
+
+.pdf-list-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 4px solid #4299e1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pdf-list-item:hover {
+    background: #edf2f7;
+    transform: translateX(5px);
+}
+
+.pdf-list-item.active {
+    background: #bee3f8;
+    border-left-color: #3182ce;
+    font-weight: 600;
+}
+
+/* Área do visualizador */
+.pdf-viewer {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-viewer-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.pdf-viewer-toolbar h2 {
+    color: #2d3748;
+    margin: 0;
+    font-size: 18px;
+}
+
+.pdf-toolbar-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Container do PDF */
+.pdf-container {
+    flex: 1;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+    overflow: hidden;
+    position: relative;
+}
+
+.pdf-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Mensagem quando não há PDF */
+.pdf-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #718096;
+}
+
+.pdf-empty-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+/* Controles de página */
+.pdf-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #4299e1;
+    background: white;
+    color: #4299e1;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #4299e1;
+    color: white;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-info {
+    color: #718096;
+    font-size: 14px;
+    background: #f7fafc;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .pdf-main-area {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .pdf-sidebar {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pdf-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .pdf-header-controls {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .pdf-viewer-toolbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pdf-viewer {
+    animation: fadeIn 0.3s ease-out;
+}

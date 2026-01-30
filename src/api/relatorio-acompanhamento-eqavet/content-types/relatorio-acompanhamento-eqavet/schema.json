@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "relatorio_acompanhamento_eqavets",
+  "info": {
+    "singularName": "relatorio-acompanhamento-eqavet",
+    "pluralName": "relatorio-acompanhamento-eqavets",
+    "displayName": "relatorio_acompanhamento_eqavet"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "arquivo_pdf": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "data_publicacao": {
+      "type": "date"
+    },
+    "descricao": {
+      "type": "blocks"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

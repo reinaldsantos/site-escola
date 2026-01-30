@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projeto_educativos",
+  "info": {
+    "singularName": "projeto-educativo",
+    "pluralName": "projeto-educativos",
+    "displayName": "projeto_educativo"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "arquivo_pdf": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "data_publicacao": {
+      "type": "date"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "blocks"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

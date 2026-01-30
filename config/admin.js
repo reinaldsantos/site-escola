@@ -1,23 +1,13 @@
-﻿module.exports = ({ env }) => ({
+module.exports = ({ env }) => ({
   auth: {
-    secret: env('ADMIN_JWT_SECRET', 'myadminjwtsecret2025render'),
+    secret: env('ADMIN_JWT_SECRET'),
   },
   apiToken: {
-    salt: env('API_TOKEN_SALT', 'myapisecretsalt2025render'),
+    salt: env('API_TOKEN_SALT'),
   },
   transfer: {
     token: {
-      salt: env('TRANSFER_TOKEN_SALT', 'mytransfersalt2025render'),
+      salt: env('TRANSFER_TOKEN_SALT'),
     },
   },
-  // ⚠️ CONFIGURAÇÃO NUCLEAR - DESATIVA PROBLEMAS
-  flags: {
-    nps: false,           // Desativa pesquisas
-    promoteEE: false,     // Desativa promoções
-  },
-  // Otimizações de performance
-  watchIgnoreFiles: [
-    '**/config/sync/**',
-    '**/src/**',
-  ],
 });

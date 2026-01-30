@@ -52,16 +52,7 @@ const HomePage = () => {
   customViewAllPage="formacao"     // "Ver todos" vai para /formacao
 />
 
-{/* AVISOS - SEM BOTÃO dentro do card */}
-<ContentUniversal
-  collectionName="avisos"
-  title="AVISOS IMPORTANTES"
-  limit={3}
-  showDate={true}
-  showDescription={true}
-  customDetailPage={null}          // SEM BOTÃO (null)
-  customViewAllPage="noticias"     // "Ver todos" vai para /noticias
-/>
+<h1>ㅤ</h1>
 
 </div>
 </div>

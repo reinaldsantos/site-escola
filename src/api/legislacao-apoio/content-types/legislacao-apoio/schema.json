@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "legislacao_apoios",
+  "info": {
+    "singularName": "legislacao-apoio",
+    "pluralName": "legislacao-apoios",
+    "displayName": "legislacao_apoio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "arquivo_pdf": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "descricao": {
+      "type": "blocks"
+    },
+    "data_publicacao": {
+      "type": "date"
+    },
+    "versao": {
+      "type": "string"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

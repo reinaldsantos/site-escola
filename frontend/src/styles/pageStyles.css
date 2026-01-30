@@ -1,0 +1,144 @@
+/* Estilos Gerais para todas as páginas de documentos */
+.document-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 200px); /* Ajuste baseado na altura do header/footer */
+  }
+  
+  .document-page h1 {
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+  }
+  
+  .document-page .intro-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+  }
+  
+  /* Estilos específicos para cada página */
+  .sobre-nos-page {
+    background-color: #f0f8ff;
+  }
+  
+  .autorizacao-page {
+    background-color: #fffaf0;
+  }
+  
+  .estatutos-page {
+    background-color: #f9f0ff;
+  }
+  
+  .regulamento-page {
+    background-color: #f0fff0;
+  }
+  
+  .projeto-educativo-page {
+    background-color: #fff0f5;
+  }
+  
+  .politica-privacidade-page {
+    background-color: #f5f5f5;
+  }
+  
+  .organizacao-escolar-page {
+    background-color: #f0f8ff;
+  }
+  
+  .educacao-inclusiva-page {
+    background-color: #fffaf0;
+  }
+  
+  .legislacao-page {
+    background-color: #f9f0ff;
+  }
+  
+  .fichas-operacao-page {
+    background-color: #f0fff0;
+  }
+  
+  /* Estilos para as páginas EQAVET */
+  .selo-conformidade-page {
+    background-color: #e8f4f8;
+  }
+  
+  .documento-base-page {
+    background-color: #f0f8ff;
+  }
+  
+  .plano-acao-page {
+    background-color: #fff0f5;
+  }
+  
+  .relatorio-operador-page {
+    background-color: #f5f5f5;
+  }
+  
+  .plano-integrado-page {
+    background-color: #f0fff0;
+  }
+  
+  .relatorio-verificacao-page {
+    background-color: #fffaf0;
+  }
+  
+  .manual-processos-page {
+    background-color: #f9f0ff;
+  }
+  
+  .relatorios-acompanhamento-page {
+    background-color: #e8f4f8;
+  }
+  
+  .relatorios-progresso-page {
+    background-color: #f0f8ff;
+  }
+  
+  .certificacao-page {
+    background-color: #fff0f5;
+  }
+  
+  /* Estilos para seções de informações */
+  .info-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .info-section h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+  }
+  
+  .info-section p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .document-page {
+      padding: 15px;
+    }
+    
+    .document-page h1 {
+      font-size: 2rem;
+    }
+    
+    .info-section {
+      padding: 15px;
+    }
+  }
